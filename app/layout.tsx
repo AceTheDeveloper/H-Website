@@ -27,7 +27,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      google-site-verification: google382b234ef32834dc.html
       <body className={`${blinker.variable} font-body antialiased`}>
         <noscript>
           <style>
