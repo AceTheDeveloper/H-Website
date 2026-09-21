@@ -8,7 +8,9 @@ export default function Hero() {
     <section className="bg-cream">
       <div className="page-shell grid items-stretch gap-10 py-10 md:grid-cols-12 md:gap-0 md:py-0 lg:min-h-[min(760px,calc(100svh-5rem))]">
         <div className="flex flex-col justify-center md:col-span-6 md:py-24 md:pr-16">
-          <p className="eyebrow rise">Diversion Road · Mandurriao · Iloilo City</p>
+          <p className="eyebrow rise">
+            Diversion Road · Mandurriao · Iloilo City
+          </p>
           <h1
             className="display rise mt-6 text-[2.75rem] sm:text-6xl lg:text-7xl"
             style={{ animationDelay: "120ms" }}
@@ -22,7 +24,8 @@ export default function Hero() {
             style={{ animationDelay: "260ms" }}
           >
             One kitchen, one room, the whole day. Eggs and coffee at sunrise,
-            plates to share by afternoon, and a full bar once the lights come down.
+            plates to share by afternoon, and a full bar once the lights come
+            down.
           </p>
           <div
             className="rise mt-10 flex flex-wrap gap-4"
@@ -31,9 +34,9 @@ export default function Hero() {
             <Link href="/menu" className="btn btn-primary">
               View the menu
             </Link>
-            <Link href="/location#reserve" className="btn btn-outline on-light">
+            {/* <Link href="/location#reserve" className="btn btn-outline on-light">
               Reserve a table
-            </Link>
+            </Link> */}
           </div>
         </div>
 
