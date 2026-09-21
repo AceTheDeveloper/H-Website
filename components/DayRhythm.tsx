@@ -1,25 +1,34 @@
 import { dayRhythm } from "@/lib/data";
+import Reveal from "./Reveal";
 
 export default function DayRhythm() {
   return (
-    <section className="bg-ink text-paper">
-      <div className="page-shell py-20">
-        <h2 className="font-display text-3xl sm:text-4xl">How the day moves</h2>
-        <p className="mt-3 max-w-md text-paper/65">
-          Same room, same staff, one menu that turns over as the day does.
-        </p>
+    <section className="bg-espresso text-white">
+      <div className="section page-shell">
+        <Reveal>
+          <p className="eyebrow !text-white/60">The rhythm of the day</p>
+          <h2 className="display mt-5 max-w-2xl text-3xl sm:text-4xl md:text-5xl">
+            Same room, same crew — the menu turns over as the day does.
+          </h2>
+        </Reveal>
 
-        <div className="mt-12 grid gap-8 border-t border-paper/15 pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-paper/15">
-          {dayRhythm.map((step) => (
-            <div key={step.title} className="lg:px-8 lg:first:pl-0 lg:last:pr-0">
-              <p className="font-display text-2xl text-red">{step.time}</p>
-              <h3 className="mt-3 text-base font-medium">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-paper/60">
-                {step.description}
-              </p>
-            </div>
+        <ol className="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {dayRhythm.map((step, i) => (
+            <li
+              key={step.title}
+              className="relative border-t border-white/20 pt-8"
+            >
+              <span className="absolute -top-[5px] left-0 h-[9px] w-[9px] rounded-full bg-red" />
+              <Reveal delay={i * 120}>
+                <p className="text-4xl font-light">{step.time}</p>
+                <h3 className="mt-4 text-lg font-semibold">{step.title}</h3>
+                <p className="mt-2 text-[0.95rem] leading-relaxed text-white/65">
+                  {step.description}
+                </p>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

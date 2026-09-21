@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import { Fraunces, Work_Sans } from "next/font/google";
+import { Blinker } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const fraunces = Fraunces({
+const blinker = Blinker({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  weight: ["400", "500", "600", "700", "900"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const workSans = Work_Sans({
-  subsets: ["latin"],
-  variable: "--font-work-sans",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-blinker",
+  weight: ["100", "200", "300", "400", "600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -33,8 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fraunces.variable} ${workSans.variable} font-body antialiased`}
+        className={`${blinker.variable} font-body antialiased`}
       >
+        <noscript>
+          <style>{".reveal{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
         <Navbar />
         <main>{children}</main>
         <Footer />

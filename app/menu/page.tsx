@@ -11,17 +11,20 @@ export default function MenuPage() {
   return (
     <>
       <PageHeader
-        title="The menu"
-        description="Five boards that carry the day — breakfast in the morning, a full bar by evening. Tap a category to browse."
+        eyebrow="The menu"
+        title="Breakfast, plates and everything after."
+        description="Browse by category — from morning plates to pizza, pasta and sharing platters."
       />
 
       <MenuBrowser />
 
-      <div className="page-shell pb-16">
-        <p className="border-t border-mist pt-6 text-sm text-ink/50">
-          New — recently added · Chef&apos;s Pick — a kitchen favourite ·
-          Bar Favorite — most ordered at the bar · Vegetarian — no meat or
-          fish. Ask your server about other dietary needs.
+      <div className="page-shell pb-20">
+        <p className="border-t border-sand pt-6 text-sm leading-relaxed text-ink/55">
+          <strong className="font-semibold text-ink/70">New</strong> — recently
+          added · <strong className="font-semibold text-ink/70">Chef&apos;s Pick</strong> — a
+          kitchen favourite · <strong className="font-semibold text-ink/70">Bar Favorite</strong> —
+          most ordered at the bar · <strong className="font-semibold text-ink/70">Vegetarian</strong> —
+          no meat or fish. Ask your server about other dietary needs.
         </p>
       </div>
 

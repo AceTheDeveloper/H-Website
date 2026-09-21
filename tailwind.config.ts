@@ -1,36 +1,32 @@
 import type { Config } from "tailwindcss";
 
+// Brand palette: red, white, black and brown.
+//   red     — the logo red, used sparingly as the single accent
+//   ink     — warm black for text and dark surfaces
+//   espresso/brown — the brown family (dark surfaces, secondary text)
+//   sand    — hairlines and borders
+//   cream   — page background (a soft white)
 const config: Config = {
-  content: [
-    "./app/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
         red: {
-          DEFAULT: "#E30220",
-          dark: "#BF0000",
+          DEFAULT: "#E21E02",
+          dark: "#B91800",
         },
-        ink: "#242024",
-        mist: "#DDDDDD",
-        paper: "#F3F4F5",
+        ink: "#1B1411",
+        espresso: "#2B1D17",
+        brown: "#7A5646",
+        sand: "#E5DACE",
+        cream: "#F8F4EF",
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "Georgia", "serif"],
-        body: ["var(--font-work-sans)", "Helvetica", "Arial", "sans-serif"],
+        display: ["var(--font-blinker)", "Helvetica", "Arial", "sans-serif"],
+        body: ["var(--font-blinker)", "Helvetica", "Arial", "sans-serif"],
       },
       maxWidth: {
-        page: "1240px",
-      },
-      keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-      },
-      animation: {
-        marquee: "marquee 28s linear infinite",
+        page: "1280px",
       },
     },
   },

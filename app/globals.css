@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --red: #e30220;
-  --red-dark: #bf0000;
-  --ink: #242024;
-  --mist: #dddddd;
-  --paper: #f3f4f5;
+  --red: #e21e02;
+  --red-dark: #b91800;
+  --ink: #1b1411;
+  --espresso: #2b1d17;
+  --brown: #7a5646;
+  --sand: #e5dace;
+  --cream: #f8f4ef;
 }
 
 * {
@@ -19,13 +21,15 @@ html {
 }
 
 body {
-  background-color: var(--paper);
+  background-color: var(--cream);
   color: var(--ink);
+  font-size: 1.0625rem;
+  line-height: 1.65;
 }
 
 ::selection {
   background-color: var(--red);
-  color: var(--paper);
+  color: #fff;
 }
 
 :focus-visible {
@@ -47,11 +51,11 @@ body {
 }
 
 /* ---------------------------------------------------------------------- */
-/* Layout helpers                                                          */
+/* Layout                                                                  */
 /* ---------------------------------------------------------------------- */
 
 .page-shell {
-  max-width: 1240px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
@@ -65,6 +69,52 @@ body {
   }
 }
 
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Typography                                                              */
+/* ---------------------------------------------------------------------- */
+
+/* Small uppercase label that sits above a heading. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background-color: currentColor;
+}
+
+/* Light, large headings — the "elegant" voice of the site. */
+.display {
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.display strong {
+  font-weight: 600;
+}
+
 /* ---------------------------------------------------------------------- */
 /* Buttons                                                                 */
 /* ---------------------------------------------------------------------- */
@@ -73,20 +123,23 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-work-sans), sans-serif;
+  gap: 0.6rem;
+  padding: 0.95rem 1.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.85rem 1.75rem;
-  border-radius: 2px;
-  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: 0;
   white-space: nowrap;
+  transition: background-color 180ms ease, color 180ms ease,
+    border-color 180ms ease;
 }
 
 .btn-primary {
   background-color: var(--red);
-  color: var(--paper);
-  border: 1px solid var(--red);
+  color: #fff;
+  border-color: var(--red);
 }
 
 .btn-primary:hover {
@@ -94,81 +147,119 @@ body {
   border-color: var(--red-dark);
 }
 
+.btn-dark {
+  background-color: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+.btn-dark:hover {
+  background-color: var(--red);
+  border-color: var(--red);
+}
+
 .btn-outline {
   background-color: transparent;
   color: inherit;
-  border: 1px solid currentColor;
+  border-color: currentColor;
 }
 
 .btn-outline.on-dark:hover {
-  background-color: var(--paper);
+  background-color: #fff;
   color: var(--ink);
+  border-color: #fff;
 }
 
 .btn-outline.on-light:hover {
   background-color: var(--ink);
-  color: var(--paper);
+  color: #fff;
   border-color: var(--ink);
 }
 
-/* ---------------------------------------------------------------------- */
-/* Menu-board dotted leader — the classic "Name ..... Price" pattern       */
-/* ---------------------------------------------------------------------- */
+/* Understated text link with an arrow. */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--red);
+  padding-bottom: 0.3rem;
+  transition: color 180ms ease;
+}
 
-.leader {
-  flex: 1 1 auto;
-  border-bottom: 1.5px dotted var(--mist);
-  margin: 0 0.6rem 0.35rem;
-  min-width: 1rem;
+.link-arrow:hover {
+  color: var(--red);
 }
 
 /* ---------------------------------------------------------------------- */
-/* Voucher ticket shape — notched sides, dashed stub divider               */
+/* Motion — slow, soft, and never in the way                               */
 /* ---------------------------------------------------------------------- */
 
-.ticket {
-  position: relative;
-  background-color: var(--paper);
-  border: 1px solid var(--ink);
+html {
+  scroll-padding-top: 5.5rem; /* keep #anchors clear of the sticky header */
 }
 
-/* Punch-hole notches, ticket-style. Uses solid circles matching the page
-   background rather than a mask, so it renders identically in every browser. */
-.ticket::before,
-.ticket::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 18px;
-  height: 18px;
-  background-color: var(--paper);
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  transform: translateY(-50%);
+/* Scroll reveal: fades and lifts into place once, when it enters the view. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 900ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
 }
 
-.ticket::before {
-  left: -10px;
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
-.ticket::after {
-  right: -10px;
+/* Page-load entrances (pure CSS, so there's no flash before hydration). */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.ticket-stub {
-  border-left: 1.5px dashed var(--ink);
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-/* ---------------------------------------------------------------------- */
-/* Marquee — the single deliberate motion moment on the site               */
-/* ---------------------------------------------------------------------- */
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 28s linear infinite;
+.rise {
+  animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
+.settle {
+  animation: settle 1600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Arrow nudges forward on hover. */
+.link-arrow svg {
+  transition: transform 200ms ease;
+}
+
+.link-arrow:hover svg {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

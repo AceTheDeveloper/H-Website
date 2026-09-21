@@ -13,53 +13,77 @@ export const nav = [
   { label: "Location", href: "/location" },
 ];
 
+export type PriceOption = {
+  /** e.g. "Solo", "Sharing", "Cup", "250g". Omit for a single plain price. */
+  label?: string;
+  price: string;
+};
+
 export type MenuItem = {
   id: string;
   name: string;
-  price: string;
-  description: string;
-  image: string;
+  prices?: PriceOption[];
+  description?: string;
+  /** Path under /public/menu. Dishes without a photo show a branded tile. */
+  image?: string;
   tag?: "New" | "Chef's Pick" | "Bar Favorite" | "Vegetarian";
 };
 
 export type MenuCategory = {
   id: string;
   label: string;
-  timeNote: string;
+  timeNote?: string;
   items: MenuItem[];
 };
 
-// Images live in /public/menu. Prices and descriptions are placeholders.
-const img = (file: string) => `/menu/${file}.png`;
-const PRICE = "₱000";
-const DESC = "Placeholder description — swap in the real dish details.";
+// Prices are in Philippine pesos. Dishes with no `prices` yet simply show
+// their name — add them here when they're ready.
+const peso = (n: number) =>
+  `₱${String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+
+const one = (n: number): PriceOption[] => [{ price: peso(n) }];
+const solo = (soloPrice: number, sharingPrice: number): PriceOption[] => [
+  { label: "Solo", price: peso(soloPrice) },
+  { label: "Sharing", price: peso(sharingPrice) },
+];
+// Two plain prices with no labels, shown as "₱258 / ₱388".
+const either = (a: number, b: number): PriceOption[] => [
+  { price: peso(a) },
+  { price: peso(b) },
+];
+const sized = (...entries: [string, number][]): PriceOption[] =>
+  entries.map(([label, n]) => ({ label, price: peso(n) }));
 
 const item = (
   id: string,
   name: string,
-  file: string,
-  tag?: MenuItem["tag"],
+  opts: {
+    image?: string;
+    prices?: PriceOption[];
+    tag?: MenuItem["tag"];
+  } = {},
 ): MenuItem => ({
   id,
   name,
-  price: PRICE,
-  description: DESC,
-  image: img(file),
-  tag,
+  image: opts.image ? `/menu/${opts.image}.png` : undefined,
+  prices: opts.prices,
+  tag: opts.tag,
 });
 
 export const menu: MenuCategory[] = [
   {
-    id: "breakfast",
-    label: "Breakfast",
-    timeNote: "Served 7 – 11:30am",
+    id: "allday",
+    label: "All Day Breakfast",
+    timeNote: "Served all day",
     items: [
-      item("b1", "Big Breakfast", "BigBreakfast", "Chef's Pick"),
-      item("b2", "The Breakfast Fold", "TheBreakfastFold"),
-      item("b3", "H Pancakes", "HPancakes"),
-      item("b4", "Chicken and Waffles", "ChickenAndWaffles"),
-      item("b5", "Honey Glazed Bacon", "HoneyGlazedBacon"),
-      item("b6", "Chorizo Hubad", "ChorizoHubad"),
+      item("b1", "H Pancakes", { image: "HPancakes", prices: one(218) }),
+      item("b2", "The Breakfast Fold", { image: "TheBreakfastFold", prices: one(288) }),
+      item("b3", "Chicken and Waffles", { image: "ChickenAndWaffles", prices: one(288) }),
+      item("b4", "Daing Bangus", { image: "DaingBangus", prices: one(288) }),
+      item("b5", "Chorizo Hubad", { image: "ChorizoHubad", prices: one(288) }),
+      item("b6", "Honey Glazed Bacon", { image: "HoneyGlazedBacon", prices: one(318) }),
+      item("b7", "Tapa Bits", { image: "TapaBits", prices: one(358) }),
+      item("b8", "Big Breakfast", { image: "BigBreakfast", prices: one(528), tag: "Chef's Pick" }),
     ],
   },
   {
@@ -67,59 +91,109 @@ export const menu: MenuCategory[] = [
     label: "Sandwiches & Wraps",
     timeNote: "Served all day",
     items: [
-      item("s1", "Breakfast Sandwich", "BreakfastSandwich"),
-      item(
-        "s2",
-        "Crispy Chicken Sandwich",
-        "CrispyChickenSandwich",
-        "Chef's Pick",
-      ),
-      item("s3", "Morta Pesto Sandwich", "MortaPestoSandwich"),
-      item("s4", "Salami Sandwich", "SalamiSandwich"),
-      item("s5", "Chicken Wrap", "ChickenWrap"),
+      item("w1", "Breakfast Sandwich", { image: "BreakfastSandwich", prices: one(258) }),
+      item("w2", "Salami Sandwich", { image: "SalamiSandwich", prices: one(328) }),
+      item("w3", "Chicken Wrap", { image: "ChickenWrap", prices: one(288) }),
+      item("w4", "Morta Pesto Sandwich", { image: "MortaPestoSandwich", prices: one(388) }),
+      item("w5", "Crispy Chicken Sandwich", { image: "CrispyChickenSandwich", tag: "Chef's Pick" }),
     ],
   },
   {
-    id: "mains",
-    label: "Mains",
-    timeNote: "Served 11:30am – close",
+    id: "sides",
+    label: "Sides, Salads & Sweets",
+    timeNote: "Served all day",
     items: [
-      item("m1", "Sisig Supremo", "SisigSupremo", "Bar Favorite"),
-      item("m2", "Tapa Bits", "TapaBits"),
-      item("m3", "Daing Bangus", "DaingBangus"),
-      item("m4", "Inasal at Buro", "InasalAtBuro"),
-      item("m5", "Lengua Bakareta", "LenguaBakareta"),
-      item("m6", "Salted Egg Chicken", "SaltedEggChicken"),
-      item("m7", "H Steak Tenderloin", "HSteakTenderloin", "Chef's Pick"),
-      item("m8", "USDA Lechon Baka", "USDALechonBaka", "New"),
-      item("m9", "Pork Chop Steak", "PorkChopSteak"),
+      item("d1", "H Garlic Bread", { image: "GarlicBread", prices: one(188), tag: "Vegetarian" }),
+      item("d2", "H Salad", { image: "HSalad", prices: one(228), tag: "Vegetarian" }),
+      item("d3", "Caesar Salad", { prices: one(228) }),
+      item("d4", "Mango Sticky Rice", { image: "MangoStickRice", prices: one(226), tag: "Vegetarian" }),
+      item("d5", "French Toast", { prices: one(218) }),
     ],
   },
   {
-    id: "sharing",
-    label: "Sharing Platters",
-    timeNote: "Served 11:30am – close",
+    id: "filipino",
+    label: "Filipino Sets",
+    timeNote: "Solo or sharing",
     items: [
-      item("p1", "Sisig Supremo (Sharing)", "SisigSupremoSharing"),
-      item("p2", "Inasal at Buro (Sharing)", "InsalAtBuroSharing"),
-      item("p3", "Lengua Bakareta (Sharing)", "LenguaBakaretaSharing"),
-      item(
-        "p4",
-        "Golden Pritong Manok (Sharing)",
-        "GoldenPritongManokSharing",
-        "New",
-      ),
+      item("f1", "Sisig Supremo", { image: "SisigSupremo", prices: solo(228, 428), tag: "Bar Favorite" }),
+      item("f2", "Lengua Bakareta", { image: "LenguaBakareta", prices: solo(388, 688) }),
+      item("f3", "Inasal at Buro", { image: "InasalAtBuro", prices: solo(358, 858) }),
+      item("f4", "Golden Pritong Manok", {
+        image: "GoldenPritongManokSharing",
+        prices: solo(338, 508),
+        tag: "New",
+      }),
+      item("f5", "Classic Ox Tongue", { prices: solo(338, 558) }),
+      item("f6", "Pork Cordon Bleu", { prices: solo(358, 568) }),
+      item("f7", "Chicken Asia Max", { prices: solo(258, 538) }),
+    ],
+  },
+  {
+    id: "asian",
+    label: "Asian Plates",
+    timeNote: "Solo or sharing",
+    items: [
+      item("a1", "Asian Spring Rolls", { prices: solo(288, 508) }),
+      item("a2", "Salted Egg Chicken", { image: "SaltedEggChicken", prices: solo(388, 688) }),
+      item("a3", "Spiced Coconut Curry", { prices: solo(288, 488) }),
+      item("a4", "Kare Chicken Satay", { image: "KareChickenPorkSatay", prices: solo(258, 508) }),
+    ],
+  },
+  {
+    id: "meat",
+    label: "Meat Plates",
+    timeNote: "Steaks priced by weight",
+    items: [
+      item("m1", "H Steak", {
+        image: "HSteakTenderloin",
+        prices: sized(["250g", 1688]),
+        tag: "Chef's Pick",
+      }),
+      item("m2", "USDA Lechon Baka", {
+        image: "USDALechonBaka",
+        prices: sized(["250g", 788], ["500g", 1588]),
+        tag: "New",
+      }),
+      item("m3", "Sausage Steak", { prices: one(688) }),
+      item("m4", "Pork Chop Steak", { image: "PorkChopSteak", prices: one(788) }),
+    ],
+  },
+  {
+    id: "soup",
+    label: "Soup",
+    items: [item("u1", "Laksa", { prices: one(388) })],
+  },
+  {
+    id: "rice",
+    label: "Rice",
+    timeNote: "Cup or platter",
+    items: [
+      item("r1", "Plain Rice", { prices: sized(["Cup", 48], ["Platter", 208]) }),
+      item("r2", "Garlic Rice", { prices: sized(["Cup", 68], ["Platter", 288]) }),
     ],
   },
   {
     id: "bites",
-    label: "Small Bites",
+    label: "Quick Bites",
     timeNote: "Served 11:30am – close",
     items: [
-      item("t1", "BBQ Fries", "BBQFries"),
-      item("t2", "Chicharon", "Chicharon", "Bar Favorite"),
-      item("t3", "Dirty Tacos", "DirtyTacos", "New"),
-      item("t4", "Kare Chicken Pork Satay", "KareChickenPorkSatay"),
+      item("t1", "BBQ Fries", { image: "BBQFries", prices: either(258, 388) }),
+      item("t2", "Hero Dog", { prices: one(358) }),
+      item("t3", "Dirty Tacos", { image: "DirtyTacos", prices: one(588), tag: "New" }),
+      item("t4", "Burger Sliders", { prices: one(388) }),
+      item("t5", "Chicharon", { image: "Chicharon", tag: "Bar Favorite" }),
+    ],
+  },
+  {
+    id: "pasta",
+    label: "Pasta",
+    timeNote: "Served 11:30am – close",
+    items: [
+      item("n1", "Spicy Peanut Noodles", { image: "SpicyPeanutNoddles", prices: one(598) }),
+      item("n2", "Pad Thai", { image: "PadThai", prices: one(488) }),
+      item("n3", "Lasagna", { image: "Lasagna", prices: one(688) }),
+      item("n4", "Tagliatelle", { image: "Tagliatelle", prices: one(588) }),
+      item("n5", "Squid Fried Rice", { image: "SquidFriedRice" }),
     ],
   },
   {
@@ -127,32 +201,13 @@ export const menu: MenuCategory[] = [
     label: "Pizza",
     timeNote: "Served 11:30am – close",
     items: [
-      item("z1", "Pepperoni", "Pepperoni"),
-      item("z2", "Quatro Formagi", "QuatroFormagi", "Chef's Pick"),
-      item("z3", "Morta Pista", "MortaPista"),
-      item("z4", "Puting Keso with Aragula", "PutingKesoWithAragula"),
-    ],
-  },
-  {
-    id: "pasta",
-    label: "Pasta & Noodles",
-    timeNote: "Served 11:30am – close",
-    items: [
-      item("n1", "Lasagna", "Lasagna"),
-      item("n2", "Tagliatelle", "Tagliatelle"),
-      item("n3", "Pad Thai", "PadThai"),
-      item("n4", "Spicy Peanut Noodles", "SpicyPeanutNoddles"),
-      item("n5", "Squid Fried Rice", "SquidFriedRice"),
-    ],
-  },
-  {
-    id: "sides",
-    label: "Sides, Salad & Dessert",
-    timeNote: "Served all day",
-    items: [
-      item("d1", "H Salad", "HSalad", "Vegetarian"),
-      item("d2", "Garlic Bread", "GarlicBread", "Vegetarian"),
-      item("d3", "Mango Stick Rice", "MangoStickRice", "Vegetarian"),
+      item("z1", "Puting Keso with Aragula", { image: "PutingKesoWithAragula", prices: one(608) }),
+      item("z2", "Quattro Formaggi", { image: "QuatroFormagi", prices: one(658), tag: "Chef's Pick" }),
+      item("z3", "Pepperoni", { image: "Pepperoni", prices: one(658) }),
+      item("z4", "Truffle Pizza", { prices: one(688) }),
+      item("z5", "Supreme Pizza"),
+      item("z6", "Blue Cheese Pizza"),
+      item("z7", "Morta Pizza", { image: "MortaPista" }),
     ],
   },
 ];
@@ -189,9 +244,11 @@ export const hours = [
 ];
 
 export const contact = {
-  address: "45 Market Street, Riverside District",
-  phone: "(555) 014 7788",
-  email: "hello@hbreakfasttobar.com",
+  address: "Diversion Road, Mandurriao, Iloilo City",
+  phone: "+63 945 538 8889",
+  phoneHref: "tel:+639455388889",
+  mapsHref:
+    "https://www.google.com/maps/search/?api=1&query=H+Breakfast+to+Bar+Mandurriao+Iloilo+City",
 };
 
 export const dayRhythm = [

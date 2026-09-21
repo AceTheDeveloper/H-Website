@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const inputStyles =
-  "w-full border border-mist bg-paper px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/35 focus:border-red focus:outline-none transition-colors";
+  "w-full border border-sand bg-white px-4 py-3 text-base text-ink placeholder:text-ink/35 focus:border-red focus:outline-none transition-colors";
 
 const TIME_SLOTS = [
   "8:00 AM",
@@ -58,12 +58,12 @@ export default function ReservationForm() {
 
   if (isSent) {
     return (
-      <div className="border border-mist bg-paper p-8">
-        <div className="flex items-center gap-2 text-red font-display text-xs uppercase tracking-wider">
+      <div className="border border-sand bg-cream p-8 md:p-10">
+        <div className="flex items-center gap-2 text-red text-xs font-semibold uppercase tracking-[0.24em]">
           <span className="h-2 w-2 rounded-full bg-red animate-pulse" />
           Request Received
         </div>
-        <h3 className="mt-2 font-display text-2xl">
+        <h3 className="mt-2 display text-2xl">
           We look forward to seeing you, {bookingDetails.name}!
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-ink/70">
@@ -79,7 +79,7 @@ export default function ReservationForm() {
           </p>
         )}
 
-        <div className="mt-6 pt-6 border-t border-mist flex flex-wrap gap-4 items-center justify-between">
+        <div className="mt-6 pt-6 border-t border-sand flex flex-wrap gap-4 items-center justify-between">
           <button
             type="button"
             onClick={handleReset}
@@ -95,14 +95,14 @@ export default function ReservationForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-5 border border-mist bg-paper p-8"
+      className="space-y-5 border border-sand bg-cream p-8 md:p-10"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         {/* Name */}
         <div>
           <label
             htmlFor="name"
-            className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/70"
+            className="mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/70"
           >
             Full Name
           </label>
@@ -120,7 +120,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor="phone"
-            className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/70"
+            className="mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/70"
           >
             Phone Number
           </label>
@@ -129,7 +129,7 @@ export default function ReservationForm() {
             name="phone"
             type="tel"
             required
-            placeholder="+1 (555) 000-0000"
+            placeholder="+63 9XX XXX XXXX"
             className={inputStyles}
           />
         </div>
@@ -138,7 +138,7 @@ export default function ReservationForm() {
         <div className="sm:col-span-2">
           <label
             htmlFor="email"
-            className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/70"
+            className="mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/70"
           >
             Email Address
           </label>
@@ -156,7 +156,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor="date"
-            className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/70"
+            className="mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/70"
           >
             Date
           </label>
@@ -174,7 +174,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor="time"
-            className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/70"
+            className="mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/70"
           >
             Preferred Time
           </label>
@@ -192,7 +192,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor="guests"
-            className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/70"
+            className="mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/70"
           >
             Guests
           </label>
@@ -212,7 +212,7 @@ export default function ReservationForm() {
         <div>
           <label
             htmlFor="seating"
-            className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/70"
+            className="mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/70"
           >
             Seating Preference
           </label>
@@ -228,7 +228,7 @@ export default function ReservationForm() {
       <div>
         <label
           htmlFor="notes"
-          className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink/70"
+          className="mb-1.5 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink/70"
         >
           Special Requests / Dietary Notes (optional)
         </label>
@@ -250,7 +250,7 @@ export default function ReservationForm() {
         {isSubmitting ? (
           <span className="flex items-center gap-2">
             <svg
-              className="animate-spin h-4 w-4 text-paper"
+              className="animate-spin h-4 w-4 text-white"
               viewBox="0 0 24 24"
               fill="none"
             >

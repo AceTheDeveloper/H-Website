@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 const values = [
   {
     title: "Cooked from scratch",
@@ -23,16 +25,22 @@ const values = [
 
 export default function Values() {
   return (
-    <section className="page-shell py-20">
-      <h2 className="font-display text-3xl sm:text-4xl">What we care about</h2>
-      <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2">
-        {values.map((value) => (
-          <div key={value.title} className="border-t border-mist pt-5">
-            <h3 className="text-base font-medium">{value.title}</h3>
-            <p className="mt-2 max-w-sm text-sm leading-relaxed text-ink/65">
+    <section className="section page-shell">
+      <p className="eyebrow">What we care about</p>
+      <h2 className="display mt-5 max-w-2xl text-3xl sm:text-4xl md:text-5xl">
+        Simple food, made properly.
+      </h2>
+      <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        {values.map((value, i) => (
+          <Reveal key={value.title} delay={i * 100} className="border-t border-ink pt-6">
+            <span className="text-sm font-semibold tracking-[0.2em] text-red">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 className="mt-4 text-xl font-semibold">{value.title}</h3>
+            <p className="mt-3 text-[0.95rem] leading-relaxed text-ink/65">
               {value.description}
             </p>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

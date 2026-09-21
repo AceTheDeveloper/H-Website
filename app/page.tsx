@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import MarqueeStrip from "@/components/MarqueeStrip";
+import InfoStrip from "@/components/InfoStrip";
 import AboutTeaser from "@/components/AboutTeaser";
 import MenuPreview from "@/components/MenuPreview";
 import DayRhythm from "@/components/DayRhythm";
@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <MarqueeStrip />
+      <InfoStrip />
       <AboutTeaser />
       <MenuPreview />
       <DayRhythm />
