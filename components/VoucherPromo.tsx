@@ -10,14 +10,14 @@ export default function VoucherPromo() {
       <div className="page-shell border-t border-mist py-20">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <h2 className="font-display text-3xl sm:text-4xl">21 ways to save</h2>
+            <h2 className="font-display text-3xl sm:text-4xl">{vouchers.length} ways to save</h2>
             <p className="mt-3 max-w-md text-ink/65">
               From a free birthday dessert to two-for-one cocktails at happy
               hour — there&apos;s a voucher for however you visit.
             </p>
           </div>
           <Link href="/vouchers" className="btn btn-primary">
-            See all 21 vouchers
+            See all {vouchers.length} vouchers
           </Link>
         </div>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import { vouchers } from "@/lib/data";
 import VoucherGrid from "@/components/VoucherGrid";
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export default function VouchersPage() {
   return (
     <>
       <PageHeader
-        title="21 ways to save"
+        title={`${vouchers.length} ways to save`}
         description="Show a voucher at the table or quote the code online. One voucher per visit unless stated otherwise."
       />
 

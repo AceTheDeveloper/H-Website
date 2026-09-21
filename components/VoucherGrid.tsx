@@ -25,7 +25,7 @@ export default function VoucherGrid() {
         ))}
       </div>
 
-      {!expanded && (
+      {!expanded && vouchers.length > INITIAL_COUNT && (
         <div className="mt-10 flex justify-center">
           <button
             type="button"

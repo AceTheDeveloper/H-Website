@@ -1,8 +1,10 @@
+import { vouchers } from "@/lib/data";
+
 const items = [
   "Open 7am daily",
   "Bar opens 4pm",
   "Kitchen runs late",
-  "21 vouchers live now",
+  `${vouchers.length} vouchers live now`,
   "Book a table for tonight",
 ];
 

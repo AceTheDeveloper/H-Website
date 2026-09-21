@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image"; // 1. Import Next.js Image
+import heroImage from "@/assets/about.jpg";
 
 export default function Hero() {
   return (
@@ -9,9 +11,9 @@ export default function Hero() {
             Breakfast at 7. Cocktails past midnight. Same table.
           </h1>
           <p className="mt-6 max-w-md text-base leading-relaxed text-paper/70">
-            H Breakfast to Bar runs one kitchen through the whole day — eggs
-            and coffee at sunrise, a full bar by evening, and a menu that
-            never feels like an afterthought either way.
+            H Breakfast to Bar runs one kitchen through the whole day — eggs and
+            coffee at sunrise, a full bar by evening, and a menu that never
+            feels like an afterthought either way.
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <Link href="/menu" className="btn btn-primary">
@@ -25,10 +27,12 @@ export default function Hero() {
 
         <div className="relative hidden md:block">
           <div className="absolute inset-0 border border-paper/15" />
-          <img
-            src="https://placehold.co/640x760/E30220/F3F4F5?text=H+Breakfast+to+Bar"
+          {/* 2. Use the Image component */}
+          <Image
+            src={heroImage}
             alt="Interior of H Breakfast to Bar"
             className="h-full w-full object-cover"
+            placeholder="blur" // Optional: automatically blurs while loading
           />
         </div>
       </div>

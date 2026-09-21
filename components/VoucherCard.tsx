@@ -2,18 +2,25 @@ import type { Voucher } from "@/lib/data";
 
 export default function VoucherCard({ voucher }: { voucher: Voucher }) {
   return (
-    <div className="ticket flex">
-      <div className="flex-1 p-5">
-        <span className="font-display text-xl text-red">{voucher.badge}</span>
-        <h3 className="mt-2 text-base font-medium">{voucher.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-ink/65">{voucher.description}</p>
+    <a
+      href={voucher.image}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex flex-col border border-mist bg-paper"
+      aria-label={`${voucher.title} (opens full size)`}
+    >
+      <img
+        src={voucher.image}
+        alt={`${voucher.brand} — ${voucher.title}`}
+        width={1654}
+        height={709}
+        loading="lazy"
+        decoding="async"
+        className="aspect-[1654/709] w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+      />
+      <div className="border-t border-mist px-4 py-3">
+        <h3 className="text-sm font-medium">{voucher.title}</h3>
       </div>
-      <div className="ticket-stub flex w-24 shrink-0 flex-col items-center justify-center gap-2 px-3 py-5 text-center">
-        <span className="text-[0.65rem] font-medium leading-tight text-ink/55">
-          {voucher.code}
-        </span>
-        <span className="text-[0.65rem] text-ink/45">{voucher.expiry}</span>
-      </div>
-    </div>
+    </a>
   );
 }

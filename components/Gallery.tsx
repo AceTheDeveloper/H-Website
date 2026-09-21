@@ -1,20 +1,46 @@
+import Image from "next/image";
+import kitchen from "@/assets/kitchen.jpg";
+import dining from "@/assets/dining.jpg";
+import bar from "@/assets/bar.jpg";
+
 const photos = [
-  { src: "https://placehold.co/700x900/242024/F3F4F5?text=Kitchen", alt: "The kitchen pass", tall: true },
-  { src: "https://placehold.co/700x520/DDDDDD/242024?text=Dining+Room", alt: "The dining room" },
-  { src: "https://placehold.co/700x520/E30220/F3F4F5?text=The+Bar", alt: "The bar at night" },
+  {
+    src: kitchen,
+    alt: "The kitchen pass",
+    tall: true,
+  },
+  {
+    src: dining,
+    alt: "The dining room",
+  },
+  {
+    src: bar,
+    alt: "The bar at night",
+  },
 ];
 
 export default function Gallery() {
   return (
     <section className="page-shell pb-20">
       <div className="grid gap-4 md:grid-cols-2">
-        <img
-          src={photos[0].src}
-          alt={photos[0].alt}
+        <Image
+          src={photos[1].src}
+          alt={photos[1].alt}
+          placeholder="blur"
           className="h-full w-full object-cover md:row-span-2"
         />
-        <img src={photos[1].src} alt={photos[1].alt} className="w-full object-cover" />
-        <img src={photos[2].src} alt={photos[2].alt} className="w-full object-cover" />
+        <Image
+          src={photos[0].src}
+          alt={photos[0].alt}
+          placeholder="blur"
+          className="w-full object-cover"
+        />
+        <Image
+          src={photos[2].src}
+          alt={photos[2].alt}
+          placeholder="blur"
+          className="w-full object-cover"
+        />
       </div>
     </section>
   );

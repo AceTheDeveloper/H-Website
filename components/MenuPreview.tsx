@@ -3,7 +3,7 @@ import { menu } from "@/lib/data";
 import MenuCard from "./MenuCard";
 import { IconArrowRight } from "./Icons";
 
-const featuredIds = ["m1", "a1", "c1", "d1"];
+const featuredIds = ["b1", "s2", "m1", "p4"];
 const featured = menu
   .flatMap((category) => category.items)
   .filter((item) => featuredIds.includes(item.id));
