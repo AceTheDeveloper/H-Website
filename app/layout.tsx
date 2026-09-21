@@ -12,9 +12,23 @@ const blinker = Blinker({
 });
 
 export const metadata: Metadata = {
-  title: "H Breakfast to Bar",
+  // Change this to the custom domain once the client has one
+  metadataBase: new URL("https://hbreakfasttobar.vercel.app"),
+  title: {
+    default:
+      "H Breakfast to Bar | All-Day Restaurant & Bar in Mandurriao, Iloilo City",
+    template: "%s | H Breakfast to Bar",
+  },
   description:
-    "Morning coffee, all-day plates and late bar hours, all under one roof — H Breakfast to Bar.",
+    "All-day restaurant and bar on Diversion Road, Mandurriao, Iloilo City. Breakfast and coffee from 7 AM, plates to share, and cocktails until late.",
+  openGraph: {
+    siteName: "H Breakfast to Bar",
+    type: "website",
+    locale: "en_PH",
+    title: "H Breakfast to Bar | All-Day Restaurant & Bar in Iloilo City",
+    description:
+      "From first coffee to last call. Breakfast, plates to share, and a full bar in Mandurriao, Iloilo City.",
+  },
 };
 
 export default function RootLayout({
