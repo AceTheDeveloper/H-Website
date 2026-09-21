@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --red: #e30220;
+  --red-dark: #bf0000;
+  --ink: #242024;
+  --mist: #dddddd;
+  --paper: #f3f4f5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+::selection {
+  background-color: var(--red);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Layout helpers                                                          */
+/* ---------------------------------------------------------------------- */
+
+.page-shell {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .page-shell {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Buttons                                                                 */
+/* ---------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-work-sans), sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 2px;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--red);
+  color: var(--paper);
+  border: 1px solid var(--red);
+}
+
+.btn-primary:hover {
+  background-color: var(--red-dark);
+  border-color: var(--red-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+}
+
+.btn-outline.on-dark:hover {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+.btn-outline.on-light:hover {
+  background-color: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Menu-board dotted leader — the classic "Name ..... Price" pattern       */
+/* ---------------------------------------------------------------------- */
+
+.leader {
+  flex: 1 1 auto;
+  border-bottom: 1.5px dotted var(--mist);
+  margin: 0 0.6rem 0.35rem;
+  min-width: 1rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Voucher ticket shape — notched sides, dashed stub divider               */
+/* ---------------------------------------------------------------------- */
+
+.ticket {
+  position: relative;
+  background-color: var(--paper);
+  border: 1px solid var(--ink);
+}
+
+/* Punch-hole notches, ticket-style. Uses solid circles matching the page
+   background rather than a mask, so it renders identically in every browser. */
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  background-color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.ticket::before {
+  left: -10px;
+}
+
+.ticket::after {
+  right: -10px;
+}
+
+.ticket-stub {
+  border-left: 1.5px dashed var(--ink);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Marquee — the single deliberate motion moment on the site               */
+/* ---------------------------------------------------------------------- */
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
