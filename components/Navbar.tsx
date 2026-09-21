@@ -34,7 +34,13 @@ export default function Navbar() {
           aria-label="H Breakfast to Bar — home"
           className="flex shrink-0 items-center gap-4"
         >
-          <img src="/logo.png" alt="" width={442} height={534} className="h-10 w-auto" />
+          <img
+            src="/logo.png"
+            alt=""
+            width={442}
+            height={534}
+            className="h-10 w-auto"
+          />
           <span className="hidden text-[0.7rem] font-semibold uppercase leading-[1.5] tracking-[0.32em] text-ink sm:block">
             Breakfast
             <br />
@@ -42,7 +48,10 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-10 lg:flex" aria-label="Primary">
+        <nav
+          className="hidden items-center gap-10 lg:flex"
+          aria-label="Primary"
+        >
           {nav.map((item) => {
             const active = pathname === item.href;
             return (
@@ -66,9 +75,9 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <Link href="/location#reserve" className="btn btn-dark !px-6 !py-3">
+          {/* <Link href="/location#reserve" className="btn btn-dark !px-6 !py-3">
             Reserve a table
-          </Link>
+          </Link> */}
         </div>
 
         <button
@@ -84,7 +93,10 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div id="mobile-nav" className="border-t border-sand bg-cream lg:hidden">
+        <div
+          id="mobile-nav"
+          className="border-t border-sand bg-cream lg:hidden"
+        >
           <nav className="page-shell flex flex-col py-4" aria-label="Mobile">
             {nav.map((item) => {
               const active = pathname === item.href;
@@ -101,9 +113,9 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <Link href="/location#reserve" className="btn btn-dark mt-5 w-full">
+            {/* <Link href="/location#reserve" className="btn btn-dark mt-5 w-full">
               Reserve a table
-            </Link>
+            </Link> */}
           </nav>
         </div>
       )}

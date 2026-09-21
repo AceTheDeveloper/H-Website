@@ -60,7 +60,7 @@ export default function LocationPage() {
         </Reveal>
       </section>
 
-      <section
+      {/* <section
         id="reserve"
         className="scroll-mt-20 border-t border-sand bg-white"
       >
@@ -82,7 +82,7 @@ export default function LocationPage() {
             <ReservationForm />
           </Reveal>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
