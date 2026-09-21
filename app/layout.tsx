@@ -15,9 +15,6 @@ export const metadata: Metadata = {
   title: "H Breakfast to Bar",
   description:
     "Morning coffee, all-day plates and late bar hours, all under one roof — H Breakfast to Bar.",
-  verification: {
-    google: "382b234ef32834dc",
-  },
 };
 
 export default function RootLayout({
