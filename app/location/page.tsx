@@ -8,9 +8,10 @@ import { IconPhone, IconPin } from "@/components/Icons";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Location — H Breakfast to Bar",
+  title: "Location & Hours — H Breakfast to Bar",
+  description:
+    "Find H Breakfast to Bar on Diversion Road, Mandurriao, Iloilo City. See our hours, get directions, or request a table.",
 };
-
 export default function LocationPage() {
   return (
     <>
@@ -59,19 +60,21 @@ export default function LocationPage() {
         </Reveal>
       </section>
 
-      <section id="reserve" className="scroll-mt-20 border-t border-sand bg-white">
+      <section
+        id="reserve"
+        className="scroll-mt-20 border-t border-sand bg-white"
+      >
         <div className="section page-shell grid gap-12 md:grid-cols-12 md:gap-10">
           <Reveal className="md:col-span-4">
             <p className="eyebrow">Reservations</p>
-            <h2 className="display mt-5 text-3xl sm:text-4xl">Request a table.</h2>
+            <h2 className="display mt-5 text-3xl sm:text-4xl">
+              Request a table.
+            </h2>
             <p className="mt-5 text-ink/70">
               Send a request and we&apos;ll confirm by phone. For same-day
               bookings, calling ahead is faster.
             </p>
-            <a
-              href={contact.phoneHref}
-              className="link-arrow mt-8"
-            >
+            <a href={contact.phoneHref} className="link-arrow mt-8">
               Call {contact.phone}
             </a>
           </Reveal>

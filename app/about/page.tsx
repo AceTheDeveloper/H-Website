@@ -10,6 +10,8 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "About Us — H Breakfast to Bar",
+  description:
+    "From a small breakfast counter to a full day-to-night restaurant and bar. Read the story behind H Breakfast to Bar in Mandurriao, Iloilo.",
 };
 
 export default function AboutPage() {
@@ -38,8 +40,8 @@ export default function AboutPage() {
             Same crew, from the first pour to last call.
           </h2>
           <p className="mt-7 leading-relaxed text-ink/70">
-            H Breakfast to Bar started as a breakfast spot with a short menu
-            and a long line on weekends. We kept hearing the same question from
+            H Breakfast to Bar started as a breakfast spot with a short menu and
+            a long line on weekends. We kept hearing the same question from
             regulars: what happens after lunch? So we found out. The kitchen
             stayed open, the bar went in, and the same crew that flips your
             pancakes in the morning is often the one closing out the bar at

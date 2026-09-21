@@ -6,6 +6,8 @@ import { vouchers } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Vouchers — H Breakfast to Bar",
+  description:
+    "Check out our current vouchers and promos, redeemable in person at H Breakfast to Bar, Mandurriao, Iloilo.",
 };
 
 export default function VouchersPage() {
