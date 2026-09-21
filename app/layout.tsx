@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   title: "H Breakfast to Bar",
   description:
     "Morning coffee, all-day plates and late bar hours, all under one roof — H Breakfast to Bar.",
+  verification: {
+    google: "382b234ef32834dc",
+  },
 };
 
 export default function RootLayout({
@@ -24,11 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${blinker.variable} font-body antialiased`}
-      >
+      google-site-verification: google382b234ef32834dc.html
+      <body className={`${blinker.variable} font-body antialiased`}>
         <noscript>
-          <style>{".reveal{opacity:1!important;transform:none!important}"}</style>
+          <style>
+            {".reveal{opacity:1!important;transform:none!important}"}
+          </style>
         </noscript>
         <Navbar />
         <main>{children}</main>
