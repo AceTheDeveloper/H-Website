@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { MenuItem } from "@/lib/data";
 
 export default function MenuCard({
@@ -21,12 +22,12 @@ export default function MenuCard({
     <article className="group">
       <div className="relative aspect-[4/3] overflow-hidden border border-sand bg-white">
         {item.image ? (
-          <img
+          <Image
             src={item.image}
             alt={item.name}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-contain p-5 transition-transform duration-500 group-hover:scale-105"
+            fill
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="object-contain p-5 transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
           // No photo yet — a quiet branded tile keeps the grid even.
@@ -62,7 +63,10 @@ export default function MenuCard({
       {priceRow.length > 0 && (
         <dl className="mt-3 flex flex-wrap gap-x-8 gap-y-2 border-t border-sand pt-3">
           {priceRow.map((p) => (
-            <div key={p.label ?? p.price} className="flex items-baseline gap-2.5">
+            <div
+              key={p.label ?? p.price}
+              className="flex items-baseline gap-2.5"
+            >
               {p.label && (
                 <dt className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-brown">
                   {p.label}

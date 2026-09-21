@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Voucher } from "@/lib/data";
 
 export default function VoucherCard({ voucher }: { voucher: Voucher }) {
@@ -10,13 +11,12 @@ export default function VoucherCard({ voucher }: { voucher: Voucher }) {
       aria-label={`${voucher.title} — open full size`}
     >
       <div className="overflow-hidden border border-sand bg-white shadow-[0_1px_0_rgba(27,20,17,0.04)] transition-shadow duration-300 group-hover:shadow-[0_18px_40px_-18px_rgba(27,20,17,0.35)]">
-        <img
+        <Image
           src={voucher.image}
           alt={`${voucher.brand} — ${voucher.title}`}
           width={1654}
           height={709}
-          loading="lazy"
-          decoding="async"
+          sizes="(min-width: 768px) 50vw, 100vw"
           className="aspect-[1654/709] w-full object-cover"
         />
       </div>
