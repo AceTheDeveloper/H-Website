@@ -51,13 +51,20 @@ export default function Hero() {
             className="settle object-cover"
           />
           <div
-            className="rise absolute bottom-0 left-0 bg-cream px-6 py-5 md:-left-px"
+            className="rise absolute bottom-0 left-0 space-y-2 bg-cream px-6 py-5 md:-left-px"
             style={{ animationDelay: "700ms" }}
           >
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-red">
-              Open daily
+              Hours
             </p>
-            <p className="mt-1 text-xl font-light">{hours[0].time}</p>
+            {hours.map((entry) => (
+              <p key={entry.day} className="leading-tight">
+                <span className="block text-xs uppercase tracking-wide text-ink/60">
+                  {entry.day}
+                </span>
+                <span className="text-xl font-light">{entry.time}</span>
+              </p>
+            ))}
           </div>
         </div>
       </div>
