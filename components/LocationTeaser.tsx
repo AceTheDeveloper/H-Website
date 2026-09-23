@@ -45,9 +45,9 @@ export default function LocationTeaser() {
             >
               Get directions
             </a>
-            <Link href="/location#reserve" className="btn btn-outline on-light">
+            {/* <Link href="/location#reserve" className="btn btn-outline on-light">
               Reserve a table
-            </Link>
+            </Link> */}
           </div>
         </Reveal>
       </div>
