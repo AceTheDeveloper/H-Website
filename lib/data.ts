@@ -239,8 +239,8 @@ const imageVouchers: ImageVoucher[] = [
 export const vouchers: Voucher[] = imageVouchers;
 
 export const hours = [
-  { day: "Monday – Friday", time: "7:00 am – 12:00 am" },
-  { day: "Saturday – Sunday", time: "8:00 am – 1:00 am" },
+  { day: "Sunday – Thursday", time: "6:00 am – 10:00 pm" },
+  { day: "Friday – Saturday", time: "6:00 am – 2:00 am" },
 ];
 
 export const contact = {
