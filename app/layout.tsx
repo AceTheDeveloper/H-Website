@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Anybody, Blinker, DotGothic16 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -7,7 +8,6 @@ import JsonLd from "@/components/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/data";
 
-// Painted-poster headlines. Width axis lets us run it condensed.
 const display = Anybody({
   subsets: ["latin"],
   variable: "--font-display",
@@ -22,7 +22,6 @@ const blinker = Blinker({
   display: "swap",
 });
 
-// Dot-matrix lettering, used only inside the LED signboard.
 const led = DotGothic16({
   subsets: ["latin"],
   variable: "--font-led",
@@ -76,6 +75,19 @@ export default function RootLayout({
         <Footer />
         <JsonLd />
         <Analytics />
+
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-FRSGZ8KECS"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FRSGZ8KECS');
+          `}
+        </Script>
       </body>
     </html>
   );
