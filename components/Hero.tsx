@@ -1,73 +1,59 @@
 import Link from "next/link";
 import Image from "next/image";
 import heroImage from "@/assets/dining.jpg";
-import { hours } from "@/lib/data";
+import { contact } from "@/lib/data";
+import LedSign from "./LedSign";
 
+/**
+ * Red like the painted wall, lettered like it too. The photo bleeds off the
+ * right edge and the LED signboard hangs across the bottom.
+ */
 export default function Hero() {
   return (
-    <section className="bg-cream">
-      <div className="page-shell grid items-stretch gap-10 py-10 md:grid-cols-12 md:gap-0 md:py-0 lg:min-h-[min(760px,calc(100svh-5rem))]">
-        <div className="flex flex-col justify-center md:col-span-6 md:py-24 md:pr-16">
-          <p className="eyebrow rise">
-            Diversion Road · Mandurriao · Iloilo City
-          </p>
-          <h1
-            className="display rise mt-6 text-[2.75rem] sm:text-6xl lg:text-7xl"
-            style={{ animationDelay: "120ms" }}
-          >
-            From first coffee
+    <section className="on-red bg-red text-chalk">
+      <div className="grid grid-cols-1 md:grid-cols-12">
+        <div className="flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-16 md:col-span-7 md:py-20 md:pr-8 lg:pl-[max(2.5rem,calc((100vw-1280px)/2+2.5rem))]">
+          <h1 className="poster text-[clamp(3.75rem,13vw,7rem)] md:text-[clamp(4.5rem,9vw,9rem)]">
+            From first
             <br />
-            to <strong className="text-red">last call.</strong>
+            coffee to
+            <br />
+            last call.
           </h1>
-          <p
-            className="rise mt-8 max-w-md text-lg text-ink/70"
-            style={{ animationDelay: "260ms" }}
-          >
-            One kitchen, one room, the whole day. Eggs and coffee at sunrise,
-            plates to share by afternoon, and a full bar once the lights come
-            down.
+          <p className="lede mt-8 max-w-md text-chalk">
+            An all-day restaurant and bar on Diversion Road, Mandurriao,
+            Iloilo City. Breakfast plates, food for the table, and a full bar
+            once the evening starts.
           </p>
-          <div
-            className="rise mt-10 flex flex-wrap gap-4"
-            style={{ animationDelay: "400ms" }}
-          >
-            <Link href="/menu" className="btn btn-primary">
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link href="/menu" className="btn btn-chalk">
               View the menu
             </Link>
-            {/* <Link href="/location#reserve" className="btn btn-outline on-light">
-              Reserve a table
-            </Link> */}
+            <a
+              href={contact.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
+            >
+              Get directions
+            </a>
           </div>
         </div>
 
-        <div className="relative min-h-[420px] overflow-hidden md:col-span-6 md:my-10 md:min-h-0">
+        <div className="relative aspect-[4/3] md:col-span-5 md:aspect-auto md:min-h-[560px]">
           <Image
             src={heroImage}
-            alt="The dining room at H Breakfast to Bar, with the “Live Live Local Daily” mural"
+            alt="The dining room at H Breakfast to Bar, with the hand-painted “Live Live Local Daily” mural"
             fill
             priority
             placeholder="blur"
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="settle object-cover"
+            sizes="(min-width: 768px) 42vw, 100vw"
+            className="object-cover object-[25%_50%]"
           />
-          <div
-            className="rise absolute bottom-0 left-0 space-y-2 bg-cream px-6 py-5 md:-left-px"
-            style={{ animationDelay: "700ms" }}
-          >
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-red">
-              Hours
-            </p>
-            {hours.map((entry) => (
-              <p key={entry.day} className="leading-tight">
-                <span className="block text-xs uppercase tracking-wide text-ink/60">
-                  {entry.day}
-                </span>
-                <span className="text-xl font-light">{entry.time}</span>
-              </p>
-            ))}
-          </div>
         </div>
       </div>
+
+      <LedSign />
     </section>
   );
 }

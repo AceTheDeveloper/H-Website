@@ -4,12 +4,10 @@
 
 :root {
   --red: #e21e02;
-  --red-dark: #b91800;
-  --ink: #1b1411;
-  --espresso: #2b1d17;
-  --brown: #7a5646;
-  --sand: #e5dace;
-  --cream: #f8f4ef;
+  --brick: #b32a14;
+  --ink: #17110e;
+  --plaster: #f3ece1;
+  --led: #ff6a48;
 }
 
 * {
@@ -18,10 +16,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 8rem; /* keep #anchors clear of the sticky header + menu chips */
 }
 
 body {
-  background-color: var(--cream);
+  background-color: var(--plaster);
   color: var(--ink);
   font-size: 1.0625rem;
   line-height: 1.65;
@@ -33,8 +32,14 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--red);
+  outline: 3px solid var(--red);
   outline-offset: 3px;
+}
+
+/* Focus ring that stays visible on the red and ink surfaces. */
+.on-dark :focus-visible,
+.on-red :focus-visible {
+  outline-color: #fff;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -50,6 +55,7 @@ body {
   }
 }
 
+@layer components {
 /* ---------------------------------------------------------------------- */
 /* Layout                                                                  */
 /* ---------------------------------------------------------------------- */
@@ -58,8 +64,8 @@ body {
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 @media (min-width: 768px) {
@@ -69,15 +75,15 @@ body {
   }
 }
 
-.section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+.band {
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
 }
 
 @media (min-width: 768px) {
-  .section {
-    padding-top: 7.5rem;
-    padding-bottom: 7.5rem;
+  .band {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
   }
 }
 
@@ -85,38 +91,35 @@ body {
 /* Typography                                                              */
 /* ---------------------------------------------------------------------- */
 
-/* Small uppercase label that sits above a heading. */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.3em;
+/* Poster lettering: heavy, condensed, painted-on-a-wall. Used for headlines. */
+.poster {
+  font-family: var(--font-display), Impact, "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-stretch: 70%;
+  font-variation-settings: "wdth" 70;
+  line-height: 0.92;
+  letter-spacing: -0.005em;
   text-transform: uppercase;
-  color: var(--red);
+  text-wrap: balance;
 }
 
-.eyebrow::before {
-  content: "";
-  width: 1.75rem;
-  height: 1px;
-  background-color: currentColor;
+/* Section headings: same face, calmer size and case. */
+.heading {
+  font-family: var(--font-display), Impact, "Arial Narrow", sans-serif;
+  font-weight: 700;
+  font-variation-settings: "wdth" 80;
+  line-height: 1.02;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
 }
 
-/* Light, large headings — the "elegant" voice of the site. */
-.display {
-  font-weight: 300;
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-}
-
-.display strong {
-  font-weight: 600;
+.lede {
+  font-size: 1.25rem;
+  line-height: 1.55;
 }
 
 /* ---------------------------------------------------------------------- */
-/* Buttons                                                                 */
+/* Buttons and links                                                       */
 /* ---------------------------------------------------------------------- */
 
 .btn {
@@ -124,16 +127,16 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 0.95rem 1.9rem;
-  font-size: 0.8rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.6rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  border: 1px solid transparent;
-  border-radius: 0;
+  line-height: 1.2;
+  border: 2px solid transparent;
+  border-radius: 2px;
   white-space: nowrap;
-  transition: background-color 180ms ease, color 180ms ease,
-    border-color 180ms ease;
+  transition: background-color 160ms ease, color 160ms ease,
+    border-color 160ms ease;
 }
 
 .btn-primary {
@@ -141,21 +144,31 @@ body {
   color: #fff;
   border-color: var(--red);
 }
-
 .btn-primary:hover {
-  background-color: var(--red-dark);
-  border-color: var(--red-dark);
+  background-color: var(--brick);
+  border-color: var(--brick);
 }
 
-.btn-dark {
+.btn-ink {
   background-color: var(--ink);
   color: #fff;
   border-color: var(--ink);
 }
-
-.btn-dark:hover {
+.btn-ink:hover {
   background-color: var(--red);
   border-color: var(--red);
+}
+
+/* Cream button for use on the red hero. */
+.btn-chalk {
+  background-color: #fbf8f3;
+  color: var(--ink);
+  border-color: #fbf8f3;
+}
+.btn-chalk:hover {
+  background-color: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
 }
 
 .btn-outline {
@@ -163,103 +176,89 @@ body {
   color: inherit;
   border-color: currentColor;
 }
-
-.btn-outline.on-dark:hover {
-  background-color: #fff;
-  color: var(--ink);
-  border-color: #fff;
+.btn-outline:hover {
+  background-color: rgba(127, 127, 127, 0.2);
 }
 
-.btn-outline.on-light:hover {
-  background-color: var(--ink);
-  color: #fff;
-  border-color: var(--ink);
-}
-
-/* Understated text link with an arrow. */
-.link-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.8rem;
+/* Text link: underlined, no arrow glyph. */
+.text-link {
   font-weight: 600;
-  letter-spacing: 0.16em;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+  text-decoration-color: var(--red);
+  transition: text-decoration-color 160ms ease, color 160ms ease;
+}
+.text-link:hover {
+  text-decoration-color: currentColor;
+}
+}
+
+/* ---------------------------------------------------------------------- */
+/* The LED signboard                                                       */
+/* ---------------------------------------------------------------------- */
+
+.led-sign {
+  position: relative;
+  background: #0b0807;
+  color: var(--led);
+  font-family: var(--font-led), monospace;
   text-transform: uppercase;
-  color: var(--ink);
-  border-bottom: 1px solid var(--red);
-  padding-bottom: 0.3rem;
-  transition: color 180ms ease;
+  text-shadow: 0 0 5px rgba(255, 106, 72, 0.85), 0 0 16px rgba(255, 106, 72, 0.4);
+  overflow: hidden;
 }
 
-.link-arrow:hover {
-  color: var(--red);
+/* Dot-matrix grid laid over the lettering. */
+.led-sign::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at center,
+    transparent 50%,
+    rgba(11, 8, 7, 0.5) 56%
+  );
+  background-size: 4px 4px;
 }
 
-/* ---------------------------------------------------------------------- */
-/* Motion — slow, soft, and never in the way                               */
-/* ---------------------------------------------------------------------- */
-
-html {
-  scroll-padding-top: 5.5rem; /* keep #anchors clear of the sticky header */
-}
-
-/* Scroll reveal: fades and lifts into place once, when it enters the view. */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 900ms cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  will-change: opacity, transform;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* Page-load entrances (pure CSS, so there's no flash before hydration). */
-@keyframes rise {
+@keyframes ticker {
   from {
-    opacity: 0;
-    transform: translateY(24px);
+    transform: translateX(0);
   }
   to {
-    opacity: 1;
-    transform: none;
+    transform: translateX(-50%);
   }
 }
 
-@keyframes settle {
-  from {
-    opacity: 0;
-    transform: scale(1.06);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 48s linear infinite;
 }
 
-.rise {
-  animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.settle {
-  animation: settle 1600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-/* Arrow nudges forward on hover. */
-.link-arrow svg {
-  transition: transform 200ms ease;
-}
-
-.link-arrow:hover svg {
-  transform: translateX(4px);
+.ticker-track[data-paused="true"] {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
+  .ticker-track {
+    animation: none;
   }
+}
+
+/* One-time boot: the sign lights up left to right when the page loads. */
+@keyframes boot {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.4;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+.led-boot {
+  animation: boot 1100ms steps(28, end) 200ms both;
 }

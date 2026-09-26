@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://hbreakfasttobar.vercel.app/sitemap.xml

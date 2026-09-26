@@ -1,36 +1,48 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import PageHeader from "@/components/PageHeader";
 import VoucherGrid from "@/components/VoucherGrid";
 import CtaBanner from "@/components/CtaBanner";
 import { vouchers } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Vouchers — H Breakfast to Bar",
+  title: "Vouchers",
   description:
-    "Check out our current vouchers and promos, redeemable in person at H Breakfast to Bar, Mandurriao, Iloilo.",
+    "Current vouchers and promos, redeemable in person at H Breakfast to Bar in Mandurriao, Iloilo City. Drinks, meals, pizza and more.",
+  alternates: { canonical: "/vouchers" },
+  openGraph: pageOpenGraph("/vouchers"),
 };
 
 export default function VouchersPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Vouchers"
-        title={`${vouchers.length} ways to say “on us.”`}
-        description="Present a voucher to our staff on your visit. Tap any voucher to view it full size."
+        title={`${vouchers.length} ways to say “on us”`}
+        description="Show a voucher to our staff when you visit. Tap any voucher to see it full size."
       />
 
-      <VoucherGrid />
+      <section className="band bg-chalk">
+        <div className="page-shell grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+          <aside className="lg:col-span-3">
+            <div className="lg:sticky lg:top-28">
+              <h2 className="heading text-3xl">How vouchers work</h2>
+              <ul className="mt-5 space-y-3 text-ink/85">
+                <li>Show the voucher to our staff before you order.</li>
+                <li>One voucher per group, table or transaction.</li>
+                <li>Non-transferable and good for one use only.</li>
+              </ul>
+            </div>
+          </aside>
 
-      <div className="page-shell pb-20">
-        <p className="border-t border-sand pt-6 text-sm leading-relaxed text-ink/55">
-          Non-transferable. One-time use only. Only one voucher may be redeemed
-          per group, table, or transaction.
-        </p>
-      </div>
+          <div className="lg:col-span-9">
+            <VoucherGrid />
+          </div>
+        </div>
+      </section>
 
       <CtaBanner
         title="Ready to redeem?"
-        description="We're on Diversion Road, Mandurriao — open daily."
+        description="We're on Diversion Road, Mandurriao, open daily."
         href="/location"
         linkLabel="Find us"
       />

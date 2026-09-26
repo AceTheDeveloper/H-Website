@@ -1,43 +1,49 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
 import PageHeader from "@/components/PageHeader";
-import MenuBrowser from "@/components/MenuBrowser";
+import MenuNav from "@/components/MenuNav";
+import MenuSection from "@/components/MenuSection";
 import CtaBanner from "@/components/CtaBanner";
+import { menu } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Menu — H Breakfast to Bar",
+  title: "Menu",
   description:
-    "Browse our full menu — breakfast plates, pizza, pasta and sharing platters, served all day at H Breakfast to Bar in Mandurriao, Iloilo.",
+    "The full menu at H Breakfast to Bar: all-day breakfast, sandwiches, Filipino sets, Asian plates, steaks, pasta and pizza in Mandurriao, Iloilo City.",
+  alternates: { canonical: "/menu" },
+  openGraph: pageOpenGraph("/menu"),
 };
 
 export default function MenuPage() {
   return (
     <>
       <PageHeader
-        eyebrow="The menu"
-        title="Breakfast, plates and everything after."
-        description="Browse by category — from morning plates to pizza, pasta and sharing platters."
+        title="Breakfast, plates and everything after"
+        description="Pick a category, or scroll the whole menu. Prices are in pesos."
       />
 
-      <MenuBrowser />
+      <div className="page-shell pb-20 lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-14 lg:pt-14">
+        <MenuNav categories={menu.map(({ id, label }) => ({ id, label }))} />
 
-      <div className="page-shell pb-20">
-        <p className="border-t border-sand pt-6 text-sm leading-relaxed text-ink/55">
-          <strong className="font-semibold text-ink/70">New</strong> — recently
-          added ·{" "}
-          <strong className="font-semibold text-ink/70">
-            Chef&apos;s Pick
-          </strong>{" "}
-          — a kitchen favourite ·{" "}
-          <strong className="font-semibold text-ink/70">Bar Favorite</strong> —
-          most ordered at the bar ·{" "}
-          <strong className="font-semibold text-ink/70">Vegetarian</strong> — no
-          meat or fish. Ask your server about other dietary needs.
-        </p>
+        <div className="mt-10 space-y-20 lg:mt-0">
+          <p className="max-w-2xl text-[0.95rem] leading-relaxed text-ink/80">
+            <strong className="font-semibold text-ink">Chef&apos;s Pick</strong>{" "}
+            is a kitchen favourite.{" "}
+            <strong className="font-semibold text-ink">Bar Favorite</strong> is
+            most ordered at the bar.{" "}
+            <strong className="font-semibold text-ink">Vegetarian</strong> means
+            no meat or fish. Ask your server about other dietary needs.
+          </p>
+
+          {menu.map((category) => (
+            <MenuSection key={category.id} category={category} />
+          ))}
+        </div>
       </div>
 
       <CtaBanner
-        title="Ready to book a table?"
-        description="Find our hours, address and directions on the location page."
+        title="Come hungry"
+        description="Hours, address and directions are on the location page."
         href="/location"
         linkLabel="Find us"
       />

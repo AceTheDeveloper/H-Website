@@ -1,21 +1,21 @@
 import Hero from "@/components/Hero";
-import InfoStrip from "@/components/InfoStrip";
-import AboutTeaser from "@/components/AboutTeaser";
-import MenuPreview from "@/components/MenuPreview";
-import DayRhythm from "@/components/DayRhythm";
+import IntroBand from "@/components/IntroBand";
+import { MiddayBand, MorningBand, NightBand } from "@/components/HomeBands";
 import VoucherPromo from "@/components/VoucherPromo";
-import LocationTeaser from "@/components/LocationTeaser";
+import VisitBand from "@/components/VisitBand";
 
+// The page runs from morning to night: light plaster at the top, ink by the
+// time you reach the bar.
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <InfoStrip />
-      <AboutTeaser />
-      <MenuPreview />
-      <DayRhythm />
+      <IntroBand />
+      <MorningBand />
+      <MiddayBand />
+      <NightBand />
       <VoucherPromo />
-      <LocationTeaser />
+      <VisitBand />
     </>
   );
 }

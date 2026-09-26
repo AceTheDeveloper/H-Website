@@ -1,88 +1,101 @@
 import type { Metadata } from "next";
+import { pageOpenGraph } from "@/lib/seo";
+import Image from "next/image";
 import PageHeader from "@/components/PageHeader";
-import MapPlaceholder from "@/components/MapPlaceholder";
+import MapEmbed from "@/components/MapEmbed";
 import HoursTable from "@/components/HoursTable";
-import ReservationForm from "@/components/ReservationForm";
+import LedSign from "@/components/LedSign";
 import { contact } from "@/lib/data";
 import { IconPhone, IconPin } from "@/components/Icons";
-import Reveal from "@/components/Reveal";
+import storefront from "@/assets/about.jpg";
+// import ReservationForm from "@/components/ReservationForm";
 
 export const metadata: Metadata = {
-  title: "Location & Hours — H Breakfast to Bar",
+  title: "Location & Hours",
   description:
-    "Find H Breakfast to Bar on Diversion Road, Mandurriao, Iloilo City. See our hours, get directions, or request a table.",
+    "Find H Breakfast to Bar on Diversion Road, Mandurriao, Iloilo City. Opening hours, phone number and directions.",
+  alternates: { canonical: "/location" },
+  openGraph: pageOpenGraph("/location"),
 };
+
 export default function LocationPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Visit us"
-        title="Find us on Diversion Road."
-        description="Easy to spot, easy to walk into — any time of day."
+        title="Find us on Diversion Road"
+        description="Easy to spot, easy to walk into, any time of day."
       />
+      <LedSign />
 
-      <section className="section page-shell grid gap-12 md:grid-cols-2 md:gap-16">
-        <Reveal>
-          <MapPlaceholder />
-        </Reveal>
+      <section className="band bg-chalk">
+        <div className="page-shell grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-5">
+            <h2 className="heading text-4xl sm:text-5xl">Address and phone</h2>
+            <address className="mt-6 space-y-3 not-italic">
+              <p className="flex items-start gap-3 text-lg">
+                <IconPin className="mt-1.5 h-5 w-5 shrink-0 text-brick" />
+                {contact.address}
+              </p>
+              <p className="flex items-start gap-3 text-lg">
+                <IconPhone className="mt-1.5 h-5 w-5 shrink-0 text-brick" />
+                <a href={contact.phoneHref} className="text-link">
+                  {contact.phone}
+                </a>
+              </p>
+            </address>
 
-        <Reveal delay={150}>
-          <h2 className="display text-2xl sm:text-3xl">Details</h2>
-          <div className="mt-6 space-y-3 text-ink/80">
-            <p className="flex items-start gap-3">
-              <IconPin className="mt-1 h-5 w-5 shrink-0 text-red" />
-              {contact.address}
+            <h2 className="heading mt-14 text-4xl sm:text-5xl">Opening hours</h2>
+            <HoursTable className="mt-6" />
+            <p className="mt-4 text-ink/80">
+              Breakfast plates are served all day. Pizza, pasta and quick bites
+              start at 11:30 am, and the bar opens at 4 pm.
             </p>
-            <p className="flex items-start gap-3">
-              <IconPhone className="mt-1 h-5 w-5 shrink-0 text-red" />
-              <a href={contact.phoneHref} className="hover:text-red">
-                {contact.phone}
-              </a>
-            </p>
+
+            <a
+              href={contact.mapsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary mt-10"
+            >
+              Get directions
+            </a>
           </div>
 
-          <h2 className="display mt-12 text-2xl sm:text-3xl">Hours</h2>
-          <div className="mt-6">
-            <HoursTable />
+          <div className="grid grid-cols-1 gap-6 lg:col-span-7">
+            <MapEmbed className="aspect-[4/3] md:aspect-[16/10]" />
+            <figure className="relative aspect-[16/10] border-2 border-ink">
+              <Image
+                src={storefront}
+                alt="The H Breakfast to Bar building, with the large red H sign above the entrance"
+                fill
+                placeholder="blur"
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                className="object-cover object-[50%_30%]"
+              />
+            </figure>
           </div>
-          <p className="mt-4 text-sm text-ink/55">
-            Breakfast served until 11:30am. Bar opens at 4pm daily.
-          </p>
-
-          <a
-            href={contact.mapsHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary mt-10"
-          >
-            Get directions
-          </a>
-        </Reveal>
+        </div>
       </section>
 
-      {/* <section
-        id="reserve"
-        className="scroll-mt-20 border-t border-sand bg-white"
-      >
-        <div className="section page-shell grid gap-12 md:grid-cols-12 md:gap-10">
-          <Reveal className="md:col-span-4">
-            <p className="eyebrow">Reservations</p>
-            <h2 className="display mt-5 text-3xl sm:text-4xl">
-              Request a table.
-            </h2>
-            <p className="mt-5 text-ink/70">
+      {/* Reservations are switched off for now. Restore this block to bring the form back.
+      <section id="reserve" className="scroll-mt-20 border-t-2 border-ink bg-plaster">
+        <div className="band page-shell grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10">
+          <div className="md:col-span-4">
+            <h2 className="heading text-4xl sm:text-5xl">Request a table</h2>
+            <p className="mt-5 text-ink/80">
               Send a request and we&apos;ll confirm by phone. For same-day
               bookings, calling ahead is faster.
             </p>
-            <a href={contact.phoneHref} className="link-arrow mt-8">
+            <a href={contact.phoneHref} className="text-link mt-8 inline-block">
               Call {contact.phone}
             </a>
-          </Reveal>
-          <Reveal delay={150} className="md:col-span-7 md:col-start-6">
+          </div>
+          <div className="md:col-span-7 md:col-start-6">
             <ReservationForm />
-          </Reveal>
+          </div>
         </div>
-      </section> */}
+      </section>
+      */}
     </>
   );
 }

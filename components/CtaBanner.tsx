@@ -12,13 +12,13 @@ export default function CtaBanner({
   linkLabel: string;
 }) {
   return (
-    <section className="bg-red text-white">
-      <div className="page-shell flex flex-col items-start justify-between gap-8 py-16 md:flex-row md:items-center md:py-20">
+    <section className="on-red bg-red text-chalk">
+      <div className="page-shell flex flex-col items-start justify-between gap-8 py-14 md:flex-row md:items-center md:py-16">
         <div>
-          <h2 className="display text-3xl sm:text-4xl">{title}</h2>
-          <p className="mt-3 max-w-md text-white/85">{description}</p>
+          <h2 className="poster text-5xl sm:text-6xl">{title}</h2>
+          <p className="lede mt-4 max-w-md">{description}</p>
         </div>
-        <Link href={href} className="btn btn-outline on-dark shrink-0">
+        <Link href={href} className="btn btn-chalk shrink-0">
           {linkLabel}
         </Link>
       </div>

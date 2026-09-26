@@ -1,12 +1,13 @@
 import Image from "next/image";
 import type { MenuItem } from "@/lib/data";
 
+/** A dish with a photo. Dishes without one use MenuRow instead. */
 export default function MenuCard({
   item,
   label,
 }: {
   item: MenuItem;
-  /** Optional category label shown under the name (used on the home page). */
+  /** Optional category name shown under the dish (used on the home page). */
   label?: string;
 }) {
   const prices = item.prices ?? [];
@@ -19,70 +20,79 @@ export default function MenuCard({
   const priceRow = inlinePrice ? [] : prices;
 
   return (
-    <article className="group">
-      <div className="relative aspect-[4/3] overflow-hidden border border-sand bg-white">
-        {item.image ? (
+    <article>
+      <div className="relative aspect-[4/3] overflow-hidden border-2 border-ink bg-white">
+        {item.image && (
           <Image
             src={item.image}
             alt={item.name}
             fill
-            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            className="object-contain p-5 transition-transform duration-500 group-hover:scale-105"
+            sizes="(min-width: 1024px) 26vw, (min-width: 640px) 45vw, 100vw"
+            className="object-contain p-4"
           />
-        ) : (
-          // No photo yet — a quiet branded tile keeps the grid even.
-          <div className="flex h-full w-full items-center justify-center">
-            <img
-              src="/logo.png"
-              alt=""
-              aria-hidden="true"
-              className="h-16 w-auto opacity-[0.12]"
-            />
-          </div>
         )}
         {item.tag && (
-          <span className="absolute left-0 top-4 bg-ink px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white">
+          <span className="absolute left-0 top-3 bg-ink px-3 py-1 text-sm font-semibold text-white">
             {item.tag}
           </span>
         )}
       </div>
 
-      <div className="mt-5 flex items-baseline justify-between gap-4">
-        <h3 className="text-xl font-semibold leading-snug">{item.name}</h3>
+      <div className="mt-4 flex items-baseline justify-between gap-4">
+        <h3 className="heading text-2xl">{item.name}</h3>
         {inlinePrice && (
-          <span className="shrink-0 text-lg text-brown">{inlinePrice}</span>
+          <span className="shrink-0 text-lg font-semibold">{inlinePrice}</span>
         )}
       </div>
 
-      {label && (
-        <p className="mt-1 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-brown">
-          {label}
-        </p>
-      )}
+      {label && <p className="mt-1 text-[0.95rem] text-ink/75">{label}</p>}
 
       {priceRow.length > 0 && (
-        <dl className="mt-3 flex flex-wrap gap-x-8 gap-y-2 border-t border-sand pt-3">
+        <dl className="mt-2 flex flex-wrap gap-x-6 gap-y-1">
           {priceRow.map((p) => (
-            <div
-              key={p.label ?? p.price}
-              className="flex items-baseline gap-2.5"
-            >
-              {p.label && (
-                <dt className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-brown">
-                  {p.label}
-                </dt>
-              )}
-              <dd className="text-lg text-ink">{p.price}</dd>
+            <div key={p.label ?? p.price} className="flex items-baseline gap-2">
+              {p.label && <dt className="text-[0.95rem] text-ink/75">{p.label}</dt>}
+              <dd className="text-lg font-semibold">{p.price}</dd>
             </div>
           ))}
         </dl>
       )}
 
       {item.description && (
-        <p className="mt-2 text-[0.95rem] leading-relaxed text-ink/65">
+        <p className="mt-2 text-[0.95rem] leading-relaxed text-ink/75">
           {item.description}
         </p>
       )}
     </article>
+  );
+}
+
+/** A dish without a photo: a plain ruled line, so the grid never has empty tiles. */
+export function MenuRow({ item }: { item: MenuItem }) {
+  const prices = item.prices ?? [];
+  return (
+    <li className="flex items-baseline justify-between gap-4 border-b border-ink/20 py-3">
+      <span className="flex flex-wrap items-baseline gap-x-3">
+        <span className="heading text-xl">{item.name}</span>
+        {item.tag && (
+          <span className="bg-ink px-2 py-0.5 text-sm font-semibold text-white">
+            {item.tag}
+          </span>
+        )}
+      </span>
+      {prices.length > 0 && (
+        <span className="shrink-0 text-right font-semibold">
+          {prices.map((p, i) => (
+            <span key={p.label ?? p.price}>
+              {i > 0 && <span className="px-1.5 text-ink/50">/</span>}
+              {p.label && (
+                <span className="mr-1.5 font-normal text-ink/75">{p.label}</span>
+              )}
+              {p.price}
+            </span>
+          ))}
+        </span>
+      )}
+    </li>
   );
 }

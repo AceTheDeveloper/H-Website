@@ -224,7 +224,6 @@ export type ImageVoucher = {
 export type Voucher = ImageVoucher;
 
 const imageVouchers: ImageVoucher[] = [
-  { id: "img1", brand: "H Breakfast to Bar", title: "Basic Carwash Voucher", image: "/vouchers/h-basic-carwash.png" },
   { id: "img2", brand: "H Breakfast to Bar", title: "Americano Voucher", image: "/vouchers/h-americano.png" },
   { id: "img3", brand: "H Breakfast to Bar", title: "Breakfast & Business Voucher", image: "/vouchers/h-breakfast-business.png" },
   { id: "img4", brand: "H Breakfast to Bar", title: "Pizza Voucher", image: "/vouchers/h-pizza.png" },
@@ -234,13 +233,28 @@ const imageVouchers: ImageVoucher[] = [
   { id: "img8", brand: "H Breakfast to Bar", title: "Pad Thai Voucher", image: "/vouchers/h-pad-thai.png" },
   { id: "img9", brand: "H Breakfast to Bar", title: "H Sandwich Voucher", image: "/vouchers/h-sandwich.png" },
   { id: "img10", brand: "H Breakfast to Bar", title: "Any Drink Voucher", image: "/vouchers/h-any-drink.png" },
+  { id: "img1", brand: "H Breakfast to Bar", title: "Basic Carwash Voucher", image: "/vouchers/h-basic-carwash.png" },
 ];
 
 export const vouchers: Voucher[] = imageVouchers;
 
+// `open` / `close` are minutes since midnight in Manila time. A close past
+// 1440 means the doors shut after midnight (2:00 am = 26 * 60 = 1560).
 export const hours = [
-  { day: "Sunday – Thursday", time: "6:00 am – 10:00 pm" },
-  { day: "Friday – Saturday", time: "6:00 am – 2:00 am" },
+  {
+    day: "Sunday – Thursday",
+    time: "6:00 am – 10:00 pm",
+    days: [0, 1, 2, 3, 4],
+    open: 6 * 60,
+    close: 22 * 60,
+  },
+  {
+    day: "Friday – Saturday",
+    time: "6:00 am – 2:00 am",
+    days: [5, 6],
+    open: 6 * 60,
+    close: 26 * 60,
+  },
 ];
 
 export const contact = {
@@ -251,26 +265,21 @@ export const contact = {
     "https://www.google.com/maps/search/?api=1&query=H+Breakfast+to+Bar+Mandurriao+Iloilo+City",
 };
 
-export const dayRhythm = [
-  {
-    time: "7 AM",
-    title: "Breakfast opens",
-    description: "Coffee, eggs, pastries — the kitchen wakes up before you do.",
-  },
-  {
-    time: "12 PM",
-    title: "The menu shifts",
-    description:
-      "All-day plates and small bites take over from the breakfast board.",
-  },
-  {
-    time: "4 PM",
-    title: "The bar opens",
-    description: "House cocktails, wine and beer join the food menu.",
-  },
-  {
-    time: "Late",
-    title: "Last call",
-    description: "Kitchen and bar run late for the ones still at the table.",
-  },
-];
+// Add the real profile URLs here and the footer icons appear on their own.
+export const social: { instagram?: string; facebook?: string } = {};
+
+// Change `url` to the custom domain once the client has one.
+export const site = {
+  url: "https://hbreakfasttobar.vercel.app",
+  name: "H Breakfast to Bar",
+  geo: { latitude: 10.718120267, longitude: 122.552185273 },
+};
+
+// Dishes shown on the home page, by menu item id.
+export const featuredIds = {
+  morning: ["b8", "b2", "b3"],
+  midday: ["f1", "a2", "z2", "m2"],
+};
+
+// Vouchers shown on the home page, by id (drinks and meals first).
+export const featuredVoucherIds = ["img10", "img5", "img6"];
