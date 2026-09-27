@@ -20,6 +20,10 @@ export default function MenuSection({ category }: { category: MenuCategory }) {
         )}
       </div>
 
+      {category.tagline && (
+        <p className="lede mt-3 text-ink/80">{category.tagline}</p>
+      )}
+
       {withPhoto.length > 0 && (
         <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
           {withPhoto.map((item) => (

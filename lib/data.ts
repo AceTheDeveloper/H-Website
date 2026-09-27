@@ -33,6 +33,7 @@ export type MenuCategory = {
   id: string;
   label: string;
   timeNote?: string;
+  tagline?: string;
   items: MenuItem[];
 };
 
@@ -75,6 +76,7 @@ export const menu: MenuCategory[] = [
     id: "allday",
     label: "All Day Breakfast",
     timeNote: "Served all day",
+    tagline: "Because breakfast doesn't watch the clock.",
     items: [
       item("b1", "H Pancakes", { image: "HPancakes", prices: one(218) }),
       item("b2", "The Breakfast Fold", { image: "TheBreakfastFold", prices: one(288) }),
@@ -90,6 +92,7 @@ export const menu: MenuCategory[] = [
     id: "sandwiches",
     label: "Sandwiches & Wraps",
     timeNote: "Served all day",
+    tagline: "Quick, filling, and made for busy days.",
     items: [
       item("w1", "Breakfast Sandwich", { image: "BreakfastSandwich", prices: one(258) }),
       item("w2", "Salami Sandwich", { image: "SalamiSandwich", prices: one(328) }),
@@ -114,6 +117,7 @@ export const menu: MenuCategory[] = [
     id: "filipino",
     label: "Filipino Sets",
     timeNote: "Solo or sharing",
+    tagline: "The flavors we grew up loving.",
     items: [
       item("f1", "Sisig Supremo", { image: "SisigSupremo", prices: solo(228, 428), tag: "Bar Favorite" }),
       item("f2", "Lengua Bakareta", { image: "LenguaBakareta", prices: solo(388, 688) }),
@@ -132,6 +136,7 @@ export const menu: MenuCategory[] = [
     id: "asian",
     label: "Asian Plates",
     timeNote: "Solo or sharing",
+    tagline: "Big Asian flavors made for our kind of cravings.",
     items: [
       item("a1", "Asian Spring Rolls", { prices: solo(288, 508) }),
       item("a2", "Salted Egg Chicken", { image: "SaltedEggChicken", prices: solo(388, 688) }),
@@ -143,6 +148,7 @@ export const menu: MenuCategory[] = [
     id: "meat",
     label: "Meat Plates",
     timeNote: "Steaks priced by weight",
+    tagline: "Big cuts. Big plates. Come hungry.",
     items: [
       item("m1", "H Steak", {
         image: "HSteakTenderloin",
@@ -161,6 +167,7 @@ export const menu: MenuCategory[] = [
   {
     id: "soup",
     label: "Soup",
+    tagline: "Warm, comforting, always a good idea.",
     items: [item("u1", "Laksa", { prices: one(388) })],
   },
   {
@@ -176,6 +183,7 @@ export const menu: MenuCategory[] = [
     id: "bites",
     label: "Quick Bites",
     timeNote: "Served 11:30am – close",
+    tagline: "For quick cravings and long conversations.",
     items: [
       item("t1", "BBQ Fries", { image: "BBQFries", prices: either(258, 388) }),
       item("t2", "Hero Dog", { prices: one(358) }),
@@ -188,6 +196,7 @@ export const menu: MenuCategory[] = [
     id: "pasta",
     label: "Pasta",
     timeNote: "Served 11:30am – close",
+    tagline: "Comfort in every twirl.",
     items: [
       item("n1", "Spicy Peanut Noodles", { image: "SpicyPeanutNoddles", prices: one(598) }),
       item("n2", "Pad Thai", { image: "PadThai", prices: one(488) }),
@@ -200,6 +209,7 @@ export const menu: MenuCategory[] = [
     id: "pizza",
     label: "Pizza",
     timeNote: "Served 11:30am – close",
+    tagline: "Made for the table. Better when shared.",
     items: [
       item("z1", "Puting Keso with Aragula", { image: "PutingKesoWithAragula", prices: one(658) }),
       item("z2", "Quattro Formaggi", { image: "QuatroFormagi", prices: one(688), tag: "Chef's Pick" }),
