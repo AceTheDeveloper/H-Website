@@ -47,6 +47,21 @@ export default function AboutPage() {
         description="How a short morning menu turned into a full day-to-night restaurant and bar."
       />
 
+      <section className="band bg-plaster border-b-2 border-ink">
+        <div className="page-shell">
+          <p className="lede max-w-xl text-ink/85">
+            Whatever your hustle looks like, there&apos;s a place for you here.
+          </p>
+          <p className="poster mt-6 text-[clamp(2.5rem,8vw,5.5rem)]">
+            H. For our local heroes.
+            <br />
+            From Breakfast to Bar.
+            <br />
+            Made for the Ilonggo hustle.
+          </p>
+        </div>
+      </section>
+
       <section className="band bg-chalk">
         <div className="page-shell grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">
