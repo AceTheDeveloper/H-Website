@@ -1,443 +1,59 @@
-H BREAKFAST TO BAR
-All the words on the website, and where each one appears
+H BREAKFAST TO BAR — Story text
 
-How to read this:
-- Everything is in the order a visitor sees it, top to bottom.
-- Each block starts with [Where: ...] so you know which page and which part of the page it belongs to.
-- Things marked  >> PLEASE CONFIRM  need your yes or a correction.
-- To change anything, just reply with the page name, the sentence, and what it should say instead.
+Home page, short version:
+H Breakfast to Bar started as a breakfast counter with a short menu and a
+long weekend line. The regulars asked what happens after lunch, so the
+kitchen stayed open and the bar went in.
 
-==============================================
-PLEASE CHECK THESE FIRST
-==============================================
+About Us page, headline:
+A breakfast counter that never quite closed
 
-1. >> PLEASE CONFIRM: Opening hours: Sunday – Thursday 6:00 am – 10:00 pm; Friday – Saturday 6:00 am – 2:00 am. Are these right?
+About Us page, headline subtext:
+How a short morning menu turned into a full day-to-night restaurant and bar.
 
-2. >> PLEASE CONFIRM: Breakfast is shown as served ALL DAY. Pizza, pasta and quick bites are shown as starting at 11:30 am, and the bar as opening at 4 pm every day. Is that correct?
+About Us page, story heading:
+Same crew, from the first pour to last call
 
-3. >> PLEASE CONFIRM: DRINKS: the website talks about coffee, cocktails, wine and beer, but the menu page has no drinks yet. Please send the drinks list with prices.
+About Us page, story paragraph 1:
+H Breakfast to Bar started as a breakfast spot with a short menu and a long
+line on weekends. We kept hearing the same question from regulars: what
+happens after lunch? So we found out. The kitchen stayed open, the bar went
+in, and the same crew that flips your pancakes in the morning is often the
+one closing out the bar at night.
 
-4. >> PLEASE CONFIRM: These dishes have no price yet, so only the name shows: Crispy Chicken Sandwich (Sandwiches & Wraps), Chicharon (Quick Bites), Squid Fried Rice (Pasta). Please send the prices.
+About Us page, story paragraph 2:
+Nothing about the food changed in spirit. It's still simple, made from
+scratch, and meant to be eaten with people you like. We just stopped
+closing at 2pm.
 
-5. >> PLEASE CONFIRM: These dishes show two prices with no label: BBQ Fries: ₱258 / ₱388. What do the two prices mean (for example small / large)?
+About Us page, wall mural quote:
+Live live local daily.
 
-6. >> PLEASE CONFIRM: About Us page: please confirm these are true, or tell us what to change: (a) sauces, dressings and bread are made in-house daily; (b) produce and coffee come from growers and roasters within a few hours of the kitchen; (c) the bartenders build the cocktail list the same way the kitchen builds the menu; (d) the story of starting as a breakfast counter with a short menu and a long weekend line.
+About Us page, wall mural caption:
+It's painted on the wall of our dining room, and it's the short version of
+everything on this page.
 
-7. >> PLEASE CONFIRM: Please send your Instagram and Facebook page links (the little icons at the bottom of the site stay hidden until we have them), and an email address if you want one shown.
+About Us page, values heading:
+Simple food, made properly
 
-8. >> PLEASE CONFIRM: Table reservations are switched off for now. Do you want a "Request a table" form back on the Location page?
+About Us page, value 1:
+Cooked from scratch: Sauces, dressings and bread are made in-house daily.
+Nothing comes out of a bag.
 
-9. >> PLEASE CONFIRM: Vouchers: is every voucher still running (including the Christmas one and the Basic Carwash one)? Please tell us the "valid until" dates.
+About Us page, value 2:
+Sourced close by: Produce and coffee come from growers and roasters within
+a few hours of the kitchen.
 
-10. >> PLEASE CONFIRM: Menu descriptions: dishes only show a name and price. If you would like a short line under any dish (ingredients, spice level), send it and we will add it.
+About Us page, value 3:
+One table, all day: You can sit down for breakfast and still be there for
+last call. Nobody rushes you.
 
-==============================================
-ON EVERY PAGE
-==============================================
+About Us page, value 4:
+Behind the bar: Our bartenders build the cocktail list the same way the
+kitchen builds the menu.
 
-Top bar (stays at the top as you scroll)
-----------------------------------------
+About Us page, closing banner heading:
+Come see the room
 
-[Where: Very top of every page]
-Logo with the words: Breakfast to Bar
-Links: Home  |  About Us  |  Menu  |  Vouchers  |  Location
-Call button: +63 945 538 8889
-
-Live sign strip
----------------
-
-[Where: Black strip with red dot-lights, at the bottom of the red banner on the Home page and under the title on the Location page. The words scroll slowly from right to left and change with the time of day (Philippine time)]
-While it is open it says, for example:
-  - Open now until 10 PM  (or 2 AM on Friday and Saturday)
-  - Breakfast plates all day
-  - Pizza, pasta and quick bites from 11:30 AM
-  - Pizza, pasta and quick bites are on
-  - Bar opens at 4 PM
-  - The bar is open
-  - Kitchen and bar run until closing
-  - Diversion Road · Mandurriao · Iloilo City
-When it is closed it says: Closed right now  /  Opens tomorrow at 6 AM (or today).
-
-Bottom of the page (footer)
----------------------------
-
-[Where: Very bottom of every page, on black]
-Logo with the words: Breakfast to Bar
-Morning coffee, all-day plates and a late-running bar, all in one room.
-
-Column heading: Explore
-Links: Home, About Us, Menu, Vouchers, Location
-
-Column heading: Visit
-Sunday – Thursday
-6:00 am – 10:00 pm
-Friday – Saturday
-6:00 am – 2:00 am
-Diversion Road, Mandurriao, Iloilo City
-+63 945 538 8889
-
-(c) 2026 H Breakfast to Bar. All rights reserved.
-Open daily from 6 AM
-
-==============================================
-HOME PAGE
-==============================================
-
-1. Red banner at the very top
------------------------------
-
-[Where: First thing visitors see. Red panel on the left, photo of the dining room and the LIVE LIVE LOCAL DAILY wall on the right]
-Big headline: From first coffee to last call.
-
-An all-day restaurant and bar on Diversion Road, Mandurriao, Iloilo City. Breakfast plates, food for the table, and a full bar once the evening starts.
-
-Buttons: View the menu   |   Get directions
-
-2. Short story paragraph
-------------------------
-
-[Where: Light cream section right under the banner, with a small photo of the Diversion Road street-sign painting]
-H Breakfast to Bar started as a breakfast counter with a short menu and a long weekend line. The regulars asked what happens after lunch, so the kitchen stayed open and the bar went in.
-Link: Read our story  (goes to About Us)
-
-3. Morning section (6 AM)
--------------------------
-
-[Where: Cream section with the big red "6 AM" on the left, then three dish photos]
-6 AM
-Heading: Breakfast, all day
-Pancakes, waffles, tapa and the Big Breakfast. Order them any time the kitchen is open.
-Dishes shown: Big Breakfast, The Breakfast Fold, Chicken and Waffles (names and prices come from the Menu page)
-Link: See all breakfast plates
-
-4. Midday section (11:30 AM)
-----------------------------
-
-[Where: Tan section with the big red "11:30 AM", then four dish photos]
-11:30 AM
-Heading: Plates to share
-Pizza, pasta and quick bites start at 11:30 am, next to the Filipino sets and Asian plates made for the middle of the table.
-Dishes shown: Sisig Supremo, Salted Egg Chicken, Quattro Formaggi, USDA Lechon Baka
-Link: View the full menu
-
-5. Evening section (4 PM)
--------------------------
-
-[Where: Dark section with a red-lit photo of the bar on the left and text on the right]
-4 PM
-Heading: After 4 pm, the bar takes over
-House cocktails, wine and beer join the food menu. Kitchen and bar run until closing.
-Sunday – Thursday: Until 10:00 pm
-Friday – Saturday: Until 2:00 am
-Buttons: Call +63 945 538 8889   |   Find us
-
-6. Vouchers section
--------------------
-
-[Where: Dark brown section with three voucher pictures (Any Drink, Solo Meal, P500)]
-Heading: 10 ways to say “on us”
-From a free drink to a whole meal. Show a voucher to our staff on your next visit.
-Button: See all vouchers
-
-7. Find us section
-------------------
-
-[Where: Last dark section on the Home page, with a photo of the coffee bar and the red LED signs]
-Heading: Find us on Diversion Road
-Diversion Road, Mandurriao, Iloilo City
-+63 945 538 8889
-Sunday – Thursday: 6:00 am – 10:00 pm
-Friday – Saturday: 6:00 am – 2:00 am
-(a small red "Today" tag appears next to today's hours)
-Buttons: Get directions   |   Map and hours
-
-==============================================
-ABOUT US PAGE
-==============================================
-
-Title area
-----------
-
-[Where: Top of the About Us page, big black headline]
-Headline: A breakfast counter that never quite closed
-Side text: How a short morning menu turned into a full day-to-night restaurant and bar.
-
-Our story
----------
-
-[Where: Cream section with a photo of guests at their tables on the right]
-Heading: Same crew, from the first pour to last call
-
-H Breakfast to Bar started as a breakfast spot with a short menu and a long line on weekends. We kept hearing the same question from regulars: what happens after lunch? So we found out. The kitchen stayed open, the bar went in, and the same crew that flips your pancakes in the morning is often the one closing out the bar at night.
-
-Nothing about the food changed in spirit. It's still simple, made from scratch, and meant to be eaten with people you like. We just stopped closing at 2pm.
-
-The wall
---------
-
-[Where: Big red section in the middle of the About Us page]
-Huge text: Live live local daily.
-It's painted on the wall of our dining room, and it's the short version of everything on this page.
-
-What we care about
-------------------
-
-[Where: Cream section, heading on the left and four lines on the right]
-Heading: Simple food, made properly
-Cooked from scratch: Sauces, dressings and bread are made in-house daily. Nothing comes out of a bag.
-Sourced close by: Produce and coffee come from growers and roasters within a few hours of the kitchen.
-One table, all day: You can sit down for breakfast and still be there for last call. Nobody rushes you.
-Behind the bar: Our bartenders build the cocktail list the same way the kitchen builds the menu.
-
-Photos and bottom banner
-------------------------
-
-[Where: Three photos (dining room, coffee bar, bar at night) have no words. Then the red banner at the bottom]
-Heading: Come see the room
+About Us page, closing banner subtext:
 Full menu, opening hours and directions, whenever you're ready.
-Button: View the menu
-
-==============================================
-MENU PAGE
-==============================================
-
-Title area and notes
---------------------
-
-[Where: Top of the Menu page]
-Headline: Breakfast, plates and everything after
-Side text: Pick a category, or scroll the whole menu. Prices are in pesos.
-
-Small note above the dishes: Chef's Pick is a kitchen favourite. Bar Favorite is most ordered at the bar. Vegetarian means no meat or fish. Ask your server about other dietary needs.
-
-Category list on the left (or sliding tabs on phones): All Day Breakfast, Sandwiches & Wraps, Sides, Salads & Sweets, Filipino Sets, Asian Plates, Meat Plates, Soup, Rice, Quick Bites, Pasta, Pizza
-Labels that appear on dish photos: New, Chef's Pick, Bar Favorite, Vegetarian
-
-Category: All Day Breakfast
----------------------------
-
-[Where: Menu page, section "All Day Breakfast" (small red note on the right: Served all day)]
-- H Pancakes — ₱218
-- The Breakfast Fold — ₱288
-- Chicken and Waffles — ₱288
-- Daing Bangus — ₱288
-- Chorizo Hubad — ₱288
-- Honey Glazed Bacon — ₱318
-- Tapa Bits — ₱358
-- Big Breakfast — ₱528 [Chef's Pick]
-
-Category: Sandwiches & Wraps
-----------------------------
-
-[Where: Menu page, section "Sandwiches & Wraps" (small red note on the right: Served all day)]
-- Breakfast Sandwich — ₱258
-- Salami Sandwich — ₱328
-- Chicken Wrap — ₱288
-- Morta Pesto Sandwich — ₱388
-- Crispy Chicken Sandwich — (no price yet) [Chef's Pick]
-
-Category: Sides, Salads & Sweets
---------------------------------
-
-[Where: Menu page, section "Sides, Salads & Sweets" (small red note on the right: Served all day)]
-- H Garlic Bread — ₱188 [Vegetarian]
-- H Salad — ₱228 [Vegetarian]
-- Caesar Salad — ₱228 (no photo yet)
-- Mango Sticky Rice — ₱226 [Vegetarian]
-- French Toast — ₱218 (no photo yet)
-
-Category: Filipino Sets
------------------------
-
-[Where: Menu page, section "Filipino Sets" (small red note on the right: Solo or sharing)]
-- Sisig Supremo — Solo ₱228 / Sharing ₱428 [Bar Favorite]
-- Lengua Bakareta — Solo ₱388 / Sharing ₱688
-- Inasal at Buro — Solo ₱358 / Sharing ₱858
-- Golden Pritong Manok — Solo ₱338 / Sharing ₱508 [New]
-- Classic Ox Tongue — Solo ₱338 / Sharing ₱558 (no photo yet)
-- Pork Cordon Bleu — Solo ₱358 / Sharing ₱568 (no photo yet)
-- Chicken Asia Max — Solo ₱258 / Sharing ₱538 (no photo yet)
-
-Category: Asian Plates
-----------------------
-
-[Where: Menu page, section "Asian Plates" (small red note on the right: Solo or sharing)]
-- Asian Spring Rolls — Solo ₱288 / Sharing ₱508 (no photo yet)
-- Salted Egg Chicken — Solo ₱388 / Sharing ₱688
-- Spiced Coconut Curry — Solo ₱288 / Sharing ₱488 (no photo yet)
-- Kare Chicken Satay — Solo ₱258 / Sharing ₱508
-
-Category: Meat Plates
----------------------
-
-[Where: Menu page, section "Meat Plates" (small red note on the right: Steaks priced by weight)]
-- H Steak — 250g ₱1,688 [Chef's Pick]
-- USDA Lechon Baka — 250g ₱788 / 500g ₱1,588 [New]
-- Sausage Steak — ₱688 (no photo yet)
-- Pork Chop Steak — ₱788
-
-Category: Soup
---------------
-
-[Where: Menu page, section "Soup"]
-- Laksa — ₱388 (no photo yet)
-
-Category: Rice
---------------
-
-[Where: Menu page, section "Rice" (small red note on the right: Cup or platter)]
-- Plain Rice — Cup ₱48 / Platter ₱208 (no photo yet)
-- Garlic Rice — Cup ₱68 / Platter ₱288 (no photo yet)
-
-Category: Quick Bites
----------------------
-
-[Where: Menu page, section "Quick Bites" (small red note on the right: Served 11:30am – close)]
-- BBQ Fries — ₱258 / ₱388
-- Hero Dog — ₱358 (no photo yet)
-- Dirty Tacos — ₱588 [New]
-- Burger Sliders — ₱388 (no photo yet)
-- Chicharon — (no price yet) [Bar Favorite]
-
-Category: Pasta
----------------
-
-[Where: Menu page, section "Pasta" (small red note on the right: Served 11:30am – close)]
-- Spicy Peanut Noodles — ₱598
-- Pad Thai — ₱488
-- Lasagna — ₱688
-- Tagliatelle — ₱588
-- Squid Fried Rice — (no price yet)
-
-Category: Pizza
----------------
-
-[Where: Menu page, section "Pizza" (small red note on the right: Served 11:30am – close)]
-- Puting Keso with Aragula — ₱658
-- Quattro Formaggi — ₱688 [Chef's Pick]
-- Pepperoni — ₱688
-- Truffle Pizza — ₱688 (no photo yet)
-- Supreme Pizza — ₱788 (no photo yet)
-- Blue Cheese Pizza — ₱888 (no photo yet)
-- Morta Pista — ₱1,288
-
-Bottom banner
--------------
-
-[Where: Red banner at the bottom of the Menu page]
-Heading: Come hungry
-Hours, address and directions are on the location page.
-Button: Find us
-
-==============================================
-VOUCHERS PAGE
-==============================================
-
-Title area
-----------
-
-[Where: Top of the Vouchers page]
-Headline: 10 ways to say “on us”
-Side text: Show a voucher to our staff when you visit. Tap any voucher to see it full size.
-
-How vouchers work
------------------
-
-[Where: Small box on the left, next to the voucher pictures]
-Show the voucher to our staff before you order.
-One voucher per group, table or transaction.
-Non-transferable and good for one use only.
-
-The vouchers
-------------
-
-[Where: Grid of voucher pictures. Under each picture is its name and a "View" link that opens it full size]
-- Americano Voucher
-- Breakfast & Business Voucher
-- Pizza Voucher
-- Solo Meal Voucher
-- ₱500 Voucher
-- A Gift for You — Christmas Voucher ₱500
-- Pad Thai Voucher
-- H Sandwich Voucher
-- Any Drink Voucher
-- Basic Carwash Voucher
-
-Note: the words INSIDE each voucher picture (the offer wording, "valid until", terms) are part of the picture design and are not listed here. Please send the final wording if any of it should change.
-
-Bottom banner
--------------
-
-[Where: Red banner at the bottom of the Vouchers page]
-Heading: Ready to redeem?
-We're on Diversion Road, Mandurriao, open daily.
-Button: Find us
-
-==============================================
-LOCATION PAGE
-==============================================
-
-Title area
-----------
-
-[Where: Top of the Location page (the live sign strip sits right under it)]
-Headline: Find us on Diversion Road
-Side text: Easy to spot, easy to walk into, any time of day.
-
-Address, hours and map
-----------------------
-
-[Where: Left column of the Location page. On the right are the Google map and a photo of the building with the red H]
-Heading: Address and phone
-Diversion Road, Mandurriao, Iloilo City
-+63 945 538 8889
-
-Heading: Opening hours
-Sunday – Thursday: 6:00 am – 10:00 pm
-Friday – Saturday: 6:00 am – 2:00 am
-(a small red "Today" tag appears next to today's hours)
-
-Breakfast plates are served all day. Pizza, pasta and quick bites start at 11:30 am, and the bar opens at 4 pm.
-Button: Get directions  (opens Google Maps)
-
-Currently switched off
-----------------------
-
-[Where: Location page, below the map. Not visible to visitors right now]
-A "Request a table" section: "Send a request and we'll confirm by phone. For same-day bookings, calling ahead is faster." with a booking form.
-
-==============================================
-IF SOMEONE OPENS A WRONG LINK
-==============================================
-
-[Where: The error page (404)]
-Headline: Wrong turn on Diversion Road
-That page doesn't exist. The menu, vouchers and directions are all one click away.
-Buttons: Back to home   |   View the menu
-
-==============================================
-WHAT SHOWS ON GOOGLE AND WHEN THE LINK IS SHARED
-==============================================
-This is the text people see in Google search results, and in the preview when the website link is sent on Messenger or Facebook.
-
-Home page
-  Title: H Breakfast to Bar | Restaurant & Bar in Iloilo City
-  Description: All-day restaurant and bar on Diversion Road, Mandurriao, Iloilo City. Breakfast and coffee from 6 AM, plates to share, and cocktails until late.
-
-About Us
-  Title: About Us | H Breakfast to Bar
-  Description: From a small breakfast counter to a full day-to-night restaurant and bar. The story behind H Breakfast to Bar in Mandurriao, Iloilo City.
-
-Menu
-  Title: Menu | H Breakfast to Bar
-  Description: The full menu at H Breakfast to Bar: all-day breakfast, sandwiches, Filipino sets, Asian plates, steaks, pasta and pizza in Mandurriao, Iloilo City.
-
-Vouchers
-  Title: Vouchers | H Breakfast to Bar
-  Description: Current vouchers and promos, redeemable in person at H Breakfast to Bar in Mandurriao, Iloilo City. Drinks, meals, pizza and more.
-
-Location
-  Title: Location & Hours | H Breakfast to Bar
-  Description: Find H Breakfast to Bar on Diversion Road, Mandurriao, Iloilo City. Opening hours, phone number and directions.
-
-Share picture: a red card with the H logo and the words "From first coffee to last call." and "H Breakfast to Bar · Diversion Road, Iloilo City".

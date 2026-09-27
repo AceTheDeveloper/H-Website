@@ -25,7 +25,7 @@ export default function MenuCard({
         {item.image && (
           <Image
             src={item.image}
-            alt={item.name}
+            alt={item.description ? `${item.name}: ${item.description}` : item.name}
             fill
             sizes="(min-width: 1024px) 26vw, (min-width: 640px) 45vw, 100vw"
             className="object-contain p-4"
