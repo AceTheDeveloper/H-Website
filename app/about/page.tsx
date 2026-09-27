@@ -72,9 +72,9 @@ export default function AboutPage() {
               H Breakfast to Bar started as a breakfast spot with a short menu
               and a long line on weekends. We kept hearing the same question
               from regulars: what happens after lunch? So we found out. The
-              kitchen stayed open, the bar went in, and the same crew that
-              flips your pancakes in the morning is often the one closing out
-              the bar at night.
+              kitchen stayed open, the bar went in, and the same crew that flips
+              your pancakes in the morning is often the one closing out the bar
+              at night.
             </p>
             <p className="lede mt-5 text-ink/85">
               Nothing about the food changed in spirit. It&apos;s still simple,
@@ -95,17 +95,55 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="band bg-plaster">
+        <div className="page-shell grid grid-cols-1 gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <h2 className="heading text-4xl sm:text-5xl md:text-6xl">
+              Made for the way Iloilo eats.
+            </h2>
+            <p className="lede mt-6 text-ink/85">
+              We don&apos;t believe good food has to belong to one cuisine.
+            </p>
+            <p className="lede mt-5 text-ink/85">
+              We serve what Iloilo loves to eat — from breakfast and comfort
+              food to pizza, pasta, steak, coffee and cocktails.
+            </p>
+          </div>
+          <ul className="heading divide-y-2 divide-ink border-y-2 border-ink text-2xl sm:text-3xl lg:col-span-7 lg:col-start-6">
+            <li className="py-5">Come for a meal.</li>
+            <li className="py-5">Meet someone.</li>
+            <li className="py-5">Get some work done.</li>
+            <li className="py-5">Catch up with an old friend.</li>
+            <li className="py-5">
+              Even get your car washed while you&apos;re here.
+            </li>
+          </ul>
+        </div>
+      </section>
+
       {/* The wall says it better than we can. */}
       <section className="on-red bg-red text-chalk">
         <div className="page-shell py-16 md:py-24">
           <p className="poster text-[clamp(3.5rem,13vw,10rem)]">
-            Live live
+            Love Lives in
             <br />
-            local daily.
+            Iloilo
           </p>
           <p className="lede mt-8 max-w-md">
             It&apos;s painted on the wall of our dining room, and it&apos;s the
             short version of everything on this page.
+          </p>
+        </div>
+      </section>
+
+      <section className="band bg-chalk">
+        <div className="page-shell">
+          <h2 className="heading text-4xl sm:text-5xl md:text-6xl">
+            Iloilo lives here.
+          </h2>
+          <p className="lede mt-6 max-w-2xl text-ink/85">
+            A place for breakfast meetings, family lunches, quick coffees,
+            long dinners, and drinks after a good day.
           </p>
         </div>
       </section>
@@ -161,6 +199,20 @@ export default function AboutPage() {
               className="object-cover"
             />
           </figure>
+        </div>
+      </section>
+
+      <section className="on-red bg-red text-chalk">
+        <div className="page-shell py-16 md:py-24">
+          <p className="poster text-[clamp(2.75rem,9vw,6.5rem)]">
+            The heart of H
+            <br />
+            is Iloilo.
+          </p>
+          <p className="lede mt-8 max-w-md">
+            Local people. Local stories. Everyday moments. From breakfast to
+            bar, H is here for all of them.
+          </p>
         </div>
       </section>
 
