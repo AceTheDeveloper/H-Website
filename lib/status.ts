@@ -12,7 +12,7 @@ const DAY_INDEX: Record<string, number> = {
 
 // Minutes since midnight when each part of the day starts.
 const PLATES_FROM = 11 * 60 + 30;
-const BAR_FROM = 16 * 60;
+const BAR_FROM = 21 * 60;
 
 export type OpenStatus = {
   open: boolean;
@@ -93,7 +93,7 @@ export function getOpenStatus(now: Date = new Date()): OpenStatus {
     elapsed < PLATES_FROM
       ? ["Breakfast plates all day", "Pizza, pasta and quick bites from 11:30 AM"]
       : elapsed < BAR_FROM
-        ? ["Pizza, pasta and quick bites are on", "Bar opens at 4 PM"]
+        ? ["Pizza, pasta and quick bites are on", "Bar opens at 9 PM"]
         : ["The bar is open", "Kitchen and bar run until closing"];
 
   return {

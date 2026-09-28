@@ -71,13 +71,13 @@ export function NightBand() {
           />
         </div>
         <div className="band px-5 sm:px-10 lg:px-16 xl:px-24">
-          <p className="poster text-6xl text-[#ff6a48] sm:text-7xl">4 PM</p>
+          <p className="poster text-6xl text-[#ff6a48] sm:text-7xl">9 PM</p>
           <h2 className="heading mt-6 max-w-lg text-4xl sm:text-5xl md:text-6xl">
-            After 4 pm, the bar takes over
+            After 9 pm, the bar takes over
           </h2>
           <p className="lede mt-5 max-w-md text-white/75">
-            House cocktails, wine and beer join the food menu. Kitchen and bar
-            run until closing.
+            House cocktails, wine and beer join the food menu. The bar runs
+            from 9 pm to 2 am, kitchen included.
           </p>
           <dl className="mt-10 max-w-md divide-y divide-white/20 border-y border-white/20">
             {hours.map((h) => (

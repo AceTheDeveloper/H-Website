@@ -48,7 +48,7 @@ export default function LocationPage() {
             <HoursTable className="mt-6" />
             <p className="mt-4 text-ink/80">
               Breakfast plates are served all day. Pizza, pasta and quick bites
-              start at 11:30 am, and the bar opens at 4 pm.
+              start at 11:30 am, and the bar runs from 9 pm to 2 am.
             </p>
 
             <a

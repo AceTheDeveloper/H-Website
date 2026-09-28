@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import heroImage from "@/assets/dining.jpg";
+import heroImage from "@/assets/full-house.jpg";
 import { contact } from "@/lib/data";
 import LedSign from "./LedSign";
 
@@ -43,12 +43,12 @@ export default function Hero() {
         <div className="relative aspect-[4/3] md:col-span-5 md:aspect-auto md:min-h-[560px]">
           <Image
             src={heroImage}
-            alt="The dining room at H Breakfast to Bar, with the hand-painted “Live Live Local Daily” mural"
+            alt="A full house at H Breakfast to Bar, with every table seated for a meal together"
             fill
             priority
             placeholder="blur"
             sizes="(min-width: 768px) 42vw, 100vw"
-            className="object-cover object-[25%_50%]"
+            className="object-cover object-[50%_65%]"
           />
         </div>
       </div>

@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
 import { pageOpenGraph } from "@/lib/seo";
 import Image from "next/image";
-import PageHeader from "@/components/PageHeader";
 import CtaBanner from "@/components/CtaBanner";
+import AboutSlideshow from "@/components/AboutSlideshow";
+import CrewOrgChart from "@/components/CrewOrgChart";
 import dining from "@/assets/dining.jpg";
 import guests from "@/assets/abawt.jpg";
 import kitchen from "@/assets/kitchen.jpg";
 import bar from "@/assets/bar.jpg";
+import guestsDining1 from "@/assets/guests-dining-1.jpg";
+import guestsDining2 from "@/assets/guests-dining-2.jpg";
+import guestsDining3 from "@/assets/guests-dining-3.jpg";
+
+const slideshowImages = [
+  { src: guestsDining1, alt: "Friends sharing a meal at H Breakfast to Bar" },
+  { src: "/menu/BigBreakfast.png", alt: "The Big Breakfast plate" },
+  { src: guestsDining2, alt: "A full house of guests at H Breakfast to Bar" },
+  { src: "/menu/HSteakTenderloin.png", alt: "H Steak Tenderloin, plated" },
+  { src: guestsDining3, alt: "Guests at the counter during the day" },
+];
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -42,10 +54,7 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <PageHeader
-        title="A breakfast counter that never quite closed"
-        description="How a short morning menu turned into a full day-to-night restaurant and bar."
-      />
+      <AboutSlideshow images={slideshowImages} />
 
       <section className="band bg-plaster border-b-2 border-ink">
         <div className="page-shell">
@@ -68,6 +77,9 @@ export default function AboutPage() {
             <h2 className="heading text-4xl sm:text-5xl md:text-6xl">
               Same crew, from the first pour to last call
             </h2>
+            <p className="mt-12 text-sm font-semibold uppercase tracking-[0.2em] text-ink/60">
+              H Runs on People
+            </p>
             <p className="lede mt-8 text-ink/85">
               H Breakfast to Bar started as a breakfast spot with a short menu
               and a long line on weekends. We kept hearing the same question
@@ -93,6 +105,7 @@ export default function AboutPage() {
             />
           </div>
         </div>
+        <div className="page-shell">{/* <CrewOrgChart /> */}</div>
       </section>
 
       <section className="band bg-plaster">
@@ -121,29 +134,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* The wall says it better than we can. */}
-      <section className="on-red bg-red text-chalk">
-        <div className="page-shell py-16 md:py-24">
-          <p className="poster text-[clamp(3.5rem,13vw,10rem)]">
-            Love Lives in
-            <br />
-            Iloilo
-          </p>
-          <p className="lede mt-8 max-w-md">
-            It&apos;s painted on the wall of our dining room, and it&apos;s the
-            short version of everything on this page.
-          </p>
-        </div>
-      </section>
-
       <section className="band bg-chalk">
         <div className="page-shell">
           <h2 className="heading text-4xl sm:text-5xl md:text-6xl">
             Iloilo lives here.
           </h2>
           <p className="lede mt-6 max-w-2xl text-ink/85">
-            A place for breakfast meetings, family lunches, quick coffees,
-            long dinners, and drinks after a good day.
+            A place for breakfast meetings, family lunches, quick coffees, long
+            dinners, and drinks after a good day.
           </p>
         </div>
       </section>
