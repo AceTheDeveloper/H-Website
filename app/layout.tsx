@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/data";
+import FirstVisitRoulette from "@/components/FirstVisitRoulette";
 
 const display = Anybody({
   subsets: ["latin"],
@@ -73,6 +74,7 @@ export default function RootLayout({
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
+        <FirstVisitRoulette />
         <JsonLd />
         <Analytics />
 
