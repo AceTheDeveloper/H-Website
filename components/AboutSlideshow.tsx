@@ -4,7 +4,7 @@ import Image, { type StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
 
 /**
- * Full-bleed, autoplaying crossfade of the dining room and the food, with the
+ * Full-bleed, autoplaying crossfade of the dining room and the crowd, with the
  * "Love lives in Iloilo" line painted over the top. Opens the About page the
  * way the wall mural opens the room in person.
  */
@@ -23,7 +23,7 @@ export default function AboutSlideshow({
   }, [images.length]);
 
   return (
-    <section className="on-red relative min-h-[70vh] overflow-hidden bg-red text-chalk md:min-h-[85vh]">
+    <section className="on-red relative min-h-[55vh] overflow-hidden bg-red text-chalk md:min-h-[60vh]">
       {images.map((image, i) => (
         <Image
           key={image.alt}
@@ -41,7 +41,7 @@ export default function AboutSlideshow({
 
       <div className="absolute inset-0 bg-red/45" aria-hidden />
 
-      <div className="page-shell relative flex min-h-[70vh] flex-col justify-end py-14 md:min-h-[85vh] md:py-20">
+      <div className="page-shell relative flex min-h-[55vh] flex-col justify-end py-10 md:min-h-[60vh] md:py-14">
         <h1 className="poster text-[clamp(3.25rem,12vw,9rem)] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
           H. Love lives
           <br />

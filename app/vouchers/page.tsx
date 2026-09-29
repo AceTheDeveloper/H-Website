@@ -18,10 +18,10 @@ export default function VouchersPage() {
     <>
       <PageHeader
         title={`${vouchers.length} ways to say “on us”`}
-        description="Show a voucher to our staff when you visit. Tap any voucher to see it full size."
+        description="Show a voucher to our staff when you visit. Tap one to see it full size."
       />
 
-      <section className="band bg-chalk">
+      <section className="bg-chalk py-10 md:py-14">
         <div className="page-shell grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
           <aside className="lg:col-span-3">
             <div className="lg:sticky lg:top-28">
@@ -35,7 +35,7 @@ export default function VouchersPage() {
           </aside>
 
           <div className="lg:col-span-9">
-            <VoucherGrid />
+            <VoucherGrid initial={4} />
           </div>
         </div>
       </section>

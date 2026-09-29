@@ -9,8 +9,8 @@ export default function VisitBand() {
   return (
     <section className="on-dark border-t-2 border-white/20 bg-ink text-white">
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="band px-5 sm:px-10 lg:pl-[max(2.5rem,calc((100vw-1280px)/2+2.5rem))] lg:pr-16">
-          <h2 className="heading max-w-md text-4xl sm:text-5xl md:text-6xl">
+        <div className="px-5 py-12 sm:px-10 md:py-16 lg:pl-[max(2.5rem,calc((100vw-1280px)/2+2.5rem))] lg:pr-16">
+          <h2 className="heading max-w-md text-4xl sm:text-5xl">
             Find us on Diversion Road
           </h2>
           <address className="lede mt-6 not-italic text-white/85">
@@ -21,9 +21,9 @@ export default function VisitBand() {
             </a>
           </address>
 
-          <HoursTable tone="dark" className="mt-9 max-w-md" />
+          <HoursTable tone="dark" className="mt-7 max-w-md" />
 
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={contact.mapsHref}
               target="_blank"
@@ -38,7 +38,7 @@ export default function VisitBand() {
           </div>
         </div>
 
-        <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[520px]">
+        <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[480px]">
           <Image
             src={kitchen}
             alt="The coffee bar at H Breakfast to Bar, with the red LED signs hanging above the counter"

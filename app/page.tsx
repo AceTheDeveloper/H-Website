@@ -1,20 +1,14 @@
 import Hero from "@/components/Hero";
-import IntroBand from "@/components/IntroBand";
-import { MiddayBand, MorningBand, NightBand } from "@/components/HomeBands";
-import VoucherPromo from "@/components/VoucherPromo";
+import DayTabs from "@/components/DayTabs";
 import VisitBand from "@/components/VisitBand";
 
-// The page runs from morning to night: light plaster at the top, ink by the
-// time you reach the bar.
+// Three screens at most: the hero, the story with a click through the day,
+// and where to find us. Dishes and vouchers live on their own pages.
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <IntroBand />
-      <MorningBand />
-      <MiddayBand />
-      <NightBand />
-      <VoucherPromo />
+      <DayTabs />
       <VisitBand />
     </>
   );

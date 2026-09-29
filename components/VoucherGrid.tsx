@@ -7,24 +7,30 @@ import type { Voucher } from "@/lib/data";
 
 /**
  * Voucher tiles. Tapping one opens it full size in a native <dialog>, which
- * handles focus, Escape and the backdrop for us. Pass `limit` / `ids` to show
- * a subset (the home page shows three).
+ * handles focus, Escape and the backdrop for us. Pass `ids` to show a subset,
+ * or `initial` to show that many first with a "Show all" button under them.
  */
 export default function VoucherGrid({
   ids,
+  initial,
   columns = "md:grid-cols-2",
   tone = "light",
 }: {
   ids?: string[];
+  initial?: number;
   columns?: string;
   tone?: "light" | "dark";
 }) {
+  const [showAll, setShowAll] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [active, setActive] = useState<Voucher | null>(null);
 
   const list = ids
     ? ids.flatMap((id) => vouchers.filter((v) => v.id === id))
     : vouchers;
+
+  const visible = initial && !showAll ? list.slice(0, initial) : list;
+  const hiddenCount = list.length - visible.length;
 
   function open(voucher: Voucher) {
     setActive(voucher);
@@ -34,7 +40,7 @@ export default function VoucherGrid({
   return (
     <>
       <ul className={`grid grid-cols-1 gap-x-8 gap-y-10 ${columns}`}>
-        {list.map((voucher) => (
+        {visible.map((voucher) => (
           <li key={voucher.id}>
             <button
               type="button"
@@ -67,6 +73,16 @@ export default function VoucherGrid({
         ))}
       </ul>
 
+      {hiddenCount > 0 && (
+        <button
+          type="button"
+          onClick={() => setShowAll(true)}
+          className="btn btn-ink mt-10"
+        >
+          Show all {list.length} vouchers
+        </button>
+      )}
+
       <dialog
         ref={dialogRef}
         onClose={() => setActive(null)}
@@ -86,7 +102,10 @@ export default function VoucherGrid({
               sizes="96vw"
               className="h-auto w-full"
             />
-            <form method="dialog" className="flex items-center justify-between gap-4 p-4">
+            <form
+              method="dialog"
+              className="flex items-center justify-between gap-4 p-4"
+            >
               <p className="heading text-xl">{active.title}</p>
               <button className="btn btn-ink !min-h-[2.5rem]" autoFocus>
                 Close
