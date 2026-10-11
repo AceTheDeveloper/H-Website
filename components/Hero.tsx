@@ -1,31 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
-import heroImage from "@/assets/full-house.jpg";
+import heroImage from "@/assets/guests-dining-3.jpg";
 import { contact } from "@/lib/data";
 import LedSign from "./LedSign";
 
 /**
- * Red like the painted wall, lettered like it too. The photo bleeds off the
- * right edge and the LED signboard hangs across the bottom.
+ * Red like the painted wall, lettered like it too. The room sits framed beside
+ * the headline and the LED signboard hangs across the bottom.
  */
 export default function Hero() {
   return (
     <section className="on-red bg-red text-chalk">
-      <div className="grid grid-cols-1 md:grid-cols-12">
-        <div className="flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-16 md:col-span-7 md:py-20 md:pr-8 lg:pl-[max(2.5rem,calc((100vw-1280px)/2+2.5rem))]">
-          <h1 className="poster text-[clamp(3.75rem,13vw,7rem)] md:text-[clamp(4.5rem,9vw,9rem)]">
-            From first
+      <div className="page-shell grid grid-cols-1 items-center gap-10 py-10 md:py-14 lg:grid-cols-2 lg:gap-14">
+        <div>
+          <h1 className="poster text-[clamp(3rem,11vw,4.5rem)] md:text-[clamp(3.5rem,5.6vw,5rem)]">
+            Everyday People
             <br />
-            coffee to
+            From Breakfast
             <br />
-            last call.
+            To Bar
           </h1>
-          <p className="lede mt-8 max-w-md text-chalk">
-            An all-day restaurant and bar on Diversion Road, Mandurriao,
-            Iloilo City. Breakfast plates, food for the table, and a full bar
-            once the evening starts.
+          <div className="mt-6 max-w-md space-y-1.5 text-lg text-chalk">
+            <p>Every city moves to the rhythm of its people.</p>
+            <p>Early mornings. Busy afternoons. Late nights.</p>
+            <p>Different routines, different reasons, different stories.</p>
+          </div>
+          <p className="heading mt-5 text-2xl sm:text-3xl">
+            H. For Our Local Heroes.
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <Link href="/menu" className="btn btn-chalk">
               View the menu
             </Link>
@@ -40,15 +43,15 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative aspect-[4/3] md:col-span-5 md:aspect-auto md:min-h-[560px]">
+        <div className="relative aspect-[4/3] border-2 border-ink">
           <Image
             src={heroImage}
-            alt="A full house at H Breakfast to Bar, with every table seated for a meal together"
+            alt="Guests at their tables in the dining room at H Breakfast to Bar, with the coffee bar and red LED signs behind them"
             fill
             priority
             placeholder="blur"
-            sizes="(min-width: 768px) 42vw, 100vw"
-            className="object-cover object-[50%_65%]"
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="object-cover object-[50%_75%]"
           />
         </div>
       </div>

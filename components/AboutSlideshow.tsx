@@ -43,7 +43,7 @@ export default function AboutSlideshow({
 
       <div className="page-shell relative flex min-h-[55vh] flex-col justify-end py-10 md:min-h-[60vh] md:py-14">
         <h1 className="poster text-[clamp(3.25rem,12vw,9rem)] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">
-          H. Love lives
+          Love lives
           <br />
           in Iloilo
         </h1>

@@ -62,7 +62,7 @@ export default function LocationPage() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 lg:col-span-7">
-            <MapEmbed className="aspect-[4/3] md:aspect-[16/10]" />
+            <MapEmbed className="aspect-[4/3] border-2 border-ink md:aspect-[16/10]" />
             <figure className="relative aspect-[16/10] border-2 border-ink">
               <Image
                 src={storefront}
