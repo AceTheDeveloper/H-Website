@@ -4,6 +4,7 @@ import Image from "next/image";
 import CtaBanner from "@/components/CtaBanner";
 import AboutSlideshow from "@/components/AboutSlideshow";
 import Tabs from "@/components/Tabs";
+import TeamBand from "@/components/TeamBand";
 import dining from "@/assets/dining.jpg";
 import guests from "@/assets/abawt.jpg";
 import bar from "@/assets/bar.jpg";
@@ -90,7 +91,8 @@ const tabs = [
   },
 ];
 
-// Slideshow hero, the statement with story and vision tabs, closing banner.
+// Slideshow hero, the statement with story and vision tabs, the crew, closing
+// banner.
 export default function AboutPage() {
   return (
     <>
@@ -113,6 +115,8 @@ export default function AboutPage() {
           />
         </div>
       </section>
+
+      <TeamBand />
 
       <CtaBanner
         title="Come see the room"
