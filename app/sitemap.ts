@@ -5,7 +5,7 @@ import { site } from "@/lib/data";
 const routes: { path: string; lastModified: string }[] = [
   { path: "", lastModified: "2026-09-29" },
   { path: "/menu", lastModified: "2026-09-29" },
-  { path: "/vouchers", lastModified: "2026-09-29" },
+  { path: "/promo", lastModified: "2026-10-11" },
   { path: "/location", lastModified: "2026-09-29" },
   { path: "/about", lastModified: "2026-09-29" },
 ];

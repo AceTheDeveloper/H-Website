@@ -9,7 +9,7 @@ export const nav = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Menu", href: "/menu" },
-  { label: "Vouchers", href: "/vouchers" },
+  { label: "Promo", href: "/promo" },
   { label: "Location", href: "/location" },
 ];
 
@@ -222,32 +222,6 @@ export const menu: MenuCategory[] = [
   },
 ];
 
-// Designed voucher artwork (in /public/vouchers). The image carries all the
-// details, so only a title (used as alt text) is needed here.
-export type ImageVoucher = {
-  id: string;
-  brand: string;
-  title: string;
-  image: string;
-};
-
-export type Voucher = ImageVoucher;
-
-const imageVouchers: ImageVoucher[] = [
-  { id: "img2", brand: "H Breakfast to Bar", title: "Americano Voucher", image: "/vouchers/h-americano.png" },
-  { id: "img3", brand: "H Breakfast to Bar", title: "Breakfast & Business Voucher", image: "/vouchers/h-breakfast-business.png" },
-  { id: "img4", brand: "H Breakfast to Bar", title: "Pizza Voucher", image: "/vouchers/h-pizza.png" },
-  { id: "img5", brand: "H Breakfast to Bar", title: "Solo Meal Voucher", image: "/vouchers/h-solo-meal.png" },
-  { id: "img6", brand: "H Breakfast to Bar", title: "₱500 Voucher", image: "/vouchers/h-500-off.png" },
-  { id: "img7", brand: "H Breakfast to Bar", title: "A Gift for You — Christmas Voucher ₱500", image: "/vouchers/h-christmas-500.png" },
-  { id: "img8", brand: "H Breakfast to Bar", title: "Pad Thai Voucher", image: "/vouchers/h-pad-thai.png" },
-  { id: "img9", brand: "H Breakfast to Bar", title: "H Sandwich Voucher", image: "/vouchers/h-sandwich.png" },
-  { id: "img10", brand: "H Breakfast to Bar", title: "Any Drink Voucher", image: "/vouchers/h-any-drink.png" },
-  { id: "img1", brand: "H Breakfast to Bar", title: "Basic Carwash Voucher", image: "/vouchers/h-basic-carwash.png" },
-];
-
-export const vouchers: Voucher[] = imageVouchers;
-
 // `open` / `close` are minutes since midnight in Manila time. A close past
 // 1440 means the doors shut after midnight (2:00 am = 26 * 60 = 1560).
 export const hours = [
@@ -290,6 +264,3 @@ export const featuredIds = {
   morning: ["b8", "b2", "b3"],
   midday: ["f1", "a2", "z2", "m2"],
 };
-
-// Vouchers shown on the home page, by id (drinks and meals first).
-export const featuredVoucherIds = ["img10", "img5", "img6"];

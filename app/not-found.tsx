@@ -10,7 +10,7 @@ export default function NotFound() {
           on Diversion Road
         </h1>
         <p className="lede mt-8 max-w-md text-ink/80">
-          That page doesn&apos;t exist. The menu, vouchers and directions are
+          That page doesn&apos;t exist. The menu, promos and directions are
           all one click away.
         </p>
         <div className="mt-9 flex flex-wrap gap-3">

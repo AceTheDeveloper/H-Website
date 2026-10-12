@@ -262,3 +262,23 @@ body {
 .led-boot {
   animation: boot 1100ms steps(28, end) 200ms both;
 }
+
+/* A promo arriving with the day's reason on the Promo page. */
+@keyframes reveal-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.015);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal-pop {
+  animation: reveal-pop 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
