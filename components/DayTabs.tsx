@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
 import Tabs from "./Tabs";
 import { contact } from "@/lib/data";
-import dining from "@/assets/dining.jpg";
+import bigBreakfast from "@/public/menu/BigBreakfast.png";
 import kitchen from "@/assets/kitchen.jpg";
 import bar from "@/assets/bar.jpg";
 
@@ -16,6 +16,7 @@ const slots: {
   description: string;
   image: StaticImageData;
   alt: string;
+  contain?: boolean;
   primary: Action;
   secondary?: Action;
 }[] = [
@@ -26,8 +27,9 @@ const slots: {
     title: "Breakfast, all day",
     description:
       "Pancakes, waffles, tapa and the Big Breakfast. Order them any time the kitchen is open.",
-    image: dining,
-    alt: "The dining room, with the painted mural and steel tables",
+    image: bigBreakfast,
+    alt: "The Big Breakfast plate with garlic toast, bacon, sausages and eggs",
+    contain: true,
     primary: { label: "See breakfast", href: "/menu#allday" },
   },
   {
@@ -82,7 +84,7 @@ export default function DayTabs() {
   return (
     <section className="bg-chalk py-12 md:py-16">
       <div className="page-shell">
-        <div className="max-w-4xl">
+        {/* <div className="max-w-4xl">
           <p className="heading text-2xl leading-[1.15] sm:text-3xl md:text-4xl">
             H Breakfast to Bar started as a breakfast counter with a short menu
             and a long weekend line. The regulars asked what happens after
@@ -91,7 +93,7 @@ export default function DayTabs() {
           <Link href="/about" className="text-link mt-6 inline-block">
             Read our story
           </Link>
-        </div>
+        </div> */}
 
         <Tabs
           label="Through the day"
@@ -101,14 +103,18 @@ export default function DayTabs() {
             label: s.tab,
             content: (
               <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-14">
-                <div className="relative aspect-[4/3] border-2 border-ink">
+                <div
+                  className={`relative aspect-[4/3] border-2 border-ink ${s.contain ? "bg-white" : ""}`}
+                >
                   <Image
                     src={s.image}
                     alt={s.alt}
                     fill
-                    placeholder="blur"
+                    placeholder={s.contain ? "empty" : "blur"}
                     sizes="(min-width: 1024px) 45vw, 100vw"
-                    className="object-cover"
+                    className={
+                      s.contain ? "object-contain p-4" : "object-cover"
+                    }
                   />
                 </div>
                 <div>
