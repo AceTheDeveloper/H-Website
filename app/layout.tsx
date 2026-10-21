@@ -36,7 +36,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "H Breakfast to Bar | Restaurant & Bar in Iloilo City",
+    default: "Everyday People from Breakfast to Bar",
     template: "%s | H Breakfast to Bar",
   },
   description:
