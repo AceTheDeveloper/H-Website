@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     url: "/",
     title: "H Breakfast to Bar | Restaurant & Bar in Iloilo City",
     description:
-      "From first coffee to last call. Breakfast, plates to share, and a full bar in Mandurriao, Iloilo City.",
+      "Everyday People from Breakfast to Bar. Breakfast, plates to share, and a full bar in Mandurriao, Iloilo City.",
   },
   twitter: { card: "summary_large_image" },
 };

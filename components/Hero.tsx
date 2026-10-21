@@ -15,11 +15,10 @@ export default function Hero() {
         <div>
           <h1 className="poster text-[clamp(3rem,11vw,4.5rem)] md:text-[clamp(3.5rem,5.6vw,5rem)]">
             Everyday People
-            <br />
-            From Breakfast
-            <br />
-            To Bar
           </h1>
+          <p className="heading mt-3 text-xl uppercase tracking-[0.2em] sm:text-2xl">
+            From Breakfast To Bar
+          </p>
           <div className="mt-6 max-w-md space-y-1.5 text-lg text-chalk">
             <p>Every city moves to the rhythm of its people.</p>
             <p>Early mornings. Busy afternoons. Late nights.</p>
