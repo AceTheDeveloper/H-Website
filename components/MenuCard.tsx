@@ -21,18 +21,18 @@ export default function MenuCard({
 
   return (
     <article>
-      <div className="relative aspect-[4/3] overflow-hidden border-2 border-ink bg-white">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow-[0_2px_14px_rgba(23,17,14,0.08)]">
         {item.image && (
           <Image
             src={item.image}
             alt={item.description ? `${item.name}: ${item.description}` : item.name}
             fill
             sizes="(min-width: 1024px) 26vw, (min-width: 640px) 45vw, 100vw"
-            className="object-contain p-4"
+            className="object-contain p-5 drop-shadow-[0_10px_10px_rgba(23,17,14,0.28)]"
           />
         )}
         {item.tag && (
-          <span className="absolute left-0 top-3 bg-ink px-3 py-1 text-sm font-semibold text-white">
+          <span className="absolute left-3 top-3 rounded-full bg-ink px-3 py-1 text-sm font-semibold text-white">
             {item.tag}
           </span>
         )}

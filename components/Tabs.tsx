@@ -16,6 +16,7 @@ export type TabItem = { id: string; label: string; content: ReactNode };
  *
  * - Every panel is rendered in the HTML (inactive ones are `hidden`), so the
  *   copy is still there for search engines and the first tab works without JS.
+ * - Tabs wrap onto extra lines on small screens, so none sit off to the side.
  * - Arrow keys, Home and End move between tabs.
  * - `syncHash` lets a link like /menu#pasta open that tab directly, and keeps
  *   the address bar in step as people click.
@@ -72,7 +73,7 @@ export default function Tabs({
         role="tablist"
         aria-label={label}
         onKeyDown={onKeyDown}
-        className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] md:flex-wrap md:overflow-visible [&::-webkit-scrollbar]:hidden"
+        className="flex flex-wrap gap-2"
       >
         {tabs.map((t) => {
           const active = t.id === activeId;
@@ -89,7 +90,7 @@ export default function Tabs({
               aria-controls={`${uid}-panel-${t.id}`}
               tabIndex={active ? 0 : -1}
               onClick={() => select(t.id)}
-              className={`min-h-[2.75rem] shrink-0 whitespace-nowrap border-2 border-ink px-4 py-2 text-base font-semibold transition-colors ${
+              className={`min-h-[2.75rem] border-2 border-ink px-4 py-2 text-base font-semibold transition-colors ${
                 active ? "bg-ink text-white" : "bg-transparent hover:bg-ink/10"
               }`}
             >

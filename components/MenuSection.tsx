@@ -44,6 +44,12 @@ export default function MenuSection({ category }: { category: MenuCategory }) {
         <p className="lede mt-3 text-ink/80">{category.tagline}</p>
       )}
 
+      {total === 0 && category.emptyNote && (
+        <p className="lede mt-8 max-w-xl border-l-4 border-red pl-5 text-ink/85">
+          {category.emptyNote}
+        </p>
+      )}
+
       {shownPhoto.length > 0 && (
         <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
           {shownPhoto.map((item) => (

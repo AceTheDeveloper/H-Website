@@ -11,7 +11,7 @@ import storefront from "@/assets/about.jpg";
 // import ReservationForm from "@/components/ReservationForm";
 
 export const metadata: Metadata = {
-  title: "Location & Hours",
+  title: "Find Us",
   description:
     "Find H Breakfast to Bar on Diversion Road, Mandurriao, Iloilo City. Opening hours, phone number and directions.",
   alternates: { canonical: "/location" },
@@ -22,8 +22,8 @@ export default function LocationPage() {
   return (
     <>
       <PageHeader
-        title="Find us on Diversion Road"
-        description="Easy to spot, easy to walk into, any time of day."
+        title="Find H"
+        description="Easy to find. Easy to drop by. Any time of day."
       />
       <LedSign />
 

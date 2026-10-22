@@ -24,9 +24,9 @@ const slideshowImages = [
 ];
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "Our Brand",
   description:
-    "From a small breakfast counter to a full day-to-night restaurant and bar. The story behind H Breakfast to Bar in Mandurriao, Iloilo City.",
+    "From a small breakfast counter to a full day-to-night restaurant and bar. The people and routines behind H Breakfast to Bar in Mandurriao, Iloilo City.",
   alternates: { canonical: "/about" },
   openGraph: pageOpenGraph("/about"),
 };
@@ -39,26 +39,19 @@ const tabs = [
       <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
         <div className="lg:col-span-7">
           <h2 className="heading text-3xl sm:text-4xl md:text-5xl">
-            Same crew, from the first pour to last call
+            Come for breakfast.
           </h2>
-          <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-ink/60">
-            H Runs on People
+          <p className="lede mt-5 text-ink/85">
+            H started as a breakfast spot with a short menu and a long line on
+            weekends. Regulars kept asking what happens after lunch, so the
+            kitchen stayed open and the bar went in.
           </p>
           <p className="lede mt-4 text-ink/85">
-            H Breakfast to Bar started as a breakfast spot with a short menu and
-            a long line on weekends. We kept hearing the same question from
-            regulars: what happens after lunch? So we found out. The kitchen
-            stayed open, the bar went in, and the same crew that flips your
-            pancakes in the morning is often the one closing out the bar at
-            night.
-          </p>
-          <p className="lede mt-5 text-ink/85">
-            Nothing about the food changed in spirit. It&apos;s still simple,
-            made from scratch, and meant to be eaten with people you like. We
-            just stopped closing at 2pm.
+            Some days call for breakfast. Some call for pizza. Some end with
+            cocktails. H keeps up with all of them.
           </p>
         </div>
-        <div className="relative aspect-[4/3] border-2 border-ink lg:col-span-5">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:col-span-5">
           <Image
             src={guests}
             alt="Guests at their tables in the dining room during the day"
@@ -79,10 +72,7 @@ const tabs = [
         <h2 className="heading text-3xl sm:text-4xl md:text-5xl">
           The heart of H is Iloilo.
         </h2>
-        <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-ink/60">
-          Our Vision
-        </p>
-        <p className="lede mt-4 text-ink/85">
+        <p className="lede mt-5 text-ink/85">
           Local people. Local stories. Everyday moments. From breakfast to bar,
           H is here for all of them.
         </p>
@@ -100,12 +90,11 @@ export default function AboutPage() {
 
       <section className="bg-chalk py-12 md:py-16">
         <div className="page-shell">
-          <p className="lede max-w-xl text-ink/85">
-            Whatever your hustle looks like, there&apos;s a place for you here.
+          <p className="poster text-[clamp(1.75rem,4.5vw,3.25rem)]">
+            Made for the way Iloilo lives.
           </p>
-          <p className="poster mt-4 text-[clamp(1.75rem,4.5vw,3.25rem)]">
-            H. For our local heroes. From Breakfast to Bar. Made for the Ilonggo
-            hustle.
+          <p className="lede mt-4 max-w-xl text-ink/85">
+            Whatever your day looks like, there&apos;s a place for you at H.
           </p>
 
           <Tabs
@@ -119,8 +108,8 @@ export default function AboutPage() {
       <TeamBand />
 
       <CtaBanner
-        title="Come see the room"
-        description="Full menu, opening hours and directions, whenever you're ready."
+        title="Make a day of it"
+        description="See the menu, check the hours, and find your way to H."
         href="/menu"
         linkLabel="View the menu"
       />

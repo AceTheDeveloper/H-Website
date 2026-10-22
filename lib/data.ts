@@ -7,10 +7,10 @@
 
 export const nav = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
   { label: "Menu", href: "/menu" },
   { label: "Vouchers", href: "/vouchers" },
-  { label: "Location", href: "/location" },
+  { label: "Our Brand", href: "/about" },
+  { label: "Find Us", href: "/location" },
 ];
 
 export type PriceOption = {
@@ -34,6 +34,8 @@ export type MenuCategory = {
   label: string;
   timeNote?: string;
   tagline?: string;
+  /** Shown instead of dishes while a category has none yet. */
+  emptyNote?: string;
   items: MenuItem[];
 };
 
@@ -76,7 +78,7 @@ export const menu: MenuCategory[] = [
     id: "allday",
     label: "All Day Breakfast",
     timeNote: "Served all day",
-    tagline: "Because breakfast doesn't watch the clock.",
+    tagline: "Breakfast doesn't watch the clock.",
     items: [
       item("b1", "H Pancakes", { image: "HPancakes", prices: one(218) }),
       item("b2", "The Breakfast Fold", { image: "TheBreakfastFold", prices: one(288) }),
@@ -92,7 +94,7 @@ export const menu: MenuCategory[] = [
     id: "sandwiches",
     label: "Sandwiches & Wraps",
     timeNote: "Served all day",
-    tagline: "Quick, filling, and made for busy days.",
+    tagline: "Easy to grab, easy to love.",
     items: [
       item("w1", "Breakfast Sandwich", { image: "BreakfastSandwich", prices: one(258) }),
       item("w2", "Salami Sandwich", { image: "SalamiSandwich", prices: one(328) }),
@@ -105,6 +107,7 @@ export const menu: MenuCategory[] = [
     id: "sides",
     label: "Sides, Salads & Sweets",
     timeNote: "Served all day",
+    tagline: "Little extras for every kind of craving.",
     items: [
       item("d1", "H Garlic Bread", { image: "GarlicBread", prices: one(188), tag: "Vegetarian" }),
       item("d2", "H Salad", { image: "HSalad", prices: one(228), tag: "Vegetarian" }),
@@ -117,7 +120,7 @@ export const menu: MenuCategory[] = [
     id: "filipino",
     label: "Filipino Sets",
     timeNote: "Solo or sharing",
-    tagline: "The flavors we grew up loving.",
+    tagline: "The flavors we know and love.",
     items: [
       item("f1", "Sisig Supremo", { image: "SisigSupremo", prices: solo(228, 428), tag: "Bar Favorite" }),
       item("f2", "Lengua Bakareta", { image: "LenguaBakareta", prices: solo(388, 688) }),
@@ -136,7 +139,7 @@ export const menu: MenuCategory[] = [
     id: "asian",
     label: "Asian Plates",
     timeNote: "Solo or sharing",
-    tagline: "Big Asian flavors made for our kind of cravings.",
+    tagline: "Big flavors for familiar cravings.",
     items: [
       item("a1", "Asian Spring Rolls", { prices: solo(288, 508) }),
       item("a2", "Salted Egg Chicken", { image: "SaltedEggChicken", prices: solo(388, 688) }),
@@ -148,7 +151,7 @@ export const menu: MenuCategory[] = [
     id: "meat",
     label: "Meat Plates",
     timeNote: "Steaks priced by weight",
-    tagline: "Big cuts. Big plates. Come hungry.",
+    tagline: "Big cuts for bigger appetites.",
     items: [
       item("m1", "H Steak", {
         image: "HSteakTenderloin",
@@ -167,23 +170,14 @@ export const menu: MenuCategory[] = [
   {
     id: "soup",
     label: "Soup",
-    tagline: "Warm, comforting, always a good idea.",
+    tagline: "Warm bowls for any kind of day.",
     items: [item("u1", "Laksa", { prices: one(388) })],
-  },
-  {
-    id: "rice",
-    label: "Rice",
-    timeNote: "Cup or platter",
-    items: [
-      item("r1", "Plain Rice", { prices: sized(["Cup", 48], ["Platter", 208]) }),
-      item("r2", "Garlic Rice", { prices: sized(["Cup", 68], ["Platter", 288]) }),
-    ],
   },
   {
     id: "bites",
     label: "Quick Bites",
     timeNote: "Served 11:30am – close",
-    tagline: "For quick cravings and long conversations.",
+    tagline: "Quick eats, longer conversations.",
     items: [
       item("t1", "BBQ Fries", { image: "BBQFries", prices: either(258, 388) }),
       item("t2", "Hero Dog", { prices: one(358) }),
@@ -196,7 +190,7 @@ export const menu: MenuCategory[] = [
     id: "pasta",
     label: "Pasta",
     timeNote: "Served 11:30am – close",
-    tagline: "Comfort in every twirl.",
+    tagline: "Comfort food, one twirl at a time.",
     items: [
       item("n1", "Spicy Peanut Noodles", { image: "SpicyPeanutNoddles", prices: one(598) }),
       item("n2", "Pad Thai", { image: "PadThai", prices: one(488) }),
@@ -209,7 +203,7 @@ export const menu: MenuCategory[] = [
     id: "pizza",
     label: "Pizza",
     timeNote: "Served 11:30am – close",
-    tagline: "Made for the table. Better when shared.",
+    tagline: "Made for the table, best shared.",
     items: [
       item("z1", "Puting Keso with Aragula", { image: "PutingKesoWithAragula", prices: one(658) }),
       item("z2", "Quattro Formaggi", { image: "QuatroFormagi", prices: one(688), tag: "Chef's Pick" }),
@@ -220,6 +214,14 @@ export const menu: MenuCategory[] = [
       item("z7", "Morta Pista", { image: "MortaPista", prices: one(1288) }),
     ],
   },
+  {
+    id: "drinks",
+    label: "Drinks & Cocktails",
+    tagline: "House cocktails, wine and beer after dark.",
+    emptyNote:
+      "The full drinks and cocktail list is coming soon. Ask our bar crew what's pouring.",
+    items: [],
+  },
 ];
 
 // Designed voucher artwork (in /public/vouchers). The image carries all the
@@ -229,6 +231,8 @@ export type ImageVoucher = {
   brand: string;
   title: string;
   image: string;
+  /** Seasonal vouchers only show inside this window, every year. */
+  season?: { from: [month: number, day: number]; to: [month: number, day: number] };
 };
 
 export type Voucher = ImageVoucher;
@@ -239,7 +243,7 @@ const imageVouchers: ImageVoucher[] = [
   { id: "img4", brand: "H Breakfast to Bar", title: "Pizza Voucher", image: "/vouchers/h-pizza.png" },
   { id: "img5", brand: "H Breakfast to Bar", title: "Solo Meal Voucher", image: "/vouchers/h-solo-meal.png" },
   { id: "img6", brand: "H Breakfast to Bar", title: "₱500 Voucher", image: "/vouchers/h-500-off.png" },
-  { id: "img7", brand: "H Breakfast to Bar", title: "A Gift for You — Christmas Voucher ₱500", image: "/vouchers/h-christmas-500.png" },
+  { id: "img7", brand: "H Breakfast to Bar", title: "A Gift for You — Christmas Voucher ₱500", image: "/vouchers/h-christmas-500.png", season: { from: [12, 1], to: [12, 31] } },
   { id: "img8", brand: "H Breakfast to Bar", title: "Pad Thai Voucher", image: "/vouchers/h-pad-thai.png" },
   { id: "img9", brand: "H Breakfast to Bar", title: "H Sandwich Voucher", image: "/vouchers/h-sandwich.png" },
   { id: "img10", brand: "H Breakfast to Bar", title: "Any Drink Voucher", image: "/vouchers/h-any-drink.png" },
@@ -247,6 +251,17 @@ const imageVouchers: ImageVoucher[] = [
 ];
 
 export const vouchers: Voucher[] = imageVouchers;
+
+/** Vouchers on offer on `date`: everything except seasonal ones out of season. */
+export function activeVouchers(date: Date): Voucher[] {
+  const md = (date.getMonth() + 1) * 100 + date.getDate();
+  return vouchers.filter(({ season }) => {
+    if (!season) return true;
+    const from = season.from[0] * 100 + season.from[1];
+    const to = season.to[0] * 100 + season.to[1];
+    return from <= to ? md >= from && md <= to : md >= from || md <= to;
+  });
+}
 
 // `open` / `close` are minutes since midnight in Manila time. A close past
 // 1440 means the doors shut after midnight (2:00 am = 26 * 60 = 1560).

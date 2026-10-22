@@ -68,17 +68,12 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <a
             href={contact.phoneHref}
-            className="btn btn-ink hidden !min-h-[2.5rem] !px-4 !py-2 lg:inline-flex"
+            aria-label={`Reserve a table: call ${contact.phone}`}
+            className="btn btn-primary !min-h-[2.5rem] !px-4 !py-2"
           >
-            <IconPhone className="h-4 w-4" />
-            {contact.phone}
-          </a>
-          <a
-            href={contact.phoneHref}
-            aria-label={`Call ${contact.phone}`}
-            className="grid h-11 w-11 place-items-center lg:hidden"
-          >
-            <IconPhone className="h-6 w-6" />
+            <IconPhone className="hidden h-4 w-4 sm:block" />
+            <span className="sm:hidden">Reserve</span>
+            <span className="hidden sm:inline">Reserve a table</span>
           </a>
           <button
             type="button"

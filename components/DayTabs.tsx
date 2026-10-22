@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
 import Tabs from "./Tabs";
-import { contact } from "@/lib/data";
 import bigBreakfast from "@/public/menu/BigBreakfast.png";
 import kitchen from "@/assets/kitchen.jpg";
 import bar from "@/assets/bar.jpg";
@@ -26,7 +25,7 @@ const slots: {
     time: "6 AM",
     title: "Breakfast, all day",
     description:
-      "Pancakes, waffles, tapa and the Big Breakfast. Order them any time the kitchen is open.",
+      "Pancakes, waffles, tapa, and the Big Breakfast. Order your morning favorites anytime the kitchen is open.",
     image: bigBreakfast,
     alt: "The Big Breakfast plate with garlic toast, bacon, sausages and eggs",
     contain: true,
@@ -34,26 +33,26 @@ const slots: {
   },
   {
     id: "midday",
-    tab: "11:30 AM · Plates to share",
+    tab: "11:30 AM · Lunch & dinner",
     time: "11:30 AM",
-    title: "Plates to share",
+    title: "Meals worth sharing",
     description:
-      "Pizza, pasta and quick bites start at 11:30 am, next to the Filipino sets and Asian plates made for the middle of the table.",
+      "Pizza, pasta, quick bites, Filipino sets, and Asian plates join the menu, made for easy lunches and meals worth sharing.",
     image: kitchen,
     alt: "The coffee bar and kitchen pass, with red LED signs overhead",
     primary: { label: "View the full menu", href: "/menu" },
   },
   {
     id: "night",
-    tab: "9 PM · The bar",
+    tab: "9 PM · Drinks",
     time: "9 PM",
-    title: "After 9 pm, the bar takes over",
+    title: "Drinks after dark",
     description:
-      "House cocktails, wine and beer join the food menu. The bar runs from 9 pm to 2 am, kitchen included.",
+      "House cocktails, wine, and beer join the menu. The bar runs until 2 AM, with the kitchen still going.",
     image: bar,
     alt: "Guests at their tables inside the bar at night, lit red",
-    primary: { label: `Call ${contact.phone}`, href: contact.phoneHref },
-    secondary: { label: "Find us", href: "/location" },
+    primary: { label: "See the cocktails menu", href: "/menu#drinks" },
+    secondary: { label: "Find Us", href: "/location" },
   },
 ];
 
@@ -76,28 +75,21 @@ function ActionLink({
 }
 
 /**
- * The home page's middle section: the short story, then three clicks through
- * the day (morning, midday, night). Replaces the old scroll of dishes and
- * vouchers.
+ * The home page's middle section: the story in two lines, then three clicks
+ * through the day (breakfast, lunch and dinner, drinks).
  */
 export default function DayTabs() {
   return (
     <section className="bg-chalk py-12 md:py-16">
       <div className="page-shell">
-        {/* <div className="max-w-4xl">
-          <p className="heading text-2xl leading-[1.15] sm:text-3xl md:text-4xl">
-            H Breakfast to Bar started as a breakfast counter with a short menu
-            and a long weekend line. The regulars asked what happens after
-            lunch, so the kitchen stayed open and the bar went in.
-          </p>
-          <Link href="/about" className="text-link mt-6 inline-block">
-            Read our story
-          </Link>
-        </div> */}
+        <p className="heading max-w-3xl text-2xl leading-[1.15] sm:text-3xl md:text-4xl">
+          H started with breakfast and a short menu. As regulars asked for
+          more, the menu grew and the bar followed.
+        </p>
 
         <Tabs
           label="Through the day"
-          className="mt-10"
+          className="mt-8"
           tabs={slots.map((s) => ({
             id: s.id,
             label: s.tab,

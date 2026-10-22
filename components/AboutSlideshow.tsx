@@ -23,7 +23,7 @@ export default function AboutSlideshow({
   }, [images.length]);
 
   return (
-    <section className="on-red relative min-h-[55vh] overflow-hidden bg-red text-chalk md:min-h-[60vh]">
+    <section className="on-dark relative min-h-[55vh] overflow-hidden bg-ink text-chalk md:min-h-[60vh]">
       {images.map((image, i) => (
         <Image
           key={image.alt}
@@ -39,7 +39,7 @@ export default function AboutSlideshow({
         />
       ))}
 
-      <div className="absolute inset-0 bg-red/45" aria-hidden />
+      <div className="absolute inset-0 bg-ink/45" aria-hidden />
 
       <div className="page-shell relative flex min-h-[55vh] flex-col justify-end py-10 md:min-h-[60vh] md:py-14">
         <h1 className="poster text-[clamp(3.25rem,12vw,9rem)] drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)]">

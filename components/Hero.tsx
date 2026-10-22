@@ -1,34 +1,73 @@
 import Link from "next/link";
-import Image from "next/image";
-import heroImage from "@/assets/guests-dining-3.jpg";
-import { contact } from "@/lib/data";
+import { contact, menu, vouchers } from "@/lib/data";
+import HeroSlider, { type HeroSlide } from "./HeroSlider";
 import LedSign from "./LedSign";
 
+const dishes = menu.flatMap((category) =>
+  category.items.map((item) => ({ item, category })),
+);
+
+/** A dish as a slide, with its first price ("From" when there are several). */
+function dishSlide(id: string, label: string): HeroSlide {
+  const found = dishes.find((d) => d.item.id === id);
+  if (!found?.item.image) throw new Error(`Hero slide "${id}" needs a menu item with a photo`);
+  const { item, category } = found;
+  const prices = item.prices ?? [];
+  return {
+    id,
+    label,
+    title: item.name,
+    price: prices.length
+      ? `${prices.length > 1 ? "From " : ""}${prices[0].price}`
+      : undefined,
+    image: item.image!,
+    alt: item.name,
+    href: `/menu#${category.id}`,
+    cta: "See it on the menu",
+  };
+}
+
+const voucher = vouchers.find((v) => v.id === "img10");
+
+// Best sellers, new dishes and a current offer. Swap the ids to change them.
+const slides: HeroSlide[] = [
+  dishSlide("b8", "Chef's Pick"),
+  dishSlide("f4", "New"),
+  dishSlide("t3", "New"),
+  ...(voucher
+    ? [
+        {
+          id: voucher.id,
+          label: "Current offer",
+          title: voucher.title,
+          image: voucher.image,
+          alt: `${voucher.brand}: ${voucher.title}`,
+          href: "/vouchers",
+          cta: "See vouchers",
+        },
+      ]
+    : []),
+];
+
 /**
- * Red like the painted wall, lettered like it too. The room sits framed beside
- * the headline and the LED signboard hangs across the bottom.
+ * First thing on the page: what H is in one line, two buttons, and a slider of
+ * what's worth ordering. The LED signboard hangs across the bottom.
  */
 export default function Hero() {
   return (
-    <section className="on-red bg-red text-chalk">
-      <div className="page-shell grid grid-cols-1 items-center gap-10 py-10 md:py-14 lg:grid-cols-2 lg:gap-14">
+    <section className="bg-plaster">
+      <div className="page-shell grid grid-cols-1 items-center gap-8 py-8 md:py-12 lg:grid-cols-2 lg:gap-14">
         <div>
           <h1 className="poster text-[clamp(3rem,11vw,4.5rem)] md:text-[clamp(3.5rem,5.6vw,5rem)]">
-            Everyday People
+            Made for Your <span className="text-brick">Everyday Kind</span>
           </h1>
-          <p className="heading mt-3 text-xl uppercase tracking-[0.2em] sm:text-2xl">
-            From Breakfast To Bar
-          </p>
-          <div className="mt-6 max-w-md space-y-1.5 text-lg text-chalk">
-            <p>Every city moves to the rhythm of its people.</p>
-            <p>Early mornings. Busy afternoons. Late nights.</p>
-            <p>Different routines, different reasons, different stories.</p>
-          </div>
-          <p className="heading mt-5 text-2xl sm:text-3xl">
-            H. For Our Local Heroes.
+          <p className="lede mt-5 max-w-md text-ink/85">
+            An all-day restaurant and bar along Diversion Road, serving
+            breakfast, comfort food, and drinks from morning through the
+            evening.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link href="/menu" className="btn btn-chalk">
+            <Link href="/menu" className="btn btn-primary">
               View the menu
             </Link>
             <a
@@ -42,17 +81,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative aspect-[4/3] border-2 border-ink">
-          <Image
-            src={heroImage}
-            alt="Guests at their tables in the dining room at H Breakfast to Bar, with the coffee bar and red LED signs behind them"
-            fill
-            priority
-            placeholder="blur"
-            sizes="(min-width: 1024px) 45vw, 100vw"
-            className="object-cover object-[50%_75%]"
-          />
-        </div>
+        <HeroSlider slides={slides} />
       </div>
 
       <LedSign />

@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { vouchers } from "@/lib/data";
+import { activeVouchers, vouchers } from "@/lib/data";
 import type { Voucher } from "@/lib/data";
 
 /**
@@ -25,9 +25,17 @@ export default function VoucherGrid({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [active, setActive] = useState<Voucher | null>(null);
 
+  // Seasonal vouchers depend on today's date, so they're decided in the browser
+  // (the page itself is built ahead of time). Until then, only year-round ones.
+  const [today, setToday] = useState<Date | null>(null);
+  useEffect(() => setToday(new Date()), []);
+  const current = today
+    ? activeVouchers(today)
+    : vouchers.filter((v) => !v.season);
+
   const list = ids
-    ? ids.flatMap((id) => vouchers.filter((v) => v.id === id))
-    : vouchers;
+    ? ids.flatMap((id) => current.filter((v) => v.id === id))
+    : current;
 
   const visible = initial && !showAll ? list.slice(0, initial) : list;
   const hiddenCount = list.length - visible.length;

@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 // Brand palette: red, white, black and brown, plus the plaster tones from the
-// painted walls. The home page walks from light (morning) to dark (night).
+// painted walls. plaster is the menu book brand grey (#ece8e6). The home page walks from light (morning) to dark (night).
 //   red      — the logo red. Big shapes, buttons, LED glow.
 //   brick    — a deeper red for small text on light backgrounds (passes AA).
 //   ink      — warm black for text and the night sections.
@@ -20,11 +20,11 @@ const config: Config = {
         ink: "#17110E",
         espresso: "#2B1D17",
         brown: "#6E4B3C",
-        chalk: "#FBF8F3",
-        plaster: "#F3ECE1",
+        chalk: "#F6F3F1",
+        plaster: "#ECE8E6",
         sand: "#E2D3BE",
         // Kept so older class names keep resolving.
-        cream: "#F3ECE1",
+        cream: "#ECE8E6",
       },
       fontFamily: {
         display: ["var(--font-display)", "Impact", "Arial Narrow", "sans-serif"],

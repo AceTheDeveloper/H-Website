@@ -3,6 +3,7 @@ import Image from "next/image";
 import HoursTable from "./HoursTable";
 import MapEmbed from "./MapEmbed";
 import { contact } from "@/lib/data";
+import facade from "@/assets/about.jpg";
 
 /** "Come and see us" band for the home page: the H mark, hours and the map. */
 export default function VisitBand() {
@@ -11,14 +12,14 @@ export default function VisitBand() {
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="px-5 py-12 sm:px-10 md:py-16 lg:pl-[max(2.5rem,calc((100vw-1280px)/2+2.5rem))] lg:pr-16">
           <Image
-            src="/logo.png"
-            alt=""
-            width={442}
-            height={534}
-            className="h-24 w-auto sm:h-28"
+            src={facade}
+            alt="The H Breakfast to Bar building from the road, with the large red H sign on its front"
+            placeholder="blur"
+            sizes="(min-width: 1024px) 28rem, 100vw"
+            className="aspect-[16/10] w-full max-w-md rounded-2xl object-cover object-[50%_30%]"
           />
           <h2 className="heading mt-8 max-w-md text-4xl sm:text-5xl">
-            Find us on Diversion Road
+            Look for the big red H
           </h2>
           <address className="lede mt-6 not-italic text-white/85">
             {contact.address}
@@ -40,7 +41,7 @@ export default function VisitBand() {
               Get directions
             </a>
             <Link href="/location" className="btn btn-outline">
-              Map and hours
+              Find Us
             </Link>
           </div>
         </div>

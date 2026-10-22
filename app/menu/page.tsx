@@ -9,7 +9,7 @@ import { menu } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Menu",
   description:
-    "The full menu at H Breakfast to Bar: all-day breakfast, sandwiches, Filipino sets, Asian plates, steaks, pasta and pizza in Mandurriao, Iloilo City.",
+    "The full menu at H Breakfast to Bar: all-day breakfast, sandwiches, Filipino sets, Asian plates, steaks, pasta, pizza and drinks in Mandurriao, Iloilo City.",
   alternates: { canonical: "/menu" },
   openGraph: pageOpenGraph("/menu"),
 };
@@ -19,17 +19,17 @@ export default function MenuPage() {
     <>
       <PageHeader
         title="Breakfast, plates and everything after"
-        description="Pick a category to see what's in it. Prices are in pesos."
+        description="Pick a category and see what you're craving."
       />
 
       <div className="page-shell py-10 md:py-14">
         <p className="max-w-2xl text-[0.95rem] leading-relaxed text-ink/80">
           <strong className="font-semibold text-ink">Chef&apos;s Pick</strong>{" "}
-          is a kitchen favourite.{" "}
-          <strong className="font-semibold text-ink">Bar Favorite</strong> is
-          most ordered at the bar.{" "}
+          marks a kitchen favorite.{" "}
+          <strong className="font-semibold text-ink">Bar Favorite</strong> marks
+          a bar standout.{" "}
           <strong className="font-semibold text-ink">Vegetarian</strong> means
-          no meat or fish. Ask your server about other dietary needs.
+          no meat or fish. Ask your server for dietary needs.
         </p>
 
         <Tabs
