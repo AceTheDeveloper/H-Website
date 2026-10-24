@@ -3,7 +3,9 @@
 import { useState } from "react";
 
 type Result =
-  | { status: "valid"; title: string }
+  | { status: "available"; title: string }
+  | { status: "redeemed"; title: string }
+  | { status: "used"; title: string; usedAt: string | null }
   | { status: "invalid" }
   | { status: "error" }
   | null;
@@ -17,29 +19,39 @@ function pretty(value: string) {
   return clean.match(/.{1,4}/g)?.join("-") ?? "";
 }
 
+function when(iso: string | null) {
+  if (!iso) return "";
+  return new Date(iso).toLocaleString("en-PH", {
+    timeZone: "Asia/Manila",
+    day: "numeric",
+    month: "short",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 export default function VerifyForm() {
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<Result>(null);
 
-  async function check(e: React.FormEvent) {
-    e.preventDefault();
+  async function call(redeem: boolean) {
     if (busy || !code) return;
     setBusy(true);
-    setResult(null);
     try {
-      const res = await fetch("/api/roulette/verify", {
+      const res = await fetch("/api/stamps/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
+        body: JSON.stringify({ code, redeem }),
       });
       if (!res.ok) throw new Error();
-      const data = await res.json();
-      setResult(
-        data.valid
-          ? { status: "valid", title: data.title }
-          : { status: "invalid" },
-      );
+      const d = await res.json();
+      if (!d.valid) setResult({ status: "invalid" });
+      else if (d.justRedeemed)
+        setResult({ status: "redeemed", title: d.title });
+      else if (d.used)
+        setResult({ status: "used", title: d.title, usedAt: d.usedAt ?? null });
+      else setResult({ status: "available", title: d.title });
     } catch {
       setResult({ status: "error" });
     } finally {
@@ -50,7 +62,11 @@ export default function VerifyForm() {
   return (
     <div className="mx-auto max-w-xl">
       <form
-        onSubmit={check}
+        onSubmit={(e) => {
+          e.preventDefault();
+          setResult(null);
+          call(false);
+        }}
         className="border-2 border-ink bg-white p-6 md:p-8"
       >
         <label
@@ -84,34 +100,48 @@ export default function VerifyForm() {
       </form>
 
       <div className="mt-6" aria-live="polite">
-        {result?.status === "valid" && (
+        {result?.status === "available" && (
           <div className="border-2 border-ink bg-ink p-6 text-white">
-            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#FF6A48]">
-              <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
-                <path
-                  d="M4 10.5l4 4 8-9"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="square"
-                />
-              </svg>
-              Genuine code
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#FF6A48]">
+              Genuine · not used yet
+            </p>
+            <p className="heading mt-2 text-3xl">{result.title}</p>
+            <button
+              type="button"
+              onClick={() => call(true)}
+              disabled={busy}
+              className="btn btn-primary mt-5 w-full disabled:opacity-50"
+            >
+              {busy ? "Saving…" : "Mark as used"}
+            </button>
+            <p className="mt-3 text-sm text-white/70">
+              Only tap this once the guest has been given the promo.
+            </p>
+          </div>
+        )}
+        {result?.status === "redeemed" && (
+          <div className="border-2 border-ink bg-ink p-6 text-white">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#FF6A48]">
+              Marked as used
             </p>
             <p className="heading mt-2 text-3xl">{result.title}</p>
           </div>
         )}
+        {result?.status === "used" && (
+          <div className="border-2 border-red bg-white p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brick">
+              Already used
+            </p>
+            <p className="heading mt-2 text-3xl">{result.title}</p>
+            <p className="mt-2 text-ink/75">
+              {result.usedAt ? `Redeemed ${when(result.usedAt)}. ` : ""}Do not
+              honour this voucher again.
+            </p>
+          </div>
+        )}
         {result?.status === "invalid" && (
           <div className="border-2 border-red bg-white p-6">
-            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-brick">
-              <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
-                <path
-                  d="M4 4l12 12M16 4L4 16"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="square"
-                />
-              </svg>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brick">
               Not valid
             </p>
             <p className="heading mt-2 text-3xl">Code not recognised</p>
@@ -126,12 +156,6 @@ export default function VerifyForm() {
           </p>
         )}
       </div>
-
-      <p className="mt-8 text-sm text-ink/70">
-        This confirms a code is genuine and shows which voucher it is for. It
-        cannot tell whether the code was already used, so tick each redeemed
-        code off your log at the counter.
-      </p>
     </div>
   );
 }
