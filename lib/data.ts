@@ -11,6 +11,7 @@ export const nav = [
   { label: "Vouchers", href: "/vouchers" },
   { label: "Our Brand", href: "/about" },
   { label: "Find Us", href: "/location" },
+  { label: "30 Reasons", href: "/30-reasons" },
 ];
 
 export type PriceOption = {
@@ -81,13 +82,26 @@ export const menu: MenuCategory[] = [
     tagline: "Breakfast doesn't watch the clock.",
     items: [
       item("b1", "H Pancakes", { image: "HPancakes", prices: one(218) }),
-      item("b2", "The Breakfast Fold", { image: "TheBreakfastFold", prices: one(288) }),
-      item("b3", "Chicken and Waffles", { image: "ChickenAndWaffles", prices: one(288) }),
+      item("b2", "The Breakfast Fold", {
+        image: "TheBreakfastFold",
+        prices: one(288),
+      }),
+      item("b3", "Chicken and Waffles", {
+        image: "ChickenAndWaffles",
+        prices: one(288),
+      }),
       item("b4", "Daing Bangus", { image: "DaingBangus", prices: one(288) }),
       item("b5", "Chorizo Hubad", { image: "ChorizoHubad", prices: one(288) }),
-      item("b6", "Honey Glazed Bacon", { image: "HoneyGlazedBacon", prices: one(318) }),
+      item("b6", "Honey Glazed Bacon", {
+        image: "HoneyGlazedBacon",
+        prices: one(318),
+      }),
       item("b7", "Tapa Bits", { image: "TapaBits", prices: one(358) }),
-      item("b8", "Big Breakfast", { image: "BigBreakfast", prices: one(528), tag: "Chef's Pick" }),
+      item("b8", "Big Breakfast", {
+        image: "BigBreakfast",
+        prices: one(528),
+        tag: "Chef's Pick",
+      }),
     ],
   },
   {
@@ -96,11 +110,23 @@ export const menu: MenuCategory[] = [
     timeNote: "Served all day",
     tagline: "Easy to grab, easy to love.",
     items: [
-      item("w1", "Breakfast Sandwich", { image: "BreakfastSandwich", prices: one(258) }),
-      item("w2", "Salami Sandwich", { image: "SalamiSandwich", prices: one(328) }),
+      item("w1", "Breakfast Sandwich", {
+        image: "BreakfastSandwich",
+        prices: one(258),
+      }),
+      item("w2", "Salami Sandwich", {
+        image: "SalamiSandwich",
+        prices: one(328),
+      }),
       item("w3", "Chicken Wrap", { image: "ChickenWrap", prices: one(288) }),
-      item("w4", "Morta Pesto Sandwich", { image: "MortaPestoSandwich", prices: one(388) }),
-      item("w5", "Crispy Chicken Sandwich", { image: "CrispyChickenSandwich", tag: "Chef's Pick" }),
+      item("w4", "Morta Pesto Sandwich", {
+        image: "MortaPestoSandwich",
+        prices: one(388),
+      }),
+      item("w5", "Crispy Chicken Sandwich", {
+        image: "CrispyChickenSandwich",
+        tag: "Chef's Pick",
+      }),
     ],
   },
   {
@@ -109,10 +135,22 @@ export const menu: MenuCategory[] = [
     timeNote: "Served all day",
     tagline: "Little extras for every kind of craving.",
     items: [
-      item("d1", "H Garlic Bread", { image: "GarlicBread", prices: one(188), tag: "Vegetarian" }),
-      item("d2", "H Salad", { image: "HSalad", prices: one(228), tag: "Vegetarian" }),
+      item("d1", "H Garlic Bread", {
+        image: "GarlicBread",
+        prices: one(188),
+        tag: "Vegetarian",
+      }),
+      item("d2", "H Salad", {
+        image: "HSalad",
+        prices: one(228),
+        tag: "Vegetarian",
+      }),
       item("d3", "Caesar Salad", { prices: one(228) }),
-      item("d4", "Mango Sticky Rice", { image: "MangoStickRice", prices: one(226), tag: "Vegetarian" }),
+      item("d4", "Mango Sticky Rice", {
+        image: "MangoStickRice",
+        prices: one(226),
+        tag: "Vegetarian",
+      }),
       item("d5", "French Toast", { prices: one(218) }),
     ],
   },
@@ -122,9 +160,19 @@ export const menu: MenuCategory[] = [
     timeNote: "Solo or sharing",
     tagline: "The flavors we know and love.",
     items: [
-      item("f1", "Sisig Supremo", { image: "SisigSupremo", prices: solo(228, 428), tag: "Bar Favorite" }),
-      item("f2", "Lengua Bakareta", { image: "LenguaBakareta", prices: solo(388, 688) }),
-      item("f3", "Inasal at Buro", { image: "InasalAtBuro", prices: solo(358, 858) }),
+      item("f1", "Sisig Supremo", {
+        image: "SisigSupremo",
+        prices: solo(228, 428),
+        tag: "Bar Favorite",
+      }),
+      item("f2", "Lengua Bakareta", {
+        image: "LenguaBakareta",
+        prices: solo(388, 688),
+      }),
+      item("f3", "Inasal at Buro", {
+        image: "InasalAtBuro",
+        prices: solo(358, 858),
+      }),
       item("f4", "Golden Pritong Manok", {
         image: "GoldenPritongManokSharing",
         prices: solo(338, 508),
@@ -142,9 +190,15 @@ export const menu: MenuCategory[] = [
     tagline: "Big flavors for familiar cravings.",
     items: [
       item("a1", "Asian Spring Rolls", { prices: solo(288, 508) }),
-      item("a2", "Salted Egg Chicken", { image: "SaltedEggChicken", prices: solo(388, 688) }),
+      item("a2", "Salted Egg Chicken", {
+        image: "SaltedEggChicken",
+        prices: solo(388, 688),
+      }),
       item("a3", "Spiced Coconut Curry", { prices: solo(288, 488) }),
-      item("a4", "Kare Chicken Satay", { image: "KareChickenPorkSatay", prices: solo(258, 508) }),
+      item("a4", "Kare Chicken Satay", {
+        image: "KareChickenPorkSatay",
+        prices: solo(258, 508),
+      }),
     ],
   },
   {
@@ -164,7 +218,10 @@ export const menu: MenuCategory[] = [
         tag: "New",
       }),
       item("m3", "Sausage Steak", { prices: one(688) }),
-      item("m4", "Pork Chop Steak", { image: "PorkChopSteak", prices: one(788) }),
+      item("m4", "Pork Chop Steak", {
+        image: "PorkChopSteak",
+        prices: one(788),
+      }),
     ],
   },
   {
@@ -181,7 +238,11 @@ export const menu: MenuCategory[] = [
     items: [
       item("t1", "BBQ Fries", { image: "BBQFries", prices: either(258, 388) }),
       item("t2", "Hero Dog", { prices: one(358) }),
-      item("t3", "Dirty Tacos", { image: "DirtyTacos", prices: one(588), tag: "New" }),
+      item("t3", "Dirty Tacos", {
+        image: "DirtyTacos",
+        prices: one(588),
+        tag: "New",
+      }),
       item("t4", "Burger Sliders", { prices: one(388) }),
       item("t5", "Chicharon", { image: "Chicharon", tag: "Bar Favorite" }),
     ],
@@ -192,7 +253,10 @@ export const menu: MenuCategory[] = [
     timeNote: "Served 11:30am – close",
     tagline: "Comfort food, one twirl at a time.",
     items: [
-      item("n1", "Spicy Peanut Noodles", { image: "SpicyPeanutNoddles", prices: one(598) }),
+      item("n1", "Spicy Peanut Noodles", {
+        image: "SpicyPeanutNoddles",
+        prices: one(598),
+      }),
       item("n2", "Pad Thai", { image: "PadThai", prices: one(488) }),
       item("n3", "Lasagna", { image: "Lasagna", prices: one(688) }),
       item("n4", "Tagliatelle", { image: "Tagliatelle", prices: one(588) }),
@@ -205,8 +269,15 @@ export const menu: MenuCategory[] = [
     timeNote: "Served 11:30am – close",
     tagline: "Made for the table, best shared.",
     items: [
-      item("z1", "Puting Keso with Aragula", { image: "PutingKesoWithAragula", prices: one(658) }),
-      item("z2", "Quattro Formaggi", { image: "QuatroFormagi", prices: one(688), tag: "Chef's Pick" }),
+      item("z1", "Puting Keso with Aragula", {
+        image: "PutingKesoWithAragula",
+        prices: one(658),
+      }),
+      item("z2", "Quattro Formaggi", {
+        image: "QuatroFormagi",
+        prices: one(688),
+        tag: "Chef's Pick",
+      }),
       item("z3", "Pepperoni", { image: "Pepperoni", prices: one(688) }),
       item("z4", "Truffle Pizza", { prices: one(688) }),
       item("z5", "Supreme Pizza", { prices: one(788) }),
@@ -232,22 +303,76 @@ export type ImageVoucher = {
   title: string;
   image: string;
   /** Seasonal vouchers only show inside this window, every year. */
-  season?: { from: [month: number, day: number]; to: [month: number, day: number] };
+  season?: {
+    from: [month: number, day: number];
+    to: [month: number, day: number];
+  };
 };
 
 export type Voucher = ImageVoucher;
 
 const imageVouchers: ImageVoucher[] = [
-  { id: "img2", brand: "H Breakfast to Bar", title: "Americano Voucher", image: "/vouchers/h-americano.png" },
-  { id: "img3", brand: "H Breakfast to Bar", title: "Breakfast & Business Voucher", image: "/vouchers/h-breakfast-business.png" },
-  { id: "img4", brand: "H Breakfast to Bar", title: "Pizza Voucher", image: "/vouchers/h-pizza.png" },
-  { id: "img5", brand: "H Breakfast to Bar", title: "Solo Meal Voucher", image: "/vouchers/h-solo-meal.png" },
-  { id: "img6", brand: "H Breakfast to Bar", title: "₱500 Voucher", image: "/vouchers/h-500-off.png" },
-  { id: "img7", brand: "H Breakfast to Bar", title: "A Gift for You — Christmas Voucher ₱500", image: "/vouchers/h-christmas-500.png", season: { from: [12, 1], to: [12, 31] } },
-  { id: "img8", brand: "H Breakfast to Bar", title: "Pad Thai Voucher", image: "/vouchers/h-pad-thai.png" },
-  { id: "img9", brand: "H Breakfast to Bar", title: "H Sandwich Voucher", image: "/vouchers/h-sandwich.png" },
-  { id: "img10", brand: "H Breakfast to Bar", title: "Any Drink Voucher", image: "/vouchers/h-any-drink.png" },
-  { id: "img1", brand: "H Breakfast to Bar", title: "Basic Carwash Voucher", image: "/vouchers/h-basic-carwash.png" },
+  {
+    id: "img2",
+    brand: "H Breakfast to Bar",
+    title: "Americano Voucher",
+    image: "/vouchers/h-americano.png",
+  },
+  {
+    id: "img3",
+    brand: "H Breakfast to Bar",
+    title: "Breakfast & Business Voucher",
+    image: "/vouchers/h-breakfast-business.png",
+  },
+  {
+    id: "img4",
+    brand: "H Breakfast to Bar",
+    title: "Pizza Voucher",
+    image: "/vouchers/h-pizza.png",
+  },
+  {
+    id: "img5",
+    brand: "H Breakfast to Bar",
+    title: "Solo Meal Voucher",
+    image: "/vouchers/h-solo-meal.png",
+  },
+  {
+    id: "img6",
+    brand: "H Breakfast to Bar",
+    title: "₱500 Voucher",
+    image: "/vouchers/h-500-off.png",
+  },
+  {
+    id: "img7",
+    brand: "H Breakfast to Bar",
+    title: "A Gift for You — Christmas Voucher ₱500",
+    image: "/vouchers/h-christmas-500.png",
+    season: { from: [12, 1], to: [12, 31] },
+  },
+  {
+    id: "img8",
+    brand: "H Breakfast to Bar",
+    title: "Pad Thai Voucher",
+    image: "/vouchers/h-pad-thai.png",
+  },
+  {
+    id: "img9",
+    brand: "H Breakfast to Bar",
+    title: "H Sandwich Voucher",
+    image: "/vouchers/h-sandwich.png",
+  },
+  {
+    id: "img10",
+    brand: "H Breakfast to Bar",
+    title: "Any Drink Voucher",
+    image: "/vouchers/h-any-drink.png",
+  },
+  {
+    id: "img1",
+    brand: "H Breakfast to Bar",
+    title: "Basic Carwash Voucher",
+    image: "/vouchers/h-basic-carwash.png",
+  },
 ];
 
 export const vouchers: Voucher[] = imageVouchers;

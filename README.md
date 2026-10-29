@@ -53,6 +53,10 @@ lib/data.ts           Every piece of placeholder content: nav links, the
 - **Vouchers** — all 21 are in `lib/data.ts`. The Vouchers page shows 9 and
   reveals the rest behind "See more"; change `INITIAL_COUNT` in
   `VoucherGrid.tsx` to show more or fewer up front.
+- **30 Reasons coupons** — the 30 daily offers are in `lib/reasons.ts`. New
+  cards get one matching offer per stamp; the schedule and one-use redemption
+  state are stored in Supabase. Guests show the coupon QR from their card, and
+  staff scan it at `/staff/verify` before confirming redemption.
 - **Menu** — organised into five categories (Morning Menu, All-Day Plates,
   Small Bites & Shares, Handcrafted Cocktails, Coffee & Softs) in
   `lib/data.ts`. Add, remove or re-tag items there; the Menu page's tabs
