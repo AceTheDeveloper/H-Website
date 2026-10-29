@@ -15,8 +15,8 @@ export default function VisitBand() {
             src={facade}
             alt="The H Breakfast to Bar building from the road, with the large red H sign on its front"
             placeholder="blur"
-            sizes="(min-width: 1024px) 28rem, 100vw"
-            className="aspect-[16/10] w-full max-w-md rounded-2xl object-cover object-[50%_30%]"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="aspect-[16/10] w-full rounded-xl object-cover object-[50%_30%]"
           />
           <h2 className="heading mt-8 max-w-md text-4xl sm:text-5xl">
             Look for the big red H

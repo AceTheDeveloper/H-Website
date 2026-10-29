@@ -20,15 +20,15 @@ export default function MenuCard({
   const priceRow = inlinePrice ? [] : prices;
 
   return (
-    <article>
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white shadow-[0_2px_14px_rgba(23,17,14,0.08)]">
+    <article className="border border-ink/20 bg-white p-3 sm:p-4">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-chalk">
         {item.image && (
           <Image
             src={item.image}
             alt={item.description ? `${item.name}: ${item.description}` : item.name}
             fill
             sizes="(min-width: 1024px) 26vw, (min-width: 640px) 45vw, 100vw"
-            className="object-contain p-5 drop-shadow-[0_10px_10px_rgba(23,17,14,0.28)]"
+            className="object-contain p-4"
           />
         )}
         {item.tag && (

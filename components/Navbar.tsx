@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-ink bg-plaster">
-      <div className="page-shell flex h-16 items-center justify-between gap-6">
+      <div className="page-shell flex h-16 items-center justify-between gap-3 sm:gap-6">
         <Link
           href="/"
           aria-label="H Breakfast to Bar, home"
@@ -69,7 +69,7 @@ export default function Navbar() {
           <a
             href={contact.phoneHref}
             aria-label={`Reserve a table: call ${contact.phone}`}
-            className="btn btn-primary !min-h-[2.5rem] !px-4 !py-2"
+            className="btn btn-primary !min-h-[2.5rem] !px-3 !py-2 sm:!px-4"
           >
             <IconPhone className="hidden h-4 w-4 sm:block" />
             <span className="sm:hidden">Reserve</span>
@@ -78,7 +78,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="-mr-2 grid h-11 w-11 place-items-center lg:hidden"
+            className="grid h-11 w-11 place-items-center lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"

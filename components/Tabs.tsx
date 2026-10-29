@@ -9,7 +9,12 @@ import {
   type ReactNode,
 } from "react";
 
-export type TabItem = { id: string; label: string; content: ReactNode };
+export type TabItem = {
+  id: string;
+  label: string;
+  content: ReactNode;
+  activeClassName?: string;
+};
 
 /**
  * Click-through tabs: one panel on screen at a time, so a page stays short.
@@ -26,12 +31,14 @@ export default function Tabs({
   label,
   syncHash = false,
   className = "",
+  panelClassName = "mt-8",
 }: {
   tabs: TabItem[];
   /** Accessible name for the tab list. */
   label: string;
   syncHash?: boolean;
   className?: string;
+  panelClassName?: string;
 }) {
   const uid = useId();
   const [activeId, setActiveId] = useState(tabs[0].id);
@@ -68,7 +75,7 @@ export default function Tabs({
   }
 
   return (
-    <div className={className}>
+    <div className={className} data-active-tab={activeId}>
       <div
         role="tablist"
         aria-label={label}
@@ -90,9 +97,11 @@ export default function Tabs({
               aria-controls={`${uid}-panel-${t.id}`}
               tabIndex={active ? 0 : -1}
               onClick={() => select(t.id)}
-              className={`min-h-[2.75rem] border-2 border-ink px-4 py-2 text-base font-semibold transition-colors ${
-                active ? "bg-ink text-white" : "bg-transparent hover:bg-ink/10"
-              }`}
+              className={`min-h-12 rounded-full border-2 border-ink/25 px-5 py-2.5 text-[15px] font-semibold transition-colors duration-300 hover:bg-ink/10 focus-visible:outline-offset-4 sm:text-base motion-reduce:transition-none ${
+                  active
+                    ? t.activeClassName ?? "border-ink bg-ink text-white"
+                    : "bg-white/60 text-ink"
+                }`}
             >
               {t.label}
             </button>
@@ -107,7 +116,7 @@ export default function Tabs({
           id={`${uid}-panel-${t.id}`}
           aria-labelledby={`${uid}-tab-${t.id}`}
           hidden={t.id !== activeId}
-          className="mt-8"
+          className={panelClassName}
         >
           {t.content}
         </div>

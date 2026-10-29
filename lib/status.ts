@@ -10,7 +10,9 @@ const DAY_INDEX: Record<string, number> = {
   Sat: 6,
 };
 
-// Minutes since midnight when each part of the day starts.
+const OPEN_AT = 6 * 60;
+const WEEKDAY_CLOSE = 22 * 60;
+const WEEKEND_CLOSE = 26 * 60;
 const PLATES_FROM = 11 * 60 + 30;
 const BAR_FROM = 21 * 60;
 
@@ -22,10 +24,10 @@ export type OpenStatus = {
   messages: string[];
 };
 
-/** Hours shown when JavaScript hasn't run yet (server render). */
+/** Neutral text shown until the browser calculates the live status. */
 export const defaultMessages = [
   "Open daily from 6 AM",
-  "Fri and Sat until 2 AM",
+  "Breakfast, meals and drinks",
   "Diversion Road · Mandurriao · Iloilo City",
 ];
 
@@ -37,53 +39,60 @@ function manilaNow(now: Date) {
     minute: "numeric",
     hourCycle: "h23",
   }).formatToParts(now);
-  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "0";
-  return {
-    day: DAY_INDEX[get("weekday")] ?? 0,
-    minutes: Number(get("hour")) * 60 + Number(get("minute")),
-  };
+  const value = (type: string) => parts.find((part) => part.type === type)?.value;
+  const weekday = value("weekday");
+  const hour = value("hour");
+  const minute = value("minute");
+  const day = weekday ? DAY_INDEX[weekday] : undefined;
+  if (day === undefined || hour === undefined || minute === undefined) {
+    throw new Error("Unable to determine the current time in Asia/Manila");
+  }
+  return { day, minutes: Number(hour) * 60 + Number(minute) };
 }
 
-function scheduleFor(day: number) {
-  const index = hours.findIndex((h) => h.days.includes(day));
-  return { index, entry: hours[index] };
+function scheduleIndexFor(day: number) {
+  const index = hours.findIndex((entry) => entry.days.includes(day));
+  if (index < 0) throw new Error(`Missing opening hours for weekday ${day}`);
+  return index;
 }
 
 function clock(totalMinutes: number) {
-  const m = ((totalMinutes % 1440) + 1440) % 1440;
-  const h24 = Math.floor(m / 60);
-  const mm = m % 60;
-  const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
-  const suffix = h24 < 12 ? "AM" : "PM";
-  return mm === 0 ? `${h12} ${suffix}` : `${h12}:${String(mm).padStart(2, "0")} ${suffix}`;
+  const minutes = ((totalMinutes % 1440) + 1440) % 1440;
+  const hour24 = Math.floor(minutes / 60);
+  const hour12 = hour24 % 12 || 12;
+  const suffix = hour24 < 12 ? "AM" : "PM";
+  return minutes % 60 === 0
+    ? `${hour12} ${suffix}`
+    : `${hour12}:${String(minutes % 60).padStart(2, "0")} ${suffix}`;
 }
 
-/** Opening status in Manila time, using the hours in lib/data.ts. */
+/** Opening status for the current time in Manila, independent of server timezone. */
 export function getOpenStatus(now: Date = new Date()): OpenStatus {
   const { day, minutes } = manilaNow(now);
-  const today = scheduleFor(day);
-  const yesterday = scheduleFor((day + 6) % 7);
+  const todayIndex = scheduleIndexFor(day);
+  const isWeekendOvernight = minutes < 2 * 60 && (day === 6 || day === 0);
 
-  // Fri/Sat hours run past midnight, so early morning can belong to yesterday.
   let elapsed: number | null = null;
-  let closes = 0;
-  if (yesterday.entry && minutes + 1440 < yesterday.entry.close) {
+  let closesAt = 0;
+  if (isWeekendOvernight) {
     elapsed = minutes + 1440;
-    closes = yesterday.entry.close;
-  } else if (today.entry && minutes >= today.entry.open && minutes < today.entry.close) {
-    elapsed = minutes;
-    closes = today.entry.close;
+    closesAt = WEEKEND_CLOSE;
+  } else if (minutes >= OPEN_AT) {
+    const close = day === 5 || day === 6 ? WEEKEND_CLOSE : WEEKDAY_CLOSE;
+    if (minutes < close) {
+      elapsed = minutes;
+      closesAt = close;
+    }
   }
 
   if (elapsed === null) {
-    const opensToday = today.entry && minutes < today.entry.open;
-    const next = opensToday ? today.entry : scheduleFor((day + 1) % 7).entry;
+    const opensToday = minutes < OPEN_AT;
     return {
       open: false,
-      todayIndex: today.index,
+      todayIndex,
       messages: [
-        `Closed right now`,
-        `Opens ${opensToday ? "today" : "tomorrow"} at ${clock(next.open)}`,
+        "Closed right now",
+        `Opens ${opensToday ? "today" : "tomorrow"} at ${clock(OPEN_AT)}`,
         "Diversion Road · Mandurriao · Iloilo City",
       ],
     };
@@ -98,9 +107,9 @@ export function getOpenStatus(now: Date = new Date()): OpenStatus {
 
   return {
     open: true,
-    todayIndex: today.index,
+    todayIndex,
     messages: [
-      `Open now until ${clock(closes)}`,
+      `Open now until ${clock(closesAt)}`,
       ...part,
       "Diversion Road · Mandurriao · Iloilo City",
     ],

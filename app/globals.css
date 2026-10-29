@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@property --food-center {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #ff4930;
+}
+
+@property --food-mid {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e21e02;
+}
+
+@property --food-edge {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #b91800;
+}
+
 :root {
   --red: #e21e02;
   --brick: #b32a14;
@@ -201,11 +219,63 @@ body {
 .led-sign {
   position: relative;
   background: #0b0807;
-  color: var(--led);
+  color: #ff8a73;
   font-family: var(--font-led), monospace;
   text-transform: uppercase;
-  text-shadow: 0 0 5px rgba(255, 106, 72, 0.85), 0 0 16px rgba(255, 106, 72, 0.4);
   overflow: hidden;
+}
+
+.food-backdrop {
+  background: radial-gradient(
+    circle at 42% 38%,
+    var(--food-center) 0%,
+    var(--food-mid) 58%,
+    var(--food-edge) 100%
+  );
+}
+
+.food-backdrop--red {
+  --food-center: #ff4930;
+  --food-mid: #e21e02;
+  --food-edge: #b91800;
+}
+
+.food-backdrop--mustard {
+  --food-center: #ffe083;
+  --food-mid: #f5b82e;
+  --food-edge: #d49a16;
+}
+
+.food-backdrop--dark {
+  --food-center: #483626;
+  --food-mid: #29231d;
+  --food-edge: #1a1a1a;
+}
+
+.day-tabs {
+  --food-center: #ffe083;
+  --food-mid: #f5b82e;
+  --food-edge: #d49a16;
+  transition:
+    --food-center 420ms ease,
+    --food-mid 420ms ease,
+    --food-edge 420ms ease;
+}
+
+.day-tabs[data-active-tab="midday"] {
+  --food-center: #ff4930;
+  --food-mid: #e21e02;
+  --food-edge: #b91800;
+}
+
+.day-tabs[data-active-tab="night"] {
+  --food-center: #483626;
+  --food-mid: #29231d;
+  --food-edge: #1a1a1a;
+}
+
+.led-sign:hover .ticker-track {
+  animation-play-state: paused;
 }
 
 /* Dot-matrix grid laid over the lettering. */
@@ -261,4 +331,10 @@ body {
 
 .led-boot {
   animation: boot 1100ms steps(28, end) 200ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day-tabs {
+    transition: none;
+  }
 }

@@ -35,7 +35,7 @@ export default function LedSign({ className = "" }: { className?: string }) {
 
       <div aria-hidden="true" className="led-boot min-w-0 flex-1 overflow-hidden">
         <div
-          className="ticker-track py-4 text-xl leading-none sm:text-2xl"
+          className="ticker-track py-5 text-2xl leading-none sm:py-6 sm:text-3xl"
           data-paused={paused}
         >
           {/* Two copies, so the loop has no gap. */}
