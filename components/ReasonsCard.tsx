@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
 import { vouchers } from "@/lib/data";
-import { reasons, TOTAL_STAMPS } from "@/lib/reasons";
+import { promotions, reasons, TOTAL_STAMPS } from "@/lib/reasons";
 import type { StampState } from "@/lib/reasons";
 
 const TOKEN_KEY = "h-30-reasons-token";
@@ -21,7 +22,6 @@ export default function ReasonsCard() {
   const [error, setError] = useState("");
   const [storageOk, setStorageOk] = useState(true);
   const [selected, setSelected] = useState<number | null>(null);
-  const [copied, setCopied] = useState(false);
 
   const [skipContact, setSkipContact] = useState(false);
   const [email, setEmail] = useState("");
@@ -123,16 +123,6 @@ export default function ReasonsCard() {
     }
   }
 
-  async function copy(code: string) {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {
-      /* ignore */
-    }
-  }
-
   if (loading) return <p className="text-ink/70">Loading your card…</p>;
 
   const stamps = state?.stamps ?? [];
@@ -153,6 +143,9 @@ export default function ReasonsCard() {
   const sel = selected ? byNo.get(selected) : undefined;
   const selVoucher = sel?.voucherId
     ? vouchers.find((v) => v.id === sel.voucherId)
+    : undefined;
+  const selPromotion = sel?.voucherId
+    ? promotions.find((promotion) => promotion.id === sel.voucherId)
     : undefined;
   const askContact =
     state !== null &&
@@ -237,33 +230,47 @@ export default function ReasonsCard() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/60">
               Reason #{sel.no} · stamped {fmt(sel.date)}
             </p>
-            <p className="heading mt-2 text-2xl">{reasons[sel.no - 1]}</p>
+            <p className="heading mt-2 text-2xl">
+              {selPromotion?.title ?? reasons[sel.no - 1]}
+            </p>
 
-            {selVoucher && sel.code && (
-              <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={selVoucher.image}
-                  alt={selVoucher.title}
-                  className="w-full border-2 border-ink"
-                />
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">
-                    {sel.redeemed ? "Already used" : "Your voucher code"}
-                  </p>
-                  <p className="mt-2 break-all font-mono text-2xl font-bold tracking-[0.06em]">
-                    {sel.code}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => copy(sel.code!)}
-                    className="btn btn-outline mt-4"
-                  >
-                    {copied ? "Copied" : "Copy code"}
-                  </button>
-                  <p className="mt-3 text-sm text-ink/70">
-                    Show this code to our staff. One use only.
-                  </p>
+            {sel.code && (selPromotion || selVoucher) && (
+              <div className="mt-6 overflow-hidden border-2 border-ink bg-white">
+                <div className="flex flex-wrap justify-between gap-2 bg-ink px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white">
+                  <span>H Breakfast to Bar · 30 Reasons</span>
+                  <span>Coupon {sel.no} / {TOTAL_STAMPS}</span>
+                </div>
+                <div className="grid gap-5 p-5 sm:grid-cols-[auto_1fr] sm:items-center">
+                  <div className="mx-auto border border-ink/15 bg-white p-2">
+                    <QRCodeSVG
+                      value={sel.code}
+                      size={192}
+                      level="M"
+                      includeMargin
+                      aria-label={`QR code for coupon ${sel.no}`}
+                    />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brick">
+                      {sel.redeemed ? "Already redeemed" : "Your offer"}
+                    </p>
+                    <p className="heading mt-2 text-2xl">
+                      {selPromotion?.offer ?? selVoucher?.title}
+                    </p>
+                    {selVoucher && !selPromotion && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={selVoucher.image}
+                        alt={selVoucher.title}
+                        className="mt-4 w-full border border-ink/20"
+                      />
+                    )}
+                    <p className="mt-3 text-sm text-ink/70">
+                      {sel.redeemed
+                        ? "This coupon has already been used."
+                        : "Show this coupon to staff and let them scan the QR code. One use only."}
+                    </p>
+                  </div>
                 </div>
               </div>
             )}

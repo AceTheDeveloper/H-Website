@@ -45,6 +45,7 @@ export async function POST(request: Request) {
           {
             valid: true,
             title: voucher.title,
+            offer: voucher.offer ?? voucher.title,
             used: false,
             justRedeemed: true,
           },
@@ -62,7 +63,13 @@ export async function POST(request: Request) {
 
     const usedAt = (row as { redeemed_at: string | null }).redeemed_at;
     return NextResponse.json(
-      { valid: true, title: voucher.title, used: Boolean(usedAt), usedAt },
+      {
+        valid: true,
+        title: voucher.title,
+        offer: voucher.offer ?? voucher.title,
+        used: Boolean(usedAt),
+        usedAt,
+      },
       { headers },
     );
   } catch {

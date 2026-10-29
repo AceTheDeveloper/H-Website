@@ -12,7 +12,7 @@ export default function VerifyPage() {
     <>
       <PageHeader
         title="Verify voucher"
-        description="For staff. Enter the code shown on the guest's voucher."
+        description="For staff. Scan the QR code on the guest's coupon and confirm redemption."
       />
       <section className="band bg-chalk">
         <div className="page-shell">

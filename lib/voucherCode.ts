@@ -1,6 +1,6 @@
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 import { vouchers } from "@/lib/data";
-import type { Voucher } from "@/lib/data";
+import { promotions } from "@/lib/reasons";
 
 /**
  * Signed voucher codes (server only).
@@ -73,16 +73,22 @@ export function normalizeCode(input: string): string {
     .replace(/[IL]/g, "1");
 }
 
-/** Returns the voucher this code was issued for, or null if it is not genuine. */
-export function verifyCode(input: string): Voucher | null {
+/** Returns the offer this code was issued for, or null if it is not genuine. */
+export function verifyCode(
+  input: string,
+): { id: string; title: string; offer?: string } | null {
   const raw = normalizeCode(input);
   if (raw.length !== HALF * 2) return null;
   const nonce = raw.slice(0, HALF);
   const given = Buffer.from(raw.slice(HALF));
-  for (const voucher of vouchers) {
-    const expected = Buffer.from(sign(voucher.id, nonce));
+  const offers = [
+    ...vouchers.map(({ id, title }) => ({ id, title })),
+    ...promotions.map(({ id, title, offer }) => ({ id, title, offer })),
+  ];
+  for (const offer of offers) {
+    const expected = Buffer.from(sign(offer.id, nonce));
     if (expected.length === given.length && timingSafeEqual(expected, given))
-      return voucher;
+      return offer;
   }
   return null;
 }

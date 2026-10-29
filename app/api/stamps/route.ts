@@ -101,7 +101,29 @@ export async function POST(request: Request) {
       card = data as CardRow;
     }
 
-    const rows = await loadStamps(card.id);
+    if (!card) throw new Error("Could not load or create stamp card.");
+
+    let activeCard: CardRow = card;
+    const rows = await loadStamps(activeCard.id);
+    const schedule = buildSchedule();
+    for (const row of rows) {
+      if (row.voucher_id) schedule[String(row.stamp_no)] = row.voucher_id;
+    }
+    const scheduleChanged =
+      Object.entries(schedule).some(
+        ([day, voucherId]) => activeCard.promo_schedule[day] !== voucherId,
+      ) ||
+      Object.keys(activeCard.promo_schedule).length !==
+        Object.keys(schedule).length;
+    if (scheduleChanged) {
+      const { error } = await supabase
+        .from("stamp_cards")
+        .update({ promo_schedule: schedule })
+        .eq("id", activeCard.id);
+      if (error) throw error;
+      activeCard = { ...activeCard, promo_schedule: schedule };
+    }
+
     const today = manilaToday();
 
     if (
@@ -109,13 +131,13 @@ export async function POST(request: Request) {
       rows.some((r) => r.stamped_on === today)
     ) {
       return NextResponse.json(
-        { token, state: toState(card, rows), newStampNo: null },
+        { token, state: toState(activeCard, rows), newStampNo: null },
         { headers },
       );
     }
 
     const no = rows.length + 1;
-    const voucherId = card.promo_schedule[String(no)] ?? null;
+    const voucherId = activeCard.promo_schedule[String(no)] ?? null;
     const code = voucherId ? issueCode(voucherId) : null;
 
     const { error } = await supabase.from("stamps").insert({
@@ -128,9 +150,13 @@ export async function POST(request: Request) {
     // 23505 = unique violation: a double tap already stamped today.
     if (error && error.code !== "23505") throw error;
 
-    const fresh = await loadStamps(card.id);
+    const fresh = await loadStamps(activeCard.id);
     return NextResponse.json(
-      { token, state: toState(card, fresh), newStampNo: error ? null : no },
+      {
+        token,
+        state: toState(activeCard, fresh),
+        newStampNo: error ? null : no,
+      },
       { headers },
     );
   } catch {

@@ -7,7 +7,7 @@ import CtaBanner from "@/components/CtaBanner";
 export const metadata: Metadata = {
   title: "30 Reasons to Come to H",
   description:
-    "Stamp your card once a day for 30 days. Each stamp reveals a reason to visit H Breakfast to Bar, and some come with a promo.",
+    "Stamp your card once a day for 30 days. Every stamp unlocks a coupon from H Breakfast to Bar.",
   alternates: { canonical: "/30-reasons" },
   openGraph: pageOpenGraph("/30-reasons"),
 };
@@ -17,7 +17,7 @@ export default function ThirtyReasonsPage() {
     <>
       <PageHeader
         title="30 reasons to come to H"
-        description="Tap once a day for 30 days. Every stamp reveals a reason to visit, and some come with a promo."
+        description="Tap once a day for 30 days. Every stamp unlocks a coupon for a reason to visit."
       />
 
       <section className="band bg-chalk">
@@ -26,13 +26,12 @@ export default function ThirtyReasonsPage() {
             <div className="lg:sticky lg:top-28">
               <h2 className="heading text-3xl">How it works</h2>
               <ul className="mt-5 space-y-3 text-ink/85">
-                <li>One stamp per day.</li>
+                <li>One stamp per day, with that day&apos;s coupon.</li>
                 <li>
-                  10 of the 30 stamps come with a promo. The first and last
-                  always do.
+                  Each of the 30 stamps unlocks its matching offer.
                 </li>
                 <li>
-                  Show your voucher code to our staff. Each code works once.
+                  Show the coupon QR to staff. Each coupon works once.
                 </li>
                 <li>
                   Your card lives in this browser, so use the same phone each

@@ -1,23 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { Html5Qrcode } from "html5-qrcode";
 
 type Result =
-  | { status: "available"; title: string }
-  | { status: "redeemed"; title: string }
-  | { status: "used"; title: string; usedAt: string | null }
+  | { status: "available"; title: string; offer: string }
+  | { status: "redeemed"; title: string; offer: string }
+  | { status: "used"; title: string; offer: string; usedAt: string | null }
   | { status: "invalid" }
   | { status: "error" }
   | null;
 
-/** Auto-uppercase and group as the staff member types: ABCD-EFGH-IJKL-MNOP */
-function pretty(value: string) {
-  const clean = value
-    .toUpperCase()
-    .replace(/[^0-9A-Z]/g, "")
-    .slice(0, 16);
-  return clean.match(/.{1,4}/g)?.join("-") ?? "";
-}
+type VerifyResponse =
+  | { valid: false }
+  | {
+      valid: true;
+      title: string;
+      offer?: string;
+      used: boolean;
+      usedAt?: string | null;
+      justRedeemed?: boolean;
+    };
 
 function when(iso: string | null) {
   if (!iso) return "";
@@ -31,27 +34,80 @@ function when(iso: string | null) {
 }
 
 export default function VerifyForm() {
+  const scannerRef = useRef<Html5Qrcode | null>(null);
+  const scanHandledRef = useRef(false);
+  const scanStartingRef = useRef(false);
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
+  const [scanning, setScanning] = useState(false);
+  const [cameraReady, setCameraReady] = useState(false);
+  const [scanError, setScanError] = useState("");
   const [result, setResult] = useState<Result>(null);
 
-  async function call(redeem: boolean) {
-    if (busy || !code) return;
+  async function stopScanner() {
+    scanStartingRef.current = false;
+    const scanner = scannerRef.current;
+    scannerRef.current = null;
+    setScanning(false);
+    setCameraReady(false);
+    if (!scanner) return;
+
+    try {
+      if (scanner.isScanning) await scanner.stop();
+      scanner.clear();
+    } catch (error) {
+      console.error("Could not stop the voucher QR scanner.", error);
+      setScanError("Could not stop the camera. Please close this page when done.");
+    }
+  }
+
+  useEffect(
+    () => () => {
+      scanStartingRef.current = false;
+      const scanner = scannerRef.current;
+      if (scanner?.isScanning) {
+        void scanner
+          .stop()
+          .then(() => scanner.clear())
+          .catch((error: unknown) =>
+            console.error("Could not stop the voucher QR scanner.", error),
+          );
+      }
+    },
+    [],
+  );
+
+  async function call(scannedCode: string, redeem: boolean) {
+    if (busy || !scannedCode) return;
     setBusy(true);
     try {
       const res = await fetch("/api/stamps/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code, redeem }),
+        body: JSON.stringify({ code: scannedCode, redeem }),
       });
-      if (!res.ok) throw new Error();
-      const d = await res.json();
-      if (!d.valid) setResult({ status: "invalid" });
-      else if (d.justRedeemed)
-        setResult({ status: "redeemed", title: d.title });
-      else if (d.used)
-        setResult({ status: "used", title: d.title, usedAt: d.usedAt ?? null });
-      else setResult({ status: "available", title: d.title });
+      if (!res.ok) throw new Error("Voucher verification failed.");
+      const data = (await res.json()) as VerifyResponse;
+      if (!data.valid) setResult({ status: "invalid" });
+      else if (data.justRedeemed)
+        setResult({
+          status: "redeemed",
+          title: data.title,
+          offer: data.offer ?? data.title,
+        });
+      else if (data.used)
+        setResult({
+          status: "used",
+          title: data.title,
+          offer: data.offer ?? data.title,
+          usedAt: data.usedAt ?? null,
+        });
+      else
+        setResult({
+          status: "available",
+          title: data.title,
+          offer: data.offer ?? data.title,
+        });
     } catch {
       setResult({ status: "error" });
     } finally {
@@ -59,45 +115,98 @@ export default function VerifyForm() {
     }
   }
 
+  async function startScanner() {
+    if (scannerRef.current || scanStartingRef.current || busy) return;
+    setScanError("");
+    setResult(null);
+    setCode("");
+    scanHandledRef.current = false;
+    scanStartingRef.current = true;
+    setScanning(true);
+    setCameraReady(false);
+
+    try {
+      const { Html5Qrcode, Html5QrcodeSupportedFormats } = await import(
+        "html5-qrcode"
+      );
+      await new Promise<void>((resolve) =>
+        requestAnimationFrame(() => resolve()),
+      );
+      if (!scanStartingRef.current) return;
+      const scanner = new Html5Qrcode("voucher-qr-reader", {
+        verbose: false,
+        formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+      });
+      scannerRef.current = scanner;
+      await scanner.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: { width: 240, height: 240 } },
+        (decodedText) => {
+          if (scanHandledRef.current) return;
+          scanHandledRef.current = true;
+          setCode(decodedText);
+          void stopScanner();
+          void call(decodedText, false);
+        },
+        () => {
+          // A frame without a QR code is expected while scanning.
+        },
+      );
+      if (scannerRef.current === scanner) {
+        scanStartingRef.current = false;
+        setCameraReady(true);
+      }
+    } catch (error) {
+      scanStartingRef.current = false;
+      console.error("Could not start the voucher QR scanner.", error);
+      await stopScanner();
+      setScanError(
+        "Camera access is unavailable. Allow camera access and try again.",
+      );
+    }
+  }
+
   return (
     <div className="mx-auto max-w-xl">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setResult(null);
-          call(false);
-        }}
-        className="border-2 border-ink bg-white p-6 md:p-8"
-      >
-        <label
-          htmlFor="code"
-          className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/60"
-        >
-          Voucher code
-        </label>
-        <input
-          id="code"
-          value={code}
-          onChange={(e) => {
-            setCode(pretty(e.target.value));
-            setResult(null);
-          }}
-          placeholder="XXXX-XXXX-XXXX-XXXX"
-          inputMode="text"
-          autoCapitalize="characters"
-          autoComplete="off"
-          autoCorrect="off"
-          spellCheck={false}
-          className="mt-2 w-full border-2 border-ink bg-chalk px-4 py-3 font-mono text-xl font-bold tracking-[0.06em] sm:text-2xl sm:tracking-[0.1em] placeholder:text-ink/25"
+      <div className="border-2 border-ink bg-white p-6 md:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/60">
+          Staff voucher check
+        </p>
+        <p className="heading mt-2 text-2xl">Scan the guest&apos;s coupon QR</p>
+        <p className="mt-2 text-ink/70">
+          Allow camera access, scan the QR on the coupon, then confirm the
+          redemption after giving the offer.
+        </p>
+        <div
+          id="voucher-qr-reader"
+          className={`mt-5 overflow-hidden ${scanning ? "min-h-64" : "hidden"}`}
         />
-        <button
-          type="submit"
-          disabled={busy || code.length < 19}
-          className="btn btn-primary mt-5 w-full disabled:opacity-50"
-        >
-          {busy ? "Checking…" : "Check code"}
-        </button>
-      </form>
+        {!scanning && (
+          <button
+            type="button"
+            onClick={startScanner}
+            disabled={busy}
+            className="btn btn-primary mt-5 w-full disabled:opacity-50"
+          >
+            {busy ? "Checking…" : result ? "Scan another coupon" : "Start camera"}
+          </button>
+        )}
+        {scanning && (
+          <button
+            type="button"
+            onClick={() => void stopScanner()}
+            disabled={!cameraReady}
+            className="btn btn-outline mt-4 w-full"
+          >
+            {cameraReady ? "Stop camera" : "Starting camera…"}
+          </button>
+        )}
+        {scanError && (
+          <p role="alert" className="mt-4 text-brick">
+            {scanError}
+          </p>
+        )}
+      </div>
 
       <div className="mt-6" aria-live="polite">
         {result?.status === "available" && (
@@ -106,16 +215,17 @@ export default function VerifyForm() {
               Genuine · not used yet
             </p>
             <p className="heading mt-2 text-3xl">{result.title}</p>
+            <p className="mt-2 text-white/80">{result.offer}</p>
             <button
               type="button"
-              onClick={() => call(true)}
+              onClick={() => void call(code, true)}
               disabled={busy}
               className="btn btn-primary mt-5 w-full disabled:opacity-50"
             >
               {busy ? "Saving…" : "Mark as used"}
             </button>
             <p className="mt-3 text-sm text-white/70">
-              Only tap this once the guest has been given the promo.
+              Only confirm after the guest has received the offer.
             </p>
           </div>
         )}
@@ -125,6 +235,7 @@ export default function VerifyForm() {
               Marked as used
             </p>
             <p className="heading mt-2 text-3xl">{result.title}</p>
+            <p className="mt-2 text-white/80">{result.offer}</p>
           </div>
         )}
         {result?.status === "used" && (
@@ -133,9 +244,10 @@ export default function VerifyForm() {
               Already used
             </p>
             <p className="heading mt-2 text-3xl">{result.title}</p>
+            <p className="mt-2 text-ink/75">{result.offer}</p>
             <p className="mt-2 text-ink/75">
               {result.usedAt ? `Redeemed ${when(result.usedAt)}. ` : ""}Do not
-              honour this voucher again.
+              honor this coupon again.
             </p>
           </div>
         )}
@@ -144,15 +256,15 @@ export default function VerifyForm() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brick">
               Not valid
             </p>
-            <p className="heading mt-2 text-3xl">Code not recognised</p>
+            <p className="heading mt-2 text-3xl">QR not recognized</p>
             <p className="mt-2 text-ink/75">
-              Check the characters and try again. Do not honour this voucher.
+              This QR is not a valid H coupon. Do not honor it.
             </p>
           </div>
         )}
         {result?.status === "error" && (
           <p className="border-2 border-ink bg-white p-4 text-ink/80">
-            Couldn&apos;t reach the server. Check your connection and try again.
+            Couldn&apos;t reach the server. Check your connection and scan again.
           </p>
         )}
       </div>
